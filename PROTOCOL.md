@@ -1,6 +1,6 @@
 # Client > Serveur
 ### Utilisateur
-**TryInscription** : JsonObject contenant un Utilisateur
+**TrySignUp**(args): args = JsonObject contenant un Utilisateur
 Exemple :
 ```
 [
@@ -11,4 +11,4 @@ Exemple :
 
 # Client < Serveur
 ### Utilisateur
-**onRTryInscription** : JsonObject contenant l'utilisateur inscrit... Ou simplement un booleen permettant de vérifier que l'inscription a bien été réalisée?
+**RTrySignUp**(arg): arg = int permettant de savoir comment s'est déroulée l'inscription
