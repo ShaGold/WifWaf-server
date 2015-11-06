@@ -6,6 +6,7 @@ var io = require('socket.io')(server);
 
 io.sockets.on('connection', function (socket) {
     console.log('Un nouveau client est connecté !');
+    socket.emit('onTest');
     socket.user = 0;
 
     // TryInscription permet d'inscrire user (JsonObject). Retourne vrai si réussi, faux sinon.
