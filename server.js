@@ -3,6 +3,24 @@ var app = express();
 var port = process.env.port || 8000; //8000 étant le port par défaut
 var server = app.listen(port);
 var io = require('socket.io')(server);
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'root',
+  database : 'WifWaf'
+});
+
+connection.connect();
+
+connection.query('SELECT * FROM Behaviour', function(err, rows, fields) {
+  if (err) throw err;
+
+  console.log('Résultat: ', rows[0].description);
+});
+
+connection.end();
+
 
 io.sockets.on('connection', function (socket) {
     console.log('Un nouveau client est connecté !');
