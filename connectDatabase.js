@@ -18,5 +18,9 @@ function DBConnection(){
     console.log('Résultat: ', rows[0].description);
   });
 
+  connection.query('INSERT INTO Behaviour(description) VALUES (\'calm\')', function(err, rows, fields) {
+    if (err) throw err;
+  });
+
   connection.end();
 }
