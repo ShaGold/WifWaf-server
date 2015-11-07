@@ -5,33 +5,32 @@ USE WifWaf;
 
 -- Création des tables
 CREATE TABLE User(
-  idUser INT primary key autoincrement,
-  email VARCHAR(200) not null,
-  nickname VARCHAR(200) not null,
-  password VARCHAR(200) not null,
+  idUser INT auto_increment primary key,
+  email VARCHAR(255) not null,
+  nickname VARCHAR(255) not null,
+  password VARCHAR(255) not null,
   birthday DATE not null,
   phoneNumber INT,
   description text,
-  photo VARCHAR(200),
+  photo VARCHAR(255),
   flag INT
 );
 
 CREATE TABLE Dog(
-  idDog INT primary key autoincrement,
-  dogName VARCHAR(200) not null,
-  age INT,
-  breed VARCHAR(200),
-  size INT, --deux digit
-  getAlongWithMales VARCHAR(200),
-  getAlongWithFemales VARCHAR(200),
-  getAlongWithKids VARCHAR(200),
-  obedient INT,
-  description text,
-  sociable INT -- deux digit
+  idDog INT auto_increment primary key,
+  dogName VARCHAR(255) not null,
+  age INT(2),
+  breed VARCHAR(255),
+  size INT(2),
+  getAlongWithMales VARCHAR(255),
+  getAlongWithFemales VARCHAR(255),
+  getAlongWithKids VARCHAR(255),
+  getAlongWithHumans VARCHAR(255),
+  description text
 );
 
 CREATE TABLE DogBehaviour(
-  idDogBehaviour INT primary key autoincrement,
+  idDogBehaviour INT auto_increment primary key,
   idDog INT,
   idBehaviour INT
 );
