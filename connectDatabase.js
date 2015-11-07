@@ -1,4 +1,6 @@
-exports.connection = function launchDBConnection(){
+module.exports.connection = new DBConnection();
+
+function DBConnection(){
   var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
