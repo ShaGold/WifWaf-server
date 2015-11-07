@@ -1,3 +1,5 @@
+var mysql = require('mysql');
+
 module.exports.connection = new DBConnection();
 
 function DBConnection(){
