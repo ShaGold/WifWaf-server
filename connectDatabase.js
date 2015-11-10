@@ -31,7 +31,7 @@ function DBConnection(){
              return;
          }
      });
-  }
+  };
 
   this.addDog = function(dog){
     var req = "INSERT INTO Dog(dogName, age, breed, size, getAlongWithMales, getAlongWithFemales, getAlongWithKids, getAlongWithHumans, description) "
@@ -42,7 +42,8 @@ function DBConnection(){
              return;
          }
     });
+  };
 
 
   connection.end();
-};
+}
