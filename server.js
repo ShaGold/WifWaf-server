@@ -4,13 +4,14 @@ var app = express();
 var port = process.env.port || 8000; //8000 étant le port par défaut
 var server = app.listen(port);
 var io = require('socket.io')(server);
-var mysql = require('mysql');
 var connection = require('./connectDatabase').connection;
 
 // Gestion evenements
 io.sockets.on('connection', function (socket) {
     console.log('Un nouveau client est connecté !');
-    socket.emit('onTest', 'test');
+    socket.emit('onTestString', 'test');
+    socket.emit('onTestJson', {"cheval":"valcheval","canard":"valcanard","chien":"valchien","chat":"valchat"});
+
     socket.user = 0;
 
     // TryInscription permet d'inscrire user (JsonObject). Retourne vrai si réussi, faux sinon.
