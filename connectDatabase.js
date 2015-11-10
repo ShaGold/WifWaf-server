@@ -45,4 +45,4 @@ function DBConnection(){
 
 
   connection.end();
-}
+};
