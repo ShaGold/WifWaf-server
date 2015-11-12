@@ -21,7 +21,7 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('onTestSendJson', function (paramTest){
       console.log('Passage dans onTestSendJson: ', paramTest);
-      var obj = jQuery.parseJSON(paramTest);
+      var obj = jquery.parseJSON(paramTest);
       console.log('valeur du champ mail:', obj.email);
       console.log('valeur du champ nom:', obj.name);
       //TODO création d'un objet user avec les valeurs récupérées
