@@ -12,8 +12,28 @@ io.sockets.on('connection', function (socket) {
     socket.emit('onTestString', 'test');
     socket.emit('onTestJson', {"cheval":"valcheval","canard":"valcanard","chien":"valchien","chat":"valchat"});
     socket.emit('onTestJsonArray', [{"prénom":"Jimmy", "nomDeFamille":"Lopez"}, {"prénom":"Christophe", "nomDeFamille":"Dony"}]);
-
     socket.user = 0;
+
+    socket.on('onTestSendString',function (paramTest){
+      console.log('Passage dans onTestSendString: ', paramTest);
+    });
+
+    socket.on('onTestSendJson',function (paramTest){
+      console.log('Passage dans onTestSendJson: ', paramTest);
+      var json = JSON.parse(paramTest);
+      console.log('valeur du champ mail:', json.email);
+      console.log('valeur du champ nom:', json.name);
+      //TODO création d'un objet user avec les valeurs récupérées
+    });
+
+    socket.on('onTestSendJsonArray',function (paramTest){
+      console.log('Passage dans onTestSendJsonArray: ', paramTest);
+      var jsonArray = JSON.parse(paramTest);
+    	for ( var i = 0; i < jsonArray.length; i++) {
+        //TODO creation tableau d'objets
+      }
+
+    });
 
     // TryInscription permet d'inscrire user (JsonObject). Retourne vrai si réussi, faux sinon.
     socket.on('TrySignUp', function (user) {
