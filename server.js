@@ -5,6 +5,7 @@ var port = process.env.port || 8000; //8000 étant le port par défaut
 var server = app.listen(port);
 var io = require('socket.io')(server);
 var connection = require('./connectDatabase').connection;
+var jquery = require('jquery');
 
 // Gestion evenements
 io.sockets.on('connection', function (socket) {
@@ -14,15 +15,15 @@ io.sockets.on('connection', function (socket) {
     socket.emit('onTestJsonArray', [{"prénom":"Jimmy", "nomDeFamille":"Lopez"}, {"prénom":"Christophe", "nomDeFamille":"Dony"}]);
     socket.user = 0;
 
-    socket.on('onTestSendString',function (paramTest){
+    socket.on('onTestSendString', function (paramTest){
       console.log('Passage dans onTestSendString: ', paramTest);
     });
 
-    socket.on('onTestSendJson',function (paramTest){
+    socket.on('onTestSendJson', function (paramTest){
       console.log('Passage dans onTestSendJson: ', paramTest);
-      var json = JSON.parse(paramTest);
-      console.log('valeur du champ mail:', json.email);
-      console.log('valeur du champ nom:', json.name);
+      var obj = jQuery.parseJSON(paramTest);
+      console.log('valeur du champ mail:', obj.email);
+      console.log('valeur du champ nom:', obj.name);
       //TODO création d'un objet user avec les valeurs récupérées
     });
 
