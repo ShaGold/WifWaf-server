@@ -43,7 +43,4 @@ function DBConnection(){
          }
     });
   };
-
-
-  db.end();
 }
