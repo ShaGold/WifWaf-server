@@ -5,7 +5,7 @@ var port = process.env.port || 8000; //8000 étant le port par défaut
 var server = app.listen(port);
 var io = require('socket.io')(server);
 
-var connection = require('./connectDatabase').connection;
+var db = require('./connectDatabase').connection;
 var User = require('./controllers/User.js').user;
 
 // Gestion evenements
