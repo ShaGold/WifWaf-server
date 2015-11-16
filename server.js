@@ -24,7 +24,6 @@ io.sockets.on('connection', function (socket) {
       console.log('Passage dans onTestSendJson: ', paramTest);
       console.log('valeur du champ mail:', paramTest.email);
       console.log('valeur du champ nom:', paramTest.name);
-      //TODO création d'un objet user avec les valeurs récupérées
     });
 
     socket.on('onTestSendJsonArray',function (paramTest){
@@ -38,9 +37,9 @@ io.sockets.on('connection', function (socket) {
     // TryInscription permet d'inscrire user (JsonObject). Retourne vrai si réussi, faux sinon.
     socket.on('TrySignUp', function (user) {
         var newUser = new User(user.email, user.nickname, user.password, user.birthday, user.phoneNumber, user.description, user.photo);
-        //socket.emit("RTrySignUp", 1) //résultat renvoyé dépend des instructions sql futures*/
         console.log('Je passe dans trysignup');
         console.log(newUser);
         db.addUser(newUser);
+        //socket.emit("RTrySignUp", 1) //résultat renvoyé dépend des instructions sql futures*/
     });
 });
