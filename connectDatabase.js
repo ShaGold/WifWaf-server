@@ -3,22 +3,22 @@ var mysql = require('mysql');
 module.exports.connection = new DBConnection();
 
 function DBConnection(){
-  var connection = mysql.createConnection({
+  var db = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
     password : 'root',
     database : 'WifWaf'
   });
 
-  connection.connect();
+  db.connect();
 
-  connection.query('SELECT * FROM Behaviour', function(err, rows, fields) {
+  db.query('SELECT * FROM Behaviour', function(err, rows, fields) {
     if (err) throw err;
 
     console.log('Résultat: ', rows[0].description);
   });
 
-  connection.query('INSERT INTO Behaviour(description) VALUES (\'calm\')', function(err, rows, fields) {
+  db.query('INSERT INTO Behaviour(description) VALUES (\'calm\')', function(err, rows, fields) {
     if (err) throw err;
   });
 
