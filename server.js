@@ -6,7 +6,7 @@ var server = app.listen(port);
 var io = require('socket.io')(server);
 
 var connection = require('./connectDatabase').connection;
-var User = require('./controllers/user.js').user;
+var User = require('./controllers/User.js').user;
 
 // Gestion evenements
 io.sockets.on('connection', function (socket) {
