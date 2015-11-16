@@ -29,10 +29,9 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('onTestSendJsonArray',function (paramTest){
         console.log('Passage dans onTestSendJsonArray: ', paramTest);
-        var jsonData = JSON.parse(paramTest);
-        for ( var i = 0; i < jsonData.length; i++) {
-            console.log(jsonData[i].prenom);
-            console.log(jsonData[i].nom);
+        for ( var i = 0; i < paramTest.length; i++) {
+            console.log(paramTest[i].prenom);
+            console.log(paramTest[i].nom);
         }
     });
 
