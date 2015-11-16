@@ -26,11 +26,12 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('onTestSendJsonArray',function (paramTest){
-      console.log('Passage dans onTestSendJsonArray: ', paramTest);
-      var jsonArray = JSON.parse(paramTest);
-    	for ( var i = 0; i < jsonArray.length; i++) {
-        //TODO creation tableau d'objets
-      }
+        console.log('Passage dans onTestSendJsonArray: ', paramTest);
+        for ( var i = 0; i < paramTest.length; i++) {
+            //TODO creation tableau d'objets
+            console.log(paramTest[i].prenom);
+            console.log(paramTest[i].nom);
+        }
 
     });
 
