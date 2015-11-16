@@ -4,7 +4,9 @@ var app = express();
 var port = process.env.port || 8000; //8000 étant le port par défaut
 var server = app.listen(port);
 var io = require('socket.io')(server);
+
 var connection = require('./connectDatabase').connection;
+var User = require('./controllers/user.js').user;
 
 // Gestion evenements
 io.sockets.on('connection', function (socket) {
@@ -28,9 +30,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('onTestSendJsonArray',function (paramTest){
         console.log('Passage dans onTestSendJsonArray: ', paramTest);
         var jsonData = JSON.parse(paramTest);
-        console.log(jsonData);
         for ( var i = 0; i < jsonData.length; i++) {
-            //TODO creation tableau d'objets
             console.log(jsonData[i].prenom);
             console.log(jsonData[i].nom);
         }
@@ -38,9 +38,10 @@ io.sockets.on('connection', function (socket) {
 
     // TryInscription permet d'inscrire user (JsonObject). Retourne vrai si réussi, faux sinon.
     socket.on('TrySignUp', function (user) {
-      /*var newUser = new User(user.email, user.nickname, user.password, user.birthday, user.phoneNumber, user.description, user.photo)
-      db.addUser(newUser);
-      socket.emit("RTrySignUp", 1) //résultat renvoyé dépend des instructions sql futures*/
-      console.log('Je passe dans trysignup');
+        var newUser = new User(user.email, user.nickname, user.password, user.birthday, user.phoneNumber, user.description, user.photo);
+        //db.addUser(newUser);
+        //socket.emit("RTrySignUp", 1) //résultat renvoyé dépend des instructions sql futures*/
+        console.log('Je passe dans trysignup');
+        console.log(newUser);
     });
 });
