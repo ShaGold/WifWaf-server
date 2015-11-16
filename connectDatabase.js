@@ -45,5 +45,5 @@ function DBConnection(){
   };
 
 
-  connection.end();
+  db.end();
 }
