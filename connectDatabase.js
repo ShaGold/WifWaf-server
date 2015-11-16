@@ -23,7 +23,7 @@ function DBConnection(){
   });
 
   this.addUser = function(user){
-    var req = "INSERT INTO USER(email, nickname, password, birthday, phoneNumber, description, photo) "
+    var req = "INSERT INTO User(email, nickname, password, birthday, phoneNumber, description, photo) "
                  + "VALUES('" + user.email + "', '" + user.nickname + "', '" + user.password + "', '" + user.birthday + "', '" + user.phoneNumber + "', '" + user.description + "', '" + user.photo + "');";
      db.query(req, function select(err, result) {
          if (err) {
