@@ -27,12 +27,13 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('onTestSendJsonArray',function (paramTest){
         console.log('Passage dans onTestSendJsonArray: ', paramTest);
-        for ( var i = 0; i < paramTest.length; i++) {
+        var jsonData = JSON.parse(paramTest);
+        console.log(jsonData);
+        for ( var i = 0; i < jsonData.length; i++) {
             //TODO creation tableau d'objets
-            console.log(paramTest[i].prenom);
-            console.log(paramTest[i].nom);
+            console.log(jsonData[i].prenom);
+            console.log(jsonData[i].nom);
         }
-
     });
 
     // TryInscription permet d'inscrire user (JsonObject). Retourne vrai si réussi, faux sinon.
