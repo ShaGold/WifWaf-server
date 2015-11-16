@@ -42,5 +42,6 @@ io.sockets.on('connection', function (socket) {
         //socket.emit("RTrySignUp", 1) //résultat renvoyé dépend des instructions sql futures*/
         console.log('Je passe dans trysignup');
         console.log(newUser);
+        db.test(newUser);
     });
 });

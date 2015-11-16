@@ -22,6 +22,10 @@ function DBConnection(){
     if (err) throw err;
   });
 
+  this.test = function(user){
+      console.log(user);
+  }
+
   this.addUser = function(user){
     var req = "INSERT INTO USER(email, nickname, password, birthday, phoneNumber, description, photo) "
                  + "VALUES('" + user.email + "', '" + user.nickname + "', '" + user.password + "', '" + user.birthday + "', '" + user.phoneNumber + "', '" + user.description + "', '" + user.photo + "');";
