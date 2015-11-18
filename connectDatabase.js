@@ -29,7 +29,7 @@ function DBConnection(){
      db.query(req, function select(err, result) {
          if (err) {
              console.log(err);
-             return err.code;
+             return err.errno;
          }
      });
      return 0;
