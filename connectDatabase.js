@@ -22,17 +22,17 @@ function DBConnection(){
     if (err) throw err;
   });
 
-  this.addUser = function(user){
+  this.addUser = function(user, socket){
     var req = "INSERT INTO User(email, nickname, password, birthday, phoneNumber, description, photo) "
                  + "VALUES('" + user.email + "', '" + user.nickname + "', '" + user.password + "', '"
                  + user.birthday + "', '" + user.phoneNumber + "', '" + user.description + "', '" + user.photo + "');";
      db.query(req, function select(err, result) {
          if (err) {
              console.log(err);
-             return err.errno;
+             socket.emit("RTrySignUp", err.errno);
          }
      });
-     return 0;
+     socket.emit("RTrySignUp", 0);
   };
 
   this.addDog = function(dog){
