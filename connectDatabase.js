@@ -29,10 +29,10 @@ function DBConnection(){
      db.query(req, function select(err, result) {
          if (err) {
              console.log(err);
-             return;
+             return err.code;
          }
      });
-     return "test";
+     return 0;
   };
 
   this.addDog = function(dog){
