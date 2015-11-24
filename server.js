@@ -39,7 +39,10 @@ io.sockets.on('connection', function (socket) {
         var newUser = new User(user.email, user.nickname, user.password, user.birthday, user.phoneNumber, user.description, user.photo);
         console.log('Je passe dans trysignup');
         console.log(newUser);
-        var err = db.addUser(newUser, socket);
-        socket.emit("RTrySignUp", err); //résultat renvoyé dépend des instructions sql futures*/
+        db.addUser(newUser, socket);
     });
+
+    /*socket.on('getAllMyDogs', function(iduser, socket){
+
+    });*/
 });
