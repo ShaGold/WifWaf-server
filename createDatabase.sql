@@ -18,6 +18,7 @@ CREATE TABLE User(
 
 CREATE TABLE Dog(
   idDog INT auto_increment primary key,
+  idUser INT not null,
   dogName VARCHAR(255) not null,
   age INT(2),
   breed VARCHAR(255),

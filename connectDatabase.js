@@ -36,8 +36,8 @@ function DBConnection(){
   };
 
   this.addDog = function(dog){
-      var req = "INSERT INTO Dog(dogName, age, breed, size, getAlongWithMales, getAlongWithFemales, getAlongWithKids, getAlongWithHumans, description) "
-                 + "VALUES('" + dog.dogName + "', '" + dog.age + "', '" + dog.breed + "', '"
+      var req = "INSERT INTO Dog(dogName, idUser, age, breed, size, getAlongWithMales, getAlongWithFemales, getAlongWithKids, getAlongWithHumans, description) "
+                 + "VALUES('" + dog.dogName + "', '" + dog.idUser + "', '" + dog.age + "', '" + dog.breed + "', '"
                  + dog.size + "', '" + dog.getAlongWithMales + "', '" + dog.getAlongWithFemales + "', '"
                  + dog.getAlongWithKids + "', '" + dog.getAlongWithHumans +  "', '" + dog.description + "');";
       db.query(req, function select(err, result) {
