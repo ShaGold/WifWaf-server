@@ -28,8 +28,7 @@ function DBConnection(){
                  + user.birthday + "', '" + user.phoneNumber + "', '" + user.description + "', '" + user.photo + "');";
      db.query(req, function select(err, result) {
          if (err) {
-             console.log(err['errno']);
-             socket.emit("RTrySignUp", err.errno);
+             socket.emit("RTrySignUp", err['errno']);
          }
      });
      socket.emit("RTrySignUp", 0);
