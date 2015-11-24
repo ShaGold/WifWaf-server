@@ -47,12 +47,18 @@ function DBConnection(){
     });
   };
 
-  /*this.getAllDogs = function(idUser, socket){
+  this.getAllDogs = function(idUser, socket){
       var req = "SELECT * FROM Dog WHERE idUser = " + idUser + ";";
       db.query(req, function select(err, result) {
           if (err) {
               console.log(err);
+              socket.emit("RGetAllMyDogs", err['errno']);
+          }
+          else{
+              console.log("Les chiens: ", result);
+              socket.emit("RGetAllDogs", result);
           }
       });
-  };*/
+
+  };
 }

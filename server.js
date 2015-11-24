@@ -42,7 +42,8 @@ io.sockets.on('connection', function (socket) {
         db.addUser(newUser, socket);
     });
 
-    /*socket.on('getAllMyDogs', function(iduser, socket){
-
-    });*/
+    socket.on('getAllMyDogs', function(param){
+        console.log('Récupération de tous les chiens');
+        db.getAllMyDogs(param.idUser, socket);
+    });
 });
