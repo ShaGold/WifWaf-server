@@ -56,7 +56,7 @@ function DBConnection(){
           }
           else{
               console.log("Les chiens: ", result);
-              socket.emit("RGetAllDogs", result);
+              socket.emit("RGetAllMyDogs", result);
           }
       });
 
