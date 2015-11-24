@@ -47,7 +47,7 @@ function DBConnection(){
     });
   };
 
-  this.getAllDogs = function(idUser, socket){
+  this.getAllMyDogs = function(idUser, socket){
       var req = "SELECT * FROM Dog WHERE idUser = " + idUser + ";";
       db.query(req, function select(err, result) {
           if (err) {
