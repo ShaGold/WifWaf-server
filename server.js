@@ -42,8 +42,8 @@ io.sockets.on('connection', function (socket) {
         db.addUser(newUser, socket);
     });
 
-    socket.on('getAllMyDogs', function(param){
+    socket.on('getAllMyDogs', function(idUser){
         console.log('Récupération de tous les chiens');
-        db.getAllMyDogs(param.idUser, socket);
+        db.getAllMyDogs(idUser, socket);
     });
 });
