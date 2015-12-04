@@ -18,9 +18,9 @@ function DBConnection(){
     console.log('Résultat: ', rows[0].description);
   });
 
-  db.query('INSERT INTO Behaviour(description) VALUES (\'calm\')', function(err, rows, fields) {
+  /*db.query('INSERT INTO Behaviour(description) VALUES (\'calm\')', function(err, rows, fields) {
     if (err) throw err;
-  });
+});*/
 
   this.addUser = function(user, socket){
     var req = "INSERT INTO User(email, nickname, password, birthday, phoneNumber, description, photo) "
@@ -59,6 +59,18 @@ function DBConnection(){
               socket.emit("RGetAllMyDogs", result);
           }
       });
+
+      this.getAllBehaviours = function(socket){
+          var req = "SELECT * FROM Behaviour;";
+          db.query(req, function select(err, result) {
+              if (err) {
+                  console.log(err);
+                  socket.emit("RGetAllBehaviours", err['errno']);
+              }
+              else{
+                  socket.emit("RGetAllBehaviours", result);
+              }
+          });
 
   };
 }
