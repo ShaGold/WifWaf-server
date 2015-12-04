@@ -46,4 +46,9 @@ io.sockets.on('connection', function (socket) {
         console.log('Récupération de tous les chiens');
         db.getAllMyDogs(idUser, socket);
     });
+
+    socket.on('getAllBehaviours', function(){
+        console.log('Récupération de tous les Behaviour');
+        db.getAllBehaviours(socket);
+    });
 });
