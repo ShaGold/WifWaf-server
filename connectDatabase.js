@@ -42,6 +42,7 @@ function DBConnection(){
       //on récupère l'id user pour le renvoyer au client
          db.query("SELECT * FROM User Where email = " + email + ";", function(err, rows, fields) {
              //var currentUser = new User(rows[0].idUser, rows[0].email, rows[0].nickname, rows[0].password, rows[0].birthday, rows[0].phoneNumber, rows[0].description, rows[0].photo);
+             console.log(rows[0]);
              socket.emit("RTrySignUp", rows[0].idUser);
          });
     };
