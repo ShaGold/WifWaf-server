@@ -33,7 +33,7 @@ function DBConnection(){
              socket.emit("RTrySignUp", err['errno']);
          }
          else{
-             this.getUserByEmail(user.email, socket);
+             getUserByEmail(user.email, socket);
          }
      });
   };
