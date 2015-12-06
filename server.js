@@ -36,7 +36,7 @@ io.sockets.on('connection', function (socket) {
 
     // TryInscription permet d'inscrire user (JsonObject). Retourne vrai si réussi, faux sinon.
     socket.on('TrySignUp', function (user) {
-        var newUser = new User(user.email, user.nickname, user.password, user.birthday, user.phoneNumber, user.description, user.photo);
+        var newUser = new User(0, user.email, user.nickname, user.password, user.birthday, user.phoneNumber, user.description, user.photo);
         console.log('Je passe dans trysignup');
         console.log(newUser);
         db.addUser(newUser, socket);

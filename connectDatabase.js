@@ -1,5 +1,7 @@
 var mysql = require('mysql');
 
+var User = require('./controllers/User.js').user;
+
 module.exports.connection = new DBConnection();
 
 function DBConnection(){
