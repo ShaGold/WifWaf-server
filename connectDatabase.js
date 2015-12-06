@@ -27,6 +27,7 @@ function DBConnection(){
                  + user.birthday + "', '" + user.phoneNumber + "', '" + user.description + "', '" + user.photo + "');";
      db.query(req, function select(err, result) {
          if (err) {
+             console.log(err);
              socket.emit("RTrySignUp", err['errno']);
          }
          else{
