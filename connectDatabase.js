@@ -13,8 +13,7 @@ function DBConnection(){
   db.connect();
 
   db.query('SELECT * FROM Behaviour', function(err, rows, fields) {
-    if (err) throw err;
-
+    //if (err) throw err;
     console.log('Résultat: ', rows[0].description);
   });
 
@@ -30,8 +29,16 @@ function DBConnection(){
          if (err) {
              socket.emit("RTrySignUp", err['errno']);
          }
+         else{
+             socket.emit("RTrySignUp", 0);
+         }
      });
-     socket.emit("RTrySignUp", 0);
+     //on récupère l'id user pour le renvoyer au client
+    /* db.query('SELECT * FROM Behaviour', function(err, rows, fields) {
+       if (err) throw err;
+
+       console.log('Résultat: ', rows[0].description);
+   });*/
   };
 
   this.addDog = function(dog){
