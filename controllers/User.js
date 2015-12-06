@@ -1,6 +1,7 @@
 module.exports.user = User;
 
-function User(email, nickname, password, birthday, phoneNumber, description, photo) {
+function User(id, email, nickname, password, birthday, phoneNumber, description, photo) {
+    this.idUser = id;
     this.email = email;
     this.nickname = nickname;
     this.password = password;
