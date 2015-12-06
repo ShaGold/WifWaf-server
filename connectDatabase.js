@@ -35,7 +35,7 @@ function DBConnection(){
          else{
              //on récupère l'id user pour le renvoyer au client
                 db.query("SELECT * FROM User Where email = " + user.email + ";", function(err, rows, fields) {
-                    var currentUser = new User(rows[0].idUser, rows[0].email, rows[0].email, rows[0].nickname, rows[0].password, rows[0].birthday, rows[0].phoneNumber, rows[0].description, rows[0].photo);
+                    var currentUser = new User(rows[0].idUser, rows[0].email, rows[0].nickname, rows[0].password, rows[0].birthday, rows[0].phoneNumber, rows[0].description, rows[0].photo);
                     socket.emit("RTrySignUp", currentUser.idUser);
                 });
          }
