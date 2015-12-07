@@ -37,7 +37,7 @@ CREATE TABLE DogBehaviour(
 );
 
 CREATE TABLE Behaviour(
-  idBehaviour INT primary key autoincrement,
+  idBehaviour INT auto_increment primary key,
   description VARCHAR(200)
 );
 
