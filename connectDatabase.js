@@ -31,7 +31,7 @@ function DBConnection(){
          if (err) {
              console.log(err);
              var jsonUser = {
-                 id : -err
+                 id : -err['errno']
              };
              socket.emit("RTrySignUp", jsonUser);
          }
