@@ -1,6 +1,7 @@
 module.exports.user = Dog;
 
-function Dog(dogName, idUser, age, breed, size, getAlongWithMales, getAlongWithFemales, getAlongWithKids, getAlongWithHumans, description) {
+function Dog(id, dogName, idUser, age, breed, size, getAlongWithMales, getAlongWithFemales, getAlongWithKids, getAlongWithHumans, description) {
+    this.id = id;
     this.dogName = dogName;
     this.idUser = idUser;
     this.age = age;

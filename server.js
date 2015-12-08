@@ -34,12 +34,18 @@ io.sockets.on('connection', function (socket) {
         }
     });
 
-    // TryInscription permet d'inscrire user (JsonObject). Retourne vrai si réussi, faux sinon.
     socket.on('TrySignUp', function (user) {
         var newUser = new User(0, user.email, user.nickname, user.password, user.birthday, user.phoneNumber, user.description, user.photo);
         console.log('Je passe dans trysignup');
         console.log(newUser);
         db.addUser(newUser, socket);
+    });
+
+    socket.on('TryAddDog', function (dog) {
+        var newDog = new Dog(dog.id, dog.dogName, dog.idUser, dog.age, dog.breed, dog.size, dog.getAlongWithMales, dog.getAlongWithFemales, dog.getAlongWithKids, dog.getAlongWithHumans, dog.description);
+        console.log('Je passe dans TryAddDog');
+        console.log(newDog);
+        db.addDog(newDog, socket);
     });
 
     socket.on('getAllMyDogs', function(idUser){
