@@ -7,6 +7,7 @@ var io = require('socket.io')(server);
 
 var db = require('./connectDatabase').connection;
 var User = require('./controllers/User.js').user;
+var Dog = require('./controllers/Dog.js').dog;
 
 // Gestion evenements
 io.sockets.on('connection', function (socket) {
@@ -42,6 +43,7 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('TryAddDog', function (dog) {
+        console.log(dog);
         var newDog = new Dog(dog.id, dog.dogName, dog.idUser, dog.age, dog.breed, dog.size, dog.getAlongWithMales, dog.getAlongWithFemales, dog.getAlongWithKids, dog.getAlongWithHumans, dog.description);
         console.log('Je passe dans TryAddDog');
         console.log(newDog);
