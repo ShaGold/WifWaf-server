@@ -53,7 +53,8 @@ function DBConnection(){
                  birthday : rows[0].birthday,
                  phoneNumber : rows[0].phoneNumber,
                  description : rows[0].description,
-                 photo : rows[0].photo
+                 photo : rows[0].photo,
+                 flag : rows[0].flag
              };
              socket.emit("RTrySignUp", jsonUser);
          });
