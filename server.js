@@ -59,4 +59,9 @@ io.sockets.on('connection', function (socket) {
         console.log('Récupération de tous les Behaviour');
         db.getAllBehaviours(socket);
     });
+
+    socket.on('TrySignIn', function(user) {
+        var email = user.email;
+        var mdp = user.mdp;
+    });
 });

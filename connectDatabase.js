@@ -12,6 +12,8 @@ function DBConnection(){
     database : 'WifWaf'
   });
 
+  var self = this;
+
   db.connect();
 
   db.query('SELECT * FROM Behaviour', function(err, rows, fields) {
@@ -36,12 +38,12 @@ function DBConnection(){
              socket.emit("RTrySignUp", jsonUser);
          }
          else{
-             getUserByEmail(user.email, socket);
+             self.getUserByEmail(user.email, socket);
          }
      });
   };
 
-    function getUserByEmail(email, socket){
+    this.getUserByEmail = function(email, socket){
       //on récupère l'id user pour le renvoyer au client
          db.query("SELECT * FROM User Where email = '" + email + "';", function(err, rows, fields) {
              //var currentUser = new User(rows[0].idUser, rows[0].email, rows[0].nickname, rows[0].password, rows[0].birthday, rows[0].phoneNumber, rows[0].description, rows[0].photo);
