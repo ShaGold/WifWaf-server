@@ -49,20 +49,31 @@ function DBConnection(){
              console.log(err);
              console.log(rows);
              if (rows.length == 0){
-                 console.log("Yata");
+                 var jsonUser = {
+                     id : -1,
+                     email : "",
+                     nickname : "",
+                     password : "",
+                     birthday : "",
+                     phoneNumber : "",
+                     description : "",
+                     photo : "",
+                     flag : ""
+                 };
              }
-             console.log(fields);
-             var jsonUser = {
-                 id : rows[0].idUser,
-                 email : rows[0].email,
-                 nickname : rows[0].nickname,
-                 password : rows[0].password,
-                 birthday : rows[0].birthday,
-                 phoneNumber : rows[0].phoneNumber,
-                 description : rows[0].description,
-                 photo : rows[0].photo,
-                 flag : rows[0].flag
-             };
+             else{
+                 var jsonUser = {
+                     id : rows[0].idUser,
+                     email : rows[0].email,
+                     nickname : rows[0].nickname,
+                     password : rows[0].password,
+                     birthday : rows[0].birthday,
+                     phoneNumber : rows[0].phoneNumber,
+                     description : rows[0].description,
+                     photo : rows[0].photo,
+                     flag : rows[0].flag
+                 };
+             }
              socket.emit(event, jsonUser);
          });
     };
