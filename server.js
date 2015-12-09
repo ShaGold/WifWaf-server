@@ -63,5 +63,6 @@ io.sockets.on('connection', function (socket) {
     socket.on('TrySignIn', function(user) {
         var email = user.email;
         var mdp = user.mdp;
+        db.getUserByEmail("RTrySignIn", email, socket);
     });
 });

@@ -38,13 +38,12 @@ function DBConnection(){
              socket.emit("RTrySignUp", jsonUser);
          }
          else{
-             self.getUserByEmail(user.email, socket);
+             self.getUserByEmail("RTrySignUp", user.email, socket);
          }
      });
   };
 
-    this.getUserByEmail = function(email, socket){
-      //on récupère l'id user pour le renvoyer au client
+    this.getUserByEmail = function(event, email, socket){
          db.query("SELECT * FROM User Where email = '" + email + "';", function(err, rows, fields) {
              //var currentUser = new User(rows[0].idUser, rows[0].email, rows[0].nickname, rows[0].password, rows[0].birthday, rows[0].phoneNumber, rows[0].description, rows[0].photo);
              var jsonUser = {
@@ -58,7 +57,7 @@ function DBConnection(){
                  photo : rows[0].photo,
                  flag : rows[0].flag
              };
-             socket.emit("RTrySignUp", jsonUser);
+             socket.emit(event, jsonUser);
          });
     };
 
