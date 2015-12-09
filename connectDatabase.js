@@ -48,10 +48,10 @@ function DBConnection(){
              if (rows.length == 0){
                  var jsonUser = {
                      id : -1,
-                     email : "",
-                     nickname : "",
-                     password : "",
-                     birthday : "",
+                     email : "null",
+                     nickname : "null",
+                     password : "null",
+                     birthday : "null",
                      phoneNumber : "",
                      description : "",
                      photo : "",
