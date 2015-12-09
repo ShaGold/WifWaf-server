@@ -47,7 +47,7 @@ function DBConnection(){
          db.query("SELECT * FROM User Where email = '" + email + "';", function(err, rows, fields) {
              if (rows.length == 0){
                  var jsonUser = {
-                     idUser : -1,
+                     id : -1,
                      email : "null",
                      nickname : "null",
                      password : "null",
@@ -60,7 +60,7 @@ function DBConnection(){
              }
              else{
                  var jsonUser = {
-                     idUser : rows[0].idUser,
+                     id : rows[0].idUser,
                      email : rows[0].email,
                      nickname : rows[0].nickname,
                      password : rows[0].password,
