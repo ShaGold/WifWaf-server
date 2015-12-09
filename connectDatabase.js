@@ -45,9 +45,6 @@ function DBConnection(){
 
     this.getUserByEmail = function(event, email, socket){
          db.query("SELECT * FROM User Where email = '" + email + "';", function(err, rows, fields) {
-             //var currentUser = new User(rows[0].idUser, rows[0].email, rows[0].nickname, rows[0].password, rows[0].birthday, rows[0].phoneNumber, rows[0].description, rows[0].photo);
-             console.log(err);
-             console.log(rows);
              if (rows.length == 0){
                  var jsonUser = {
                      id : -1,
