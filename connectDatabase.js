@@ -48,6 +48,9 @@ function DBConnection(){
              //var currentUser = new User(rows[0].idUser, rows[0].email, rows[0].nickname, rows[0].password, rows[0].birthday, rows[0].phoneNumber, rows[0].description, rows[0].photo);
              console.log(err);
              console.log(rows);
+             if (rows == []){
+                 console.log("Yata");
+             }
              console.log(fields);
              var jsonUser = {
                  id : rows[0].idUser,
