@@ -64,4 +64,9 @@ io.sockets.on('connection', function (socket) {
         var email = user.email;
         db.getUserByEmail("RTrySignIn", email, socket);
     });
+
+    socket.on('deleteDog', function(idDog){
+        console.log('Suppression chien ', idDog);
+        db.deleteDog(idDog);
+    })
 });

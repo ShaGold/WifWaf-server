@@ -114,4 +114,10 @@ function DBConnection(){
           }
       });
   };
+
+  this.deleteDog = function(idDog){
+      db.query("DELETE FROM Dog WHERE Dog.idDog = " + idDog + ";", function(err, rows, fields) {
+        console.log(err);
+      });
+  };
 }
