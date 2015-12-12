@@ -115,9 +115,11 @@ function DBConnection(){
       });
   };
 
-  this.deleteDog = function(idDog){
+  this.deleteDog = function(idDog, socket){
+      console.log(idDog);
       db.query("DELETE FROM Dog WHERE Dog.idDog = " + idDog + ";", function(err, rows, fields) {
         console.log(err);
       });
+      socket.emit("RdeleteDog");
   };
 }
