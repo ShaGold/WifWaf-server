@@ -9,7 +9,7 @@ var db = require('./connectDatabase').connection;
 var User = require('./controllers/User.js').user;
 var Dog = require('./controllers/Dog.js').dog;
 var Walk = require('./controllers/Walk.js').walk;
-var Location = require('./controllers/Location.js').location;
+var Locations = require('./controllers/Location.js').locations;
 
 // Gestion evenements
 io.sockets.on('connection', function (socket) {
@@ -76,6 +76,12 @@ io.sockets.on('connection', function (socket) {
         console.log('Tentative insertion de balade', walk);
         var newWalk = new Walk(0, walk.idDog, walk.idUser, walk.walkName, walk.description, walk.city, walk.departure);
         db.addWalk(newWalk, socket);
+        var idWalk = db.
+        foreach(l in walk.location){
+            console.log(l);
+            var newLoc = new Location(0, l.latitude, l.longitude, l.order);
+            db.addLoc(newLoc.latitude, newLoc.longitude, newLoc.order);
+        }
 
     })
 });

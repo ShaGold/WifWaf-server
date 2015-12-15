@@ -106,6 +106,20 @@ function DBConnection(){
     });
   };
 
+  this.addLocation = function(location, socket){
+      var req = "INSERT INTO Location(idWalk, lattitude, longitude, ordering) "
+                 + "VALUES('" + LAST_INSERT_ID() + "', '" + location.lattitude + "', '" + location.longitude + "', '" + location.ordering + ");";
+      db.query(req, function select(err, result) {
+         if (err) {
+             console.log(err);
+             return;
+         }
+         else{
+             console.log("c'est bon");
+         }
+    });
+  };
+
   this.getAllMyDogs = function(idUser, socket){
       var req = "SELECT * FROM Dog WHERE idUser = " + idUser + ";";
       db.query(req, function select(err, result) {
