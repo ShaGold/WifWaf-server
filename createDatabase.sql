@@ -44,15 +44,25 @@ CREATE TABLE Behaviour(
 CREATE TABLE Walk(
     idWalk INT auto_increment primary key,
     walkName VARCHAR(255),
+    description text,
     city VARCHAR(255),
-    departure timestamp,
     length INT
+);
+
+CREATE TABLE Location(
+    idLocation INT auto_increment primary key,
+    idWalk INT,
+    lattitude DOUBLE(10,10),
+    longitude DOUBLE(10,10),
+    ordering INT
 );
 
 CREATE TABLE UseWalk(
     idUseWalk INT auto_increment primary key,
     idWalk INT,
-    idDog INT
+    idDog INT,
+    idUser INT,
+    departure timestamp
 );
 
 

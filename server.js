@@ -68,5 +68,16 @@ io.sockets.on('connection', function (socket) {
     socket.on('deleteDog', function(idDog){
         console.log('Suppression chien ', idDog);
         db.deleteDog(idDog, socket);
+    });
+
+    socket.on('TryAddWalk', function(walk){
+        console.log('Tentative insertion de balade', walk);
+        console.log(walk.idDog);
+        console.log(walk.idUser);
+        console.log(walk.walkName);
+        console.log(walk.description);
+        console.log(walk.city);
+        console.log(walk.departure);
+        console.log(walk.location);
     })
 });
