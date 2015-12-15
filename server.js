@@ -78,7 +78,7 @@ io.sockets.on('connection', function (socket) {
         db.addWalk(newWalk, socket);
         var l;
         for(l in walk.location){
-            console.log(l.latitude);
+            console.log(walk.location[l]);
             var newLoc = new Locations(0, l.latitude, l.longitude, l.order);
             db.addLocation(newLoc, socket);
         }
