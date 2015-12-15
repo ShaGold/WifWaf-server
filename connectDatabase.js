@@ -91,6 +91,21 @@ function DBConnection(){
     });
   };
 
+  this.addWalk = function(walk, socket){
+      var req = "INSERT INTO Walk(city, idDog, idUser, walkName, description, departure) "
+                 + "VALUES('" + walk.city + "', '" + walk.idDog + "', '" + walk.idUser + "', '" + walk.walkName + "', '"
+                 + walk.description + "', '" + walk.departure + "');";
+      db.query(req, function select(err, result) {
+         if (err) {
+             console.log(err);
+             return;
+         }
+         else{
+             socket.emit("RTryAddWalk");
+         }
+    });
+  };
+
   this.getAllMyDogs = function(idUser, socket){
       var req = "SELECT * FROM Dog WHERE idUser = " + idUser + ";";
       db.query(req, function select(err, result) {

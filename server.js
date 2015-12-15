@@ -8,6 +8,7 @@ var io = require('socket.io')(server);
 var db = require('./connectDatabase').connection;
 var User = require('./controllers/User.js').user;
 var Dog = require('./controllers/Dog.js').dog;
+var Walk = require('./controllers/Walk.js').walk;
 
 // Gestion evenements
 io.sockets.on('connection', function (socket) {
@@ -72,12 +73,8 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('TryAddWalk', function(walk){
         console.log('Tentative insertion de balade', walk);
-        console.log(walk.idDog);
-        console.log(walk.idUser);
-        console.log(walk.walkName);
-        console.log(walk.description);
-        console.log(walk.city);
-        console.log(walk.departure);
+        var newWalk = new Walk(0, walk.idDog, walk.idUser, walk.walkName, walk.description, walk.city, walk.departure);
+        db.addWalk(newWalk, socket);
         console.log(walk.location);
     })
 });
