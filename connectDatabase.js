@@ -75,7 +75,7 @@ function DBConnection(){
          });
     };
 
-  this.addDog = function(dog){
+  this.addDog = function(dog, socket){
       var req = "INSERT INTO Dog(dogName, idUser, age, breed, size, getAlongWithMales, getAlongWithFemales, getAlongWithKids, getAlongWithHumans, description) "
                  + "VALUES('" + dog.dogName + "', '" + dog.idUser + "', '" + dog.age + "', '" + dog.breed + "', '"
                  + dog.size + "', '" + dog.getAlongWithMales + "', '" + dog.getAlongWithFemales + "', '"
@@ -84,6 +84,9 @@ function DBConnection(){
          if (err) {
              console.log(err);
              return;
+         }
+         else{
+             socket.emit("RTryAddDog");
          }
     });
   };
