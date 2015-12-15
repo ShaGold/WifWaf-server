@@ -109,6 +109,7 @@ function DBConnection(){
   this.addLocation = function(location, socket){
       var req = "INSERT INTO Location(idWalk, lattitude, longitude, ordering) "
                  + "VALUES(LAST_INSERT_ID(), " + location.lattitude + "', '" + location.longitude + "', '" + location.ordering + ");";
+                 console.log(req);
       db.query(req, function select(err, result) {
          if (err) {
              console.log(err);
