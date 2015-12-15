@@ -80,8 +80,8 @@ io.sockets.on('connection', function (socket) {
         for(l in walk.location){
             console.log(l);
             var newLoc = new Locations(0, l.latitude, l.longitude, l.order);
-            db.addLoc(newLoc.latitude, newLoc.longitude, newLoc.order);
+            db.addLocation(newLoc.latitude, newLoc.longitude, newLoc.order);
         }
 
-    })
+    });
 });
