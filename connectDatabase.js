@@ -167,7 +167,7 @@ function DBConnection(){
           }
           else{
               var resultat = result;
-              console.log("RESULT" + result);
+              console.log("RESULT" + util.inspect(result));
               var i;
               for(i in result){
                   var req = "SELECT * FROM Location WHERE idWalk = " + result[i]['idWalk'] + " ORDER BY ordering;";
