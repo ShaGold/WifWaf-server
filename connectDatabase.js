@@ -181,6 +181,7 @@ function DBConnection(){
                       }
                   });
               }
+              console.log("Resultat final", resultat);
               //socket.emit("RGetAllMyWalks", result);
           }
       });
