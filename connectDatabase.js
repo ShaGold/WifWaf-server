@@ -178,8 +178,8 @@ function DBConnection(){
                       else{
                           resultat[l].path = resultLoc;
                           console.log("Balade modifiée : " + util.inspect(resultat[l]));
-                          console.log(l);
-                          console.log(result.length);
+                          console.log("id balade:" + result[l].idWalk);
+                          console.log("longueur result" + result.length);
                           if (l == result.length - 1){
                               //dernier element
                               console.log("Resultat final", resultat);
