@@ -177,7 +177,7 @@ function DBConnection(){
                       else{
                           console.log("Les locations: ", resultLoc);
                           console.log(resultat[l]);
-                          resultat[l].addProperty("path", resultLoc);
+                          resultat[l]['path'] = resultLoc;
                       }
                   });
               }
