@@ -172,7 +172,6 @@ function DBConnection(){
               for(i in result){
                   self.getLocation(result, i, socket);
               }
-              //socket.emit("RGetAllMyWalks", result);
           }
       });
   };
@@ -186,12 +185,9 @@ function DBConnection(){
           }
           else{
               result[i].path = resultLoc;
-              console.log("id balade:" + result[i]['idWalk']);
-              console.log("valeur de i : " + i);
               if (i == result.length - 1){
                   //dernier element
-                  console.log("DERNIER ELEMENT");
-                  console.log("Resultat final", result);
+                  socket.emit("RGetAllMyWalks", result);
               }
           }
       });
