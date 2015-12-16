@@ -164,7 +164,6 @@ function DBConnection(){
               socket.emit("RGetAllMyWalks", err['errno']);
           }
           else{
-              console.log("Mes balades: ", result);
               var resultat = result;
               var l;
               for(l in resultat){
@@ -175,8 +174,6 @@ function DBConnection(){
                           socket.emit("RGetAllMyWalks", err['errno']);
                       }
                       else{
-                          console.log("Les locations: ", resultLoc);
-                          console.log(resultat[l]);
                           resultat[l]['path'] = resultLoc;
                       }
                   });
