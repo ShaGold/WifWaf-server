@@ -158,7 +158,7 @@ function DBConnection(){
       socket.emit("RdeleteDog");
   };
 
-  this.getAllMyWalks = function(idUser, socket){
+ /* this.getAllMyWalks = function(idUser, socket){
       var req = "SELECT * FROM Walk WHERE idUser = " + idUser + ";";
       db.query(req, function select(err, result) {
           if (err) {
@@ -193,6 +193,6 @@ function DBConnection(){
               //socket.emit("RGetAllMyWalks", result);
           }
       });
-  };
+  };*/
 
 }
