@@ -178,10 +178,14 @@ function DBConnection(){
                       else{
                           resultat[l].path = resultLoc;
                           console.log("Balade modifiée : " + util.inspect(resultat[l]));
+                          if (l == result.length){
+                              //dernier element
+                              console.log("Resultat final", resultat);
+                          }
                       }
                   });
               }
-              console.log("Resultat final", resultat);
+
               //socket.emit("RGetAllMyWalks", result);
           }
       });
