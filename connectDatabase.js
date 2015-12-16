@@ -155,4 +155,20 @@ function DBConnection(){
       });
       socket.emit("RdeleteDog");
   };
+
+  this.getAllMyWalks = function(idUser, socket){
+      var req = "SELECT * FROM Walk WHERE idUser = " + idUser + ";";
+      db.query(req, function select(err, result) {
+          if (err) {
+              console.log(err);
+              socket.emit("RGetAllMyWalks", err['errno']);
+          }
+          else{7*
+              4
+              console.log("Mes balades: ", result);
+              socket.emit("RGetAllMyWalks", result);
+          }
+      });
+  };
+
 }

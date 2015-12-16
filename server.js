@@ -81,6 +81,10 @@ io.sockets.on('connection', function (socket) {
             var newLoc = new Locations(0, walk.location[l].latitude, walk.location[l].longitude, walk.location[l].ordering);
             db.addLocation(newLoc, socket);
         }
+    });
 
+    socket.on('getAllMyWalks', function(idUser){
+        console.log("Tentative de récupération de toutes les balades de", idUser);
+        db.getAllMyWalks(idUser, socket);
     });
 });
