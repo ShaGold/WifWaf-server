@@ -166,7 +166,20 @@ function DBConnection(){
           else{
               console.log("Mes balades: ", result);
               console.log("nom de la balade", result[0]['walkName']);
-              socket.emit("RGetAllMyWalks", result);
+              var l;
+              for(l in result){
+                  console.log("valeur de l'idWalk", result[l]['idWalk']);
+                  var req = "SELECT * FROM Location WHERE idWalk = " + result[l]['idWalk'] + ";";
+                  db.query(req, function select(err, result) {
+                      if (err) {
+                          console.log(err);
+                      }
+                      else{
+                          console.log("Les locations: ", result);
+                      }
+                  });
+              }
+              //socket.emit("RGetAllMyWalks", result);
           }
       });
   };

@@ -54,8 +54,8 @@ CREATE TABLE Walk(
 CREATE TABLE Location(
     idLocation INT auto_increment primary key,
     idWalk INT,
-    lattitude DOUBLE(10,10),
-    longitude DOUBLE(10,10),
+    lattitude VARCHAR(255),
+    longitude VARCHAR(255),
     ordering INT
 );
 
