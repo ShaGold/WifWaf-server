@@ -209,4 +209,24 @@ function DBConnection(){
           }
       });
   };
+
+  this.deleteWalk = function(idWalk, socket){
+      console.log(idWalk);
+      db.query("DELETE FROM Walk WHERE Walk.idWalk = " + idWalk + ";", function(err, rows, fields) {
+        console.log(err);
+      });
+      socket.emit("RdeleteWalk");
+  };
+
+  this.getUserById = function(idUser, socket){
+       db.query("SELECT * FROM User Where email = '" + email + "';", function select(err, result) {
+               if (err) {
+                   console.log(err);
+                   socket.emit("RGetUser", err['errno']);
+               }
+               else{
+                   socket.emit("RGetUser", result);
+               }
+      });
+  };
 }

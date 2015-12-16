@@ -72,6 +72,11 @@ io.sockets.on('connection', function (socket) {
         db.deleteDog(idDog, socket);
     });
 
+    socket.on('deleteWalk', function(idWalk){
+        console.log('Suppression balade ', idWalk);
+        db.deleteWalk(idWalk, socket);
+    });
+
     socket.on('TryAddWalk', function(walk){
         console.log('Tentative insertion de balade', walk);
         var newWalk = new Walk(0, walk.idDog, walk.idUser, walk.walkName, walk.description, walk.city, walk.departure);
@@ -91,5 +96,10 @@ io.sockets.on('connection', function (socket) {
     socket.on('getAllMyWalks', function(idUser){
         console.log("Tentative de récupération de toutes les balades");
         db.getAllWalks(socket);
+    });
+
+    socket.on('getUserById', function(idUser){
+        console.log("Tentative de récupération du user à partir de l'id", idUser);
+        db.getUserById(socket);
     });
 });
