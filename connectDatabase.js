@@ -170,26 +170,29 @@ function DBConnection(){
               console.log("RESULT" + util.inspect(result));
               var i;
               for(i in result){
-                  var req = "SELECT * FROM Location WHERE idWalk = " + result[i]['idWalk'] + " ORDER BY ordering;";
-                  console.log(i);
-                  db.query(req, function select(err, resultLoc) {
-                      if (err) {
-                          console.log(err);
-                          socket.emit("RGetAllMyWalks", err['errno']);
-                      }
-                      else{
-                          result[i].path = resultLoc;
-                          console.log("id balade:" + result[i]['idWalk']);
-                          console.log("valeur de i : " + i);
-                          if (i == result.length - 1){
-                              //dernier element
-                              console.log("DERNIER ELEMENT");
-                              console.log("Resultat final", result);
-                          }
-                      }
-                  });
+                  self.getLocation(result, i, socket);
               }
               //socket.emit("RGetAllMyWalks", result);
+          }
+      });
+  };
+
+  this.getLocation = function(result, i, socket){
+      var req = "SELECT * FROM Location WHERE idWalk = " + result[i]['idWalk'] + " ORDER BY ordering;";
+      db.query(req, function select(err, resultLoc) {
+          if (err) {
+              console.log(err);
+              socket.emit("RGetAllMyWalks", err['errno']);
+          }
+          else{
+              result[i].path = resultLoc;
+              console.log("id balade:" + result[i]['idWalk']);
+              console.log("valeur de i : " + i);
+              if (i == result.length - 1){
+                  //dernier element
+                  console.log("DERNIER ELEMENT");
+                  console.log("Resultat final", result);
+              }
           }
       });
   };
