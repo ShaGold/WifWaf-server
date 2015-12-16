@@ -167,18 +167,17 @@ function DBConnection(){
           }
           else{
               var resultat = result;
-              var j = 4;
               console.log("RESULT" + util.inspect(result));
               var i;
               for(i in result){
                   var req = "SELECT * FROM Location WHERE idWalk = " + result[i]['idWalk'] + " ORDER BY ordering;";
+                  console.log(i);
                   db.query(req, function select(err, resultLoc) {
                       if (err) {
                           console.log(err);
                           socket.emit("RGetAllMyWalks", err['errno']);
                       }
                       else{
-                          console.log("val de j" + j);
                           result[i].path = resultLoc;
                           console.log("id balade:" + result[i]['idWalk']);
                           console.log("valeur de i : " + i);
