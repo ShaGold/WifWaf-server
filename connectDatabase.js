@@ -165,17 +165,17 @@ function DBConnection(){
           }
           else{
               console.log("Mes balades: ", result);
-              console.log("nom de la balade", result[0]['walkName']);
               var l;
               for(l in result){
-                  console.log("valeur de l'idWalk", result[l]['idWalk']);
-                  var req = "SELECT * FROM Location WHERE idWalk = " + result[l]['idWalk'] + ";";
-                  db.query(req, function select(err, result) {
+                  var req = "SELECT * FROM Location WHERE idWalk = " + result[l]['idWalk'] + " ORDER BY ordering;";
+                  db.query(req, function select(err, resultLoc) {
                       if (err) {
                           console.log(err);
+                          socket.emit("RGetAllMyWalks", err['errno']);
                       }
                       else{
-                          console.log("Les locations: ", result);
+                          console.log("Les locations: ", resultLoc);
+                          result[0].put("path", resultLoc);
                       }
                   });
               }
