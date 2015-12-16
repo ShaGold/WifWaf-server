@@ -158,7 +158,7 @@ function DBConnection(){
       socket.emit("RdeleteDog");
   };
 
- /* this.getAllMyWalks = function(idUser, socket){
+  this.getAllMyWalks = function(idUser, socket){
       var req = "SELECT * FROM Walk WHERE idUser = " + idUser + ";";
       db.query(req, function select(err, result) {
           if (err) {
@@ -168,7 +168,7 @@ function DBConnection(){
           else{
               var resultat = result;
               var i;
-              for(i = 0; i<result.length; i++){
+              for(i in result){
                   var req = "SELECT * FROM Location WHERE idWalk = " + result[i]['idWalk'] + " ORDER BY ordering;";
                   db.query(req, function select(err, resultLoc) {
                       if (err) {
@@ -189,10 +189,8 @@ function DBConnection(){
                       }
                   });
               }
-
               //socket.emit("RGetAllMyWalks", result);
           }
       });
-  };*/
-
+  };
 }
