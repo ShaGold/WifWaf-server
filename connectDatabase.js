@@ -167,7 +167,7 @@ function DBConnection(){
           }
           else{
               var resultat = result;
-              var j = 1;
+              var j = 4;
               console.log("RESULT" + util.inspect(result));
               var i;
               for(i in result){
