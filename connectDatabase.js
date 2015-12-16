@@ -178,7 +178,7 @@ function DBConnection(){
                       }
                       else{
                           result[i].path = resultLoc;
-                          console.log("id balade:" + result[i].idWalk);
+                          console.log("id balade:" + result[i]['idWalk']);
                           console.log("valeur de i : " + i);
                           if (i == result.length - 1){
                               //dernier element
