@@ -176,6 +176,7 @@ function DBConnection(){
                           socket.emit("RGetAllMyWalks", err['errno']);
                       }
                       else{
+                          console.log(util.inspect(resultat[i]));
                           resultat[i].path = resultLoc;
                           console.log("Balade modifiée : " + util.inspect(resultat[i]));
                           console.log("id balade:" + result[i].idWalk);
