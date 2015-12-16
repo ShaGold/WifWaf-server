@@ -170,24 +170,41 @@ function DBConnection(){
               console.log("RESULT" + util.inspect(result));
               var i;
               for(i in result){
-                  self.getLocation(result, i, socket);
+                  self.getLocation("RGetAllMyWalks", result, i, socket);
               }
           }
       });
   };
 
-  this.getLocation = function(result, i, socket){
+  this.getLocation = function(event, result, i, socket){
       var req = "SELECT * FROM Location WHERE idWalk = " + result[i]['idWalk'] + " ORDER BY ordering;";
       db.query(req, function select(err, resultLoc) {
           if (err) {
               console.log(err);
-              socket.emit("RGetAllMyWalks", err['errno']);
+              socket.emit(event, err['errno']);
           }
           else{
               result[i].path = resultLoc;
               if (i == result.length - 1){
                   //dernier element
-                  socket.emit("RGetAllMyWalks", result);
+                  socket.emit(event, result);
+              }
+          }
+      });
+  };
+
+  this.getAllWalks = function(socket){
+      var req = "SELECT * FROM Walk ;";
+      db.query(req, function select(err, result) {
+          if (err) {
+              console.log(err);
+              socket.emit("RGetAllWalks", err['errno']);
+          }
+          else{
+              var resultat = result;
+              var i;
+              for(i in result){
+                  self.getLocation("RGetAllWalks", result, i, socket);
               }
           }
       });
