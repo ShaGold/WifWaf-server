@@ -178,7 +178,7 @@ function DBConnection(){
                       else{
                           resultat[l].path = resultLoc;
                           console.log("Balade modifiée : " + util.inspect(resultat[l]));
-                          if (l == result.length){
+                          if (l == result.length - 1){
                               //dernier element
                               console.log("Resultat final", resultat);
                           }
