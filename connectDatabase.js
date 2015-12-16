@@ -165,9 +165,10 @@ function DBConnection(){
           }
           else{
               console.log("Mes balades: ", result);
+              var resultat = result;
               var l;
-              for(l in result){
-                  var req = "SELECT * FROM Location WHERE idWalk = " + result[l]['idWalk'] + " ORDER BY ordering;";
+              for(l in resultat){
+                  var req = "SELECT * FROM Location WHERE idWalk = " + resultat[l]['idWalk'] + " ORDER BY ordering;";
                   db.query(req, function select(err, resultLoc) {
                       if (err) {
                           console.log(err);
@@ -175,7 +176,7 @@ function DBConnection(){
                       }
                       else{
                           console.log("Les locations: ", resultLoc);
-                          result[0].put("path", resultLoc);
+                          resultat[l].put("path", resultLoc);
                       }
                   });
               }
