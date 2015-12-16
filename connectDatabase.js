@@ -174,7 +174,7 @@ function DBConnection(){
                           socket.emit("RGetAllMyWalks", err['errno']);
                       }
                       else{
-                          resultat[l]['path'] = resultLoc;
+                          resultat[l].path = resultLoc;
                       }
                   });
               }
