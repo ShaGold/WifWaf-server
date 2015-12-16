@@ -175,9 +175,9 @@ function DBConnection(){
                       }
                       else{
                           resultat[l].path = resultLoc;
-                          console.log("value: " + resultat[l].path);
                       }
                   });
+                  console.log("Balade modifiée : " + resultat[l]);
               }
               console.log("Resultat final", resultat);
               //socket.emit("RGetAllMyWalks", result);
