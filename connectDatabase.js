@@ -168,20 +168,21 @@ function DBConnection(){
           else{
               var resultat = result;
               var l;
-              for(l in result){
-                  var req = "SELECT * FROM Location WHERE idWalk = " + result[l]['idWalk'] + " ORDER BY ordering;";
+              for(i = 0; i<result.length; i++){
+                  var req = "SELECT * FROM Location WHERE idWalk = " + result[i]['idWalk'] + " ORDER BY ordering;";
                   db.query(req, function select(err, resultLoc) {
                       if (err) {
                           console.log(err);
                           socket.emit("RGetAllMyWalks", err['errno']);
                       }
                       else{
-                          resultat[l].path = resultLoc;
-                          console.log("Balade modifiée : " + util.inspect(resultat[l]));
-                          console.log("id balade:" + result[l].idWalk);
+                          resultat[i].path = resultLoc;
+                          console.log("Balade modifiée : " + util.inspect(resultat[i]));
+                          console.log("id balade:" + result[i].idWalk);
                           console.log("longueur result" + result.length);
-                          if (l == result.length - 1){
+                          if (i == result.length - 1){
                               //dernier element
+                              console.log("DERNIER ELEMENT");
                               console.log("Resultat final", resultat);
                           }
                       }
