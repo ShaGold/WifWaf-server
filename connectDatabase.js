@@ -165,7 +165,7 @@ function DBConnection(){
           }
           else{
               console.log("Mes balades: ", result);
-              console.log("nom de la balade", result['walkName']);
+              console.log("nom de la balade", result[0]['walkName']);
               socket.emit("RGetAllMyWalks", result);
           }
       });
