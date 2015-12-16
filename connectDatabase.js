@@ -175,6 +175,7 @@ function DBConnection(){
                       }
                       else{
                           resultat[l].path = resultLoc;
+                          console.log("value: " + resultat[l].path);
                       }
                   });
               }
