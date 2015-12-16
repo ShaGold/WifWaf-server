@@ -167,6 +167,7 @@ function DBConnection(){
           }
           else{
               var resultat = result;
+              console.log("RESULT" + result);
               var i;
               for(i in result){
                   var req = "SELECT * FROM Location WHERE idWalk = " + result[i]['idWalk'] + " ORDER BY ordering;";
@@ -176,11 +177,9 @@ function DBConnection(){
                           socket.emit("RGetAllMyWalks", err['errno']);
                       }
                       else{
-                          console.log(util.inspect(resultat[i]));
                           resultat[i].path = resultLoc;
-                          console.log("Balade modifiée : " + util.inspect(resultat[i]));
                           console.log("id balade:" + result[i].idWalk);
-                          console.log("longueur result" + result.length);
+                          console.log("valeur de i : " + i);
                           if (i == result.length - 1){
                               //dernier element
                               console.log("DERNIER ELEMENT");
