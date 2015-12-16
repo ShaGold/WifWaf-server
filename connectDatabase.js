@@ -177,13 +177,13 @@ function DBConnection(){
                           socket.emit("RGetAllMyWalks", err['errno']);
                       }
                       else{
-                          resultat[i].path = resultLoc;
+                          result[i].path = resultLoc;
                           console.log("id balade:" + result[i].idWalk);
                           console.log("valeur de i : " + i);
                           if (i == result.length - 1){
                               //dernier element
                               console.log("DERNIER ELEMENT");
-                              console.log("Resultat final", resultat);
+                              console.log("Resultat final", result);
                           }
                       }
                   });
