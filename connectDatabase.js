@@ -156,6 +156,7 @@ function DBConnection(){
               socket.emit("RGetDogById", err['errno']);
           }
           else{
+              console.log(result);
               socket.emit("RGetDogById", result);
           }
       });
