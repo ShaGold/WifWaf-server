@@ -284,6 +284,7 @@ function DBConnection(){
   };
 
   this.updateDog = function(dog, socket){
+      console.log(dog);
       var req = "UPDATE Dog SET dogName='" + dog.dogName + "', age= '" + dog.age + "', breed='" + dog.breed + "', size ='" + dog.size
       + "', getAlongWithMales =\"" + dog.getAlongWithMales + "\", getAlongWithFemales =\"" + dog.getAlongWithFemales
       + "\", getAlongWithKids=\"" + dog.getAlongWithKids + "\", getAlongWithHumans=\"" + dog.getAlongWithHumans +
