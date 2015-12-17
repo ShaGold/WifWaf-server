@@ -244,6 +244,7 @@ function DBConnection(){
   };
 
   this.getDogsForIdWalk = function(result, i){
+      console.log("ici");
       var req = "SELECT idDog FROM DogWalk WHERE idWalk = " + result[i]['idWalk'] + ";";
       db.query(req, function select(err, resultDog) {
           if (err) {
@@ -252,6 +253,7 @@ function DBConnection(){
           }
           else{
               result[i].dogs = resultDog;
+              console.log("Résultat de getDogsForIdWalk", resultDog);
           }
       });
   };
