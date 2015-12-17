@@ -122,4 +122,11 @@ io.sockets.on('connection', function (socket) {
         console.log("Tentative de récupération du user à partir de l'id", idUser);
         db.getUserById(socket);
     });
+
+    socket.on('updateUser', function(User){
+        console.log("Update user");
+        var newUser = new User(0, user.email, user.nickname, user.password, user.birthday, user.phoneNumber, user.description, user.photo);
+        console.log(newUser);
+        db.updateUser(newUser, socket);
+    });
 });
