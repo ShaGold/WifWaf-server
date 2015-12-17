@@ -179,6 +179,10 @@ function DBConnection(){
           else{
               var resultat = result;
               console.log("RESULT" + util.inspect(result));
+              var j;
+              for(j in result){
+                  self.getDogs("")
+              }
               var i;
               for(i in result){
                   self.getLocation("RGetAllMyWalks", result, i, socket);
@@ -196,6 +200,7 @@ function DBConnection(){
           }
           else{
               result[i].path = resultLoc;
+              self.getDogsForIdWalk(result, i);
               if (i == result.length - 1){
                   //dernier element
                   socket.emit(event, result);
@@ -241,16 +246,17 @@ function DBConnection(){
       });
   };
 
-  this.getDogsForIdWalk = function(idWalk, socket){
-     /* db.query("SELECT * FROM User Where email = '" + email + "';", function select(err, result) {
-              if (err) {
-                  console.log(err);
-                  socket.emit("RGetUser", err['errno']);
-              }
-              else{
-                  socket.emit("RGetUser", result);
-              }
-     });*/
-     console.log("Appel fonction getDogsForIdWalk");
+  this.getDogsForIdWalk = function(result, i){
+      getDogsForIdWalk(result, result[i]['idWalk'], i);
+      var req = "SELECT * FROM DogWalk WHERE idWalk = " + result[i]['idWalk'] + ";";
+      db.query(req, function select(err, resultDog) {
+          if (err) {
+              console.log(err);
+              socket.emit(event, err['errno']);
+          }
+          else{
+              result[i].dogs = resultDog;
+          }
+      });
   };
 }
