@@ -93,7 +93,7 @@ io.sockets.on('connection', function (socket) {
         db.getAllMyWalks(idUser, socket);
     });
 
-    socket.on('getAllMyWalks', function(idUser){
+    socket.on('getAllWalks', function(idUser){
         console.log("Tentative de récupération de toutes les balades");
         db.getAllWalks(socket);
     });
