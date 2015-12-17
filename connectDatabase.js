@@ -177,7 +177,6 @@ function DBConnection(){
               socket.emit("RGetAllMyWalks", err['errno']);
           }
           else{
-              var resultat = result;
               console.log("RESULT" + util.inspect(result));
               var i;
               for(i in result){
@@ -196,12 +195,7 @@ function DBConnection(){
           }
           else{
               result[i].path = resultLoc;
-              self.getDogsForIdWalk(result, i);
-              if (i == result.length - 1){
-                  //dernier element
-                  socket.emit(event, result);
-                  console.log("FINAL", result);
-              }
+              self.getDogsForIdWalk(event, result, i, socket);
           }
       });
   };
@@ -243,7 +237,7 @@ function DBConnection(){
       });
   };
 
-  this.getDogsForIdWalk = function(result, i){
+  this.getDogsForIdWalk = function(event, result, i, socket){
       console.log("ici");
       var req = "SELECT idDog FROM DogWalk WHERE idWalk = " + result[i]['idWalk'] + ";";
       db.query(req, function select(err, resultDog) {
@@ -253,7 +247,11 @@ function DBConnection(){
           }
           else{
               result[i].dogs = resultDog;
-              console.log("Résultat de getDogsForIdWalk", resultDog);
+              if (i == result.length - 1){
+                  //dernier element
+                  socket.emit(event, result);
+                  console.log("FINAL", result);
+              }
           }
       });
   };
