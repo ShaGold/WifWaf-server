@@ -200,6 +200,7 @@ function DBConnection(){
               if (i == result.length - 1){
                   //dernier element
                   socket.emit(event, result);
+                  console.log("FINAL", result);
               }
           }
       });
