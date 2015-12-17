@@ -46,7 +46,7 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('TryAddDog', function (dog) {
         console.log(dog);
-        var newDog = new Dog(0, dog.dogName, dog.idUser, dog.age, dog.breed, dog.size, dog.getAlongWithMales, dog.getAlongWithFemales, dog.getAlongWithKids, dog.getAlongWithHumans, dog.description);
+        var newDog = new Dog(0, dog.dogName, dog.idUser, dog.age, dog.breed, dog.size, dog.getAlongWithMales, dog.getAlongWithFemales, dog.getAlongWithKids, dog.getAlongWithHumans, dog.description, dog.gender);
         console.log('Je passe dans TryAddDog');
         console.log(newDog);
         db.addDog(newDog, socket);
