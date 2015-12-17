@@ -191,7 +191,6 @@ function DBConnection(){
               socket.emit("RGetAllMyWalks", err['errno']);
           }
           else{
-              console.log("RESULT" + util.inspect(result));
               var i;
               for(i in result){
                   self.getLocation("RGetAllMyWalks", result, i, socket);
