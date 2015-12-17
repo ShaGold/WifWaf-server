@@ -109,9 +109,14 @@ io.sockets.on('connection', function (socket) {
         db.getAllMyWalks(idUser, socket);
     });
 
-    //GESTION USER---------------------------------------------------------------------------------------------------------------
     socket.on('getAllWalks', function(idUser){
         console.log("Tentative de récupération de toutes les balades");
         db.getAllWalks(socket);
     });
+
+    //GESTION USER---------------------------------------------------------------------------------------------------------------
+    socket.on('getUserById', function(idUser){
+-        console.log("Tentative de récupération du user à partir de l'id", idUser);
+-        db.getUserById(socket);
+-    });
 });
