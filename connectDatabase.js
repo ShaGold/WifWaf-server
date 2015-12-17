@@ -110,7 +110,7 @@ function DBConnection(){
 
   this.addDogToWalk = function(idWalk, idDog){
       var req = "INSERT INTO DogWalk(idWalk, idDog) "
-                 + "VALUES('" + idWalk + "', '" + idDog + "');";
+                 + "VALUES(LAST_INSERT_ID(), '" + idDog + "');";
       db.query(req, function select(err, result) {
          if (err) {
              console.log(err);
