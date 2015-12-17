@@ -95,7 +95,7 @@ function DBConnection(){
 
   this.addWalk = function(walk, socket){
       var req = "INSERT INTO Walk(city, idUser, walkName, description, departure) "
-                 + "VALUES('" + walk.city "', '" + walk.idUser + "', '" + walk.walkName + "', '"
+                 + "VALUES('" + walk.city + "', '" + walk.idUser + "', '" + walk.walkName + "', '"
                  + walk.description + "', '" + walk.departure + "');";
       db.query(req, function select(err, result) {
          if (err) {
