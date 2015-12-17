@@ -272,6 +272,7 @@ function DBConnection(){
 
   this.updateUser = function(User, socket){
       var req = "UPDATE User SET email='" + User.email + "', nickname= '" + User.nickname + "', password='" + User.password + "', birthday ='" + User.birthday + "', phoneNumber ='" + User.phoneNumber + "', description ='" + User.description + "', photo='" + User.photo + "' WHERE idUser = " + User.idUser + "; ";
+      console.log("req", req);
       db.query(req, function select(error, results, fields) {
             if (error) {
                 console.log(error);

@@ -59,7 +59,7 @@ CREATE TABLE Location(
     ordering INT
 );
 
-CREATE TABLE DogsWalk(
+CREATE TABLE DogWalk(
     idDogsWalk INT auto_increment primary key,
     idWalk INT,
     idDog INT
