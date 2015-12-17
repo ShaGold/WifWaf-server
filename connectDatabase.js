@@ -247,7 +247,6 @@ function DBConnection(){
   };
 
   this.getDogsForIdWalk = function(result, i){
-      getDogsForIdWalk(result, result[i]['idWalk'], i);
       var req = "SELECT * FROM DogWalk WHERE idWalk = " + result[i]['idWalk'] + ";";
       db.query(req, function select(err, resultDog) {
           if (err) {
