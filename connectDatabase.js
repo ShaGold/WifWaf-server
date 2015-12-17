@@ -179,10 +179,6 @@ function DBConnection(){
           else{
               var resultat = result;
               console.log("RESULT" + util.inspect(result));
-              var j;
-              for(j in result){
-                  self.getDogs("")
-              }
               var i;
               for(i in result){
                   self.getLocation("RGetAllMyWalks", result, i, socket);
