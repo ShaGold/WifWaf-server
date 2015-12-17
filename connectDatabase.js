@@ -288,7 +288,7 @@ function DBConnection(){
       + "', getAlongWithMales =\"" + dog.getAlongWithMales + "\", getAlongWithFemales =\"" + dog.getAlongWithFemales
       + "\", getAlongWithKids=\"" + dog.getAlongWithKids + "\", getAlongWithHumans=\"" + dog.getAlongWithHumans +
       + "\", description=\"" + dog.description + "\", gender='" + dog.gender  + "' WHERE idDog = " + dog.idDog + "; ";
-
+      console.log("Requête:", req);
       db.query(req, function select(error, results, fields) {
             if (error) {
                 console.log(error);
