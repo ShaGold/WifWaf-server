@@ -287,7 +287,7 @@ function DBConnection(){
       var req = "UPDATE Dog SET dogName='" + dog.dogName + "', age= '" + dog.age + "', breed='" + dog.breed + "', size ='" + dog.size
       + "', getAlongWithMales ='" + dog.getAlongWithMales + "', getAlongWithFemales ='" + dog.getAlongWithFemales
       + "', getAlongWithKids='" + dog.getAlongWithKids + "', getAlongWithHumans='" + dog.getAlongWithHumans +
-      + "', description='" + dog.description + "', description='" + dog.gender  + "' WHERE idUser = " + dog.idUser + "; ";
+      + "', description='" + dog.description + "', gender='" + dog.gender  + "' WHERE idUser = " + dog.idUser + "; ";
       db.query(req, function select(error, results, fields) {
             if (error) {
                 console.log(error);
