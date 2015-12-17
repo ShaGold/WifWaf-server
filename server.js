@@ -94,7 +94,7 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('TryAddWalk', function(walk){
         console.log('Tentative insertion de balade', walk);
-        var newWalk = new Walk(0, walk.idDog, walk.idUser, walk.walkName, walk.description, walk.city, walk.departure);
+        var newWalk = new Walk(0, walk.idUser, walk.walkName, walk.description, walk.city, walk.departure);
         db.addWalk(newWalk, socket);
         var d;
         for(d in walk.dogs){
