@@ -153,10 +153,10 @@ function DBConnection(){
       db.query(req, function select(err, result) {
           if (err) {
               console.log(err);
-              socket.emit("RGetMyDog", err['errno']);
+              socket.emit("RGetDogById", err['errno']);
           }
           else{
-              socket.emit("RGetMyDog", result);
+              socket.emit("RGetDogById", result);
           }
       });
   };
