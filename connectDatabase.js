@@ -108,6 +108,17 @@ function DBConnection(){
     });
   };
 
+  this.addDogToWalk = function(idWalk, idDog){
+      var req = "INSERT INTO DogWalk(idWalk, idDog) "
+                 + "VALUES('" + idWalk + "', '" + idDog + "');";
+      db.query(req, function select(err, result) {
+         if (err) {
+             console.log(err);
+             return;
+         }
+    });
+  };
+
   this.addLocation = function(location, socket){
       var req = "INSERT INTO Location(idWalk, lattitude, longitude, ordering) "
                  + "VALUES(LAST_INSERT_ID(), '" + location.lattitude + "', '" + location.longitude + "', '" + location.ordering + "');";
@@ -228,5 +239,18 @@ function DBConnection(){
                    socket.emit("RGetUser", result);
                }
       });
+  };
+
+  this.getDogsForIdWalk = function(idWalk, socket){
+     /* db.query("SELECT * FROM User Where email = '" + email + "';", function select(err, result) {
+              if (err) {
+                  console.log(err);
+                  socket.emit("RGetUser", err['errno']);
+              }
+              else{
+                  socket.emit("RGetUser", result);
+              }
+     });*/
+     console.log("Appel fonction getDogsForIdWalk");
   };
 }
