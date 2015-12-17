@@ -271,7 +271,7 @@ function DBConnection(){
   };
 
   this.updateUser = function(User, socket){
-      var req = "UPDATE User SET 'email'='" + User.email + "', 'nickname'= '" + User.nickname + "', 'password'='" + User.password + "', birthday ='" + User.birthday + "', phoneNumber ='" + User.phoneNumber + "', description ='" + User.description + "', photo='" + User.photo + "' WHERE idUser = " + User.idUser + "; ";
+      var req = "UPDATE User SET email='" + User.email + "', nickname= '" + User.nickname + "', password='" + User.password + "', birthday ='" + User.birthday + "', phoneNumber ='" + User.phoneNumber + "', description ='" + User.description + "', photo='" + User.photo + "' WHERE idUser = " + User.idUser + "; ";
       db.query(req, function select(error, results, fields) {
             if (error) {
                 console.log(error);
@@ -284,7 +284,7 @@ function DBConnection(){
   };
 
   this.updateDog = function(dog, socket){
-      var req = "UPDATE Dog SET 'dogName'='" + dog.dogName + "', 'age'= '" + dog.age + "', 'breed'='" + dog.breed + "', size ='" + dog.size
+      var req = "UPDATE Dog SET dogName='" + dog.dogName + "', age= '" + dog.age + "', breed='" + dog.breed + "', size ='" + dog.size
       + "', getAlongWithMales ='" + dog.getAlongWithMales + "', getAlongWithFemales ='" + dog.getAlongWithFemales
       + "', getAlongWithKids='" + dog.getAlongWithKids + "', getAlongWithHumans='" + dog.getAlongWithHumans +
       + "', description='" + dog.description + "', description='" + dog.gender  + "' WHERE idUser = " + dog.idUser + "; ";
