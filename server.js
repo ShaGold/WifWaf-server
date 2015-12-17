@@ -98,7 +98,7 @@ io.sockets.on('connection', function (socket) {
         db.addWalk(newWalk, socket);
         var d;
         for(d in walk.dogs){
-            db.addDogToWalk(newWalk.idWalk, d.dogs[d].idDog);
+            db.addDogToWalk(newWalk.idWalk, walk.dogs[d].idDog);
         }
         var l;
         for(l in walk.location){
