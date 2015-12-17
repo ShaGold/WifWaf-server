@@ -252,7 +252,6 @@ function DBConnection(){
   };
 
   this.getDogsForIdWalk = function(event, result, i, socket){
-      console.log("ici");
       var req = "SELECT idDog FROM DogWalk WHERE idWalk = " + result[i]['idWalk'] + ";";
       db.query(req, function select(err, resultDog) {
           if (err) {
@@ -264,7 +263,7 @@ function DBConnection(){
               if (i == result.length - 1){
                   //dernier element
                   socket.emit(event, result);
-                  console.log("FINAL", result);
+                  console.log("FINAL", util.inspect(result));
               }
           }
       });
