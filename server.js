@@ -123,10 +123,16 @@ io.sockets.on('connection', function (socket) {
         db.getUserById(socket);
     });
 
-    socket.on('updateUser', function(User){
+    socket.on('updateUser', function(user){
         console.log("Update user");
         var newUser = new User(0, user.email, user.nickname, user.password, user.birthday, user.phoneNumber, user.description, user.photo);
         console.log(newUser);
         db.updateUser(newUser, socket);
+    });
+
+    socket.on('updateDog', function(dog){
+        console.log("Update dog");
+        var newDog = new Dog(0, dog.dogName, dog.idUser, dog.age, dog.breed, dog.size, dog.getAlongWithMales, dog.getAlongWithFemales, dog.getAlongWithKids, dog.getAlongWithHumans, dog.description, dog.gender);
+        db.updateDog(newDog, socket);
     });
 });

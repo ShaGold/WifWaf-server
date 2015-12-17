@@ -282,4 +282,20 @@ function DBConnection(){
             }
         });
   };
+
+  this.updateDog = function(dog, socket){
+      var req = "UPDATE Dog SET 'dogName'='" + dog.dogName + "', 'age'= '" + dog.age + "', 'breed'='" + dog.breed + "', size ='" + dog.size
+      + "', getAlongWithMales ='" + dog.getAlongWithMales + "', getAlongWithFemales ='" + dog.getAlongWithFemales
+      + "', getAlongWithKids='" + dog.getAlongWithKids + "', getAlongWithHumans='" + dog.getAlongWithHumans +
+      + "', description='" + dog.description + "', description='" + dog.gender  + "' WHERE idUser = " + dog.idUser + "; ";
+      db.query(req, function select(error, results, fields) {
+            if (error) {
+                console.log(error);
+                return;
+            }
+            else{
+                socket.emit("RUpdateDog");
+            }
+    });
+  };
 }
