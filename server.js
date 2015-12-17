@@ -75,7 +75,10 @@ io.sockets.on('connection', function (socket) {
         db.getDogsForIdWalk(idWalk, socket);
     });
 
-
+    socket.on('getDogById', function(idDog){
+        console.log('Récupération de toutes les données pour le chien dont l id est', idDog);
+        db.getDogById(idDog, socket);
+    });
 
     //GESTION CARACTERE CHIEN----------------------------------------------------------------------------------------------------
     socket.on('getAllBehaviours', function(){

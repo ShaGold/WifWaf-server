@@ -148,6 +148,19 @@ function DBConnection(){
       });
   };
 
+  this.getDogById = function(idDog, socket){
+      var req = "SELECT * FROM Dog WHERE idDog = " + idDog + ";";
+      db.query(req, function select(err, result) {
+          if (err) {
+              console.log(err);
+              socket.emit("RGetMyDog", err['errno']);
+          }
+          else{
+              socket.emit("RGetMyDog", result);
+          }
+      });
+  };
+
   this.getAllBehaviours = function(socket){
       var req = "SELECT * FROM Behaviour;";
       db.query(req, function select(err, result) {
