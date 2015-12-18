@@ -4,6 +4,8 @@ var User = require('./controllers/User.js').user;
 
 var util = require('util');
 
+var Locations = require('./controllers/Location.js').locations;
+
 module.exports.connection = new DBConnection();
 
 function DBConnection(){
@@ -93,7 +95,7 @@ function DBConnection(){
     });
   };
 
-  this.addWalk = function(walk){
+  this.addWalk = function(walk, walkdogs, walklocations){
       var req = "INSERT INTO Walk(city, idUser, walkName, description, departure) "
                  + "VALUES('" + walk.city + "', '" + walk.idUser + "', '" + walk.walkName + "', '"
                  + walk.description + "', '" + walk.departure + "');";
@@ -102,21 +104,41 @@ function DBConnection(){
              console.log(err);
              return;
          }
+         else{
+             self.lastInsertId(walkdogs, walklocations);
+         }
     });
   };
 
-  this.lastInsertId = function(){
+  this.lastInsertId = function(walkdogs, walklocations){
     var req = "SELECT LAST_INSERT_ID();";
     db.query(req, function select(err, result) {
        if (err) {
            console.log(err);
            return;
        }
-       return result[0]['LAST_INSERT_ID()'];
+       else{
+           var lastid = result[0]['LAST_INSERT_ID()'];
+           var d;
+           for(d in walkdogs){
+               self.addDogToWalk(lastid, walkdogs[d].idDog, walklocations);
+               if (d == walkdogs.length -1){
+                   var l;
+                   for(l in walklocations){
+                       var newLoc = new Locations(0, walklocations.latitude, walklocations.longitude, walklocations.ordering);
+                       db.addLocation(newLoc, lastid);
+                       if (l == walklocations.length - 1){
+                           socket.emit("RTryAddWalk");
+                       }
+                   }
+               }
+           }
+       }
   });
   };
 
-  this.addDogToWalk = function(idWalk, idDog){
+
+  this.addDogToWalk = function(idWalk, idDog, walklocations){
       console.log("Value de l'id walk dans addDogToWalk ", idWalk);
       var req = "INSERT INTO DogWalk(idWalk, idDog) "
                  + "VALUES('" + idWalk + "', '" + idDog + "');";
@@ -125,10 +147,13 @@ function DBConnection(){
              console.log(err);
              return;
          }
+         else{
+             return true;
+         }
     });
   };
 
-  this.addLocation = function(location, socket, idWalk){
+  this.addLocation = function(location, idWalk){
       console.log("Value de l'id walk dans addLocation", idWalk);
       var req = "INSERT INTO Location(idWalk, lattitude, longitude, ordering) "
                  + "VALUES('" + idWalk + "', '" + location.lattitude + "', '" + location.longitude + "', '" + location.ordering + "');";

@@ -95,21 +95,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('TryAddWalk', function(walk){
         console.log('Tentative insertion de balade', walk);
         var newWalk = new Walk(0, walk.idUser, walk.walkName, walk.description, walk.city, walk.departure);
-        db.addWalk(newWalk);
-        var lastid = db.lastInsertId();
-        console.log("Dans try add Walk, la value de lastid est", lastid);
-        var d;
-        for(d in walk.dogs){
-            db.addDogToWalk(lastid, walk.dogs[d].idDog);
-        }
-        var l;
-        for(l in walk.location){
-            var newLoc = new Locations(0, walk.location[l].latitude, walk.location[l].longitude, walk.location[l].ordering);
-            db.addLocation(newLoc, socket, lastid);
-            if (l == walk.location.length - 1){
-                socket.emit("RTryAddWalk");
-            }
-        }
+        db.addWalk(newWalk, walk.dogs, walk.location);
     });
 
     socket.on('getAllMyWalks', function(idUser){
