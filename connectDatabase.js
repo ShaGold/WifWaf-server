@@ -126,7 +126,7 @@ function DBConnection(){
                    var l;
                    for(l in walklocations){
                        var newLoc = new Locations(0, walklocations.latitude, walklocations.longitude, walklocations.ordering);
-                       db.addLocation(newLoc, lastid);
+                       self.addLocation(newLoc, lastid);
                        if (l == walklocations.length - 1){
                            socket.emit("RTryAddWalk");
                        }
