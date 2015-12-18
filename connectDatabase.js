@@ -95,7 +95,7 @@ function DBConnection(){
     });
   };
 
-  this.addWalk = function(walk, walkdogs, walklocations){
+  this.addWalk = function(walk, walkdogs, walklocations, socket){
       var req = "INSERT INTO Walk(city, idUser, walkName, description, departure) "
                  + "VALUES('" + walk.city + "', '" + walk.idUser + "', '" + walk.walkName + "', '"
                  + walk.description + "', '" + walk.departure + "');";
@@ -105,12 +105,12 @@ function DBConnection(){
              return;
          }
          else{
-             self.lastInsertId(walkdogs, walklocations);
+             self.lastInsertId(walkdogs, walklocations, socket);
          }
     });
   };
 
-  this.lastInsertId = function(walkdogs, walklocations){
+  this.lastInsertId = function(walkdogs, walklocations, socket){
     var req = "SELECT LAST_INSERT_ID();";
     db.query(req, function select(err, result) {
        if (err) {
