@@ -93,7 +93,7 @@ function DBConnection(){
     });
   };
 
-  this.addWalk = function(walk, socket){
+  this.addWalk = function(walk){
       var req = "INSERT INTO Walk(city, idUser, walkName, description, departure) "
                  + "VALUES('" + walk.city + "', '" + walk.idUser + "', '" + walk.walkName + "', '"
                  + walk.description + "', '" + walk.departure + "');";
@@ -101,9 +101,6 @@ function DBConnection(){
          if (err) {
              console.log(err);
              return;
-         }
-         else{
-             socket.emit("RTryAddWalk");
          }
     });
   };
@@ -121,6 +118,7 @@ function DBConnection(){
   };
 
   this.addDogToWalk = function(idWalk, idDog){
+      console.log("Value de l'id walk dans addDogToWalk ", idWalk);
       var req = "INSERT INTO DogWalk(idWalk, idDog) "
                  + "VALUES('" + idWalk + "', '" + idDog + "');";
       db.query(req, function select(err, result) {
@@ -132,6 +130,7 @@ function DBConnection(){
   };
 
   this.addLocation = function(location, socket, idWalk){
+      console.log("Value de l'id walk dans addLocation", idWalk);
       var req = "INSERT INTO Location(idWalk, lattitude, longitude, ordering) "
                  + "VALUES('" + idWalk + "', '" + location.lattitude + "', '" + location.longitude + "', '" + location.ordering + "');";
                  console.log(req);
