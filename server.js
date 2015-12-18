@@ -106,7 +106,7 @@ io.sockets.on('connection', function (socket) {
         for(l in walk.location){
             var newLoc = new Locations(0, walk.location[l].latitude, walk.location[l].longitude, walk.location[l].ordering);
             db.addLocation(newLoc, socket, lastid);
-            if (l == walk.location.length - 1)){
+            if (l == walk.location.length - 1){
                 socket.emit("RTryAddWalk");
             }
         }
