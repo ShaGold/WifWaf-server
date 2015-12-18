@@ -115,8 +115,8 @@ function DBConnection(){
            console.log(err);
            return;
        }
-       return result;
        console.log("last insert id" , result);
+       return result;
   });
   };
 
