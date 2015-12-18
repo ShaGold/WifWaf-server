@@ -96,15 +96,15 @@ io.sockets.on('connection', function (socket) {
         console.log('Tentative insertion de balade', walk);
         var newWalk = new Walk(0, walk.idUser, walk.walkName, walk.description, walk.city, walk.departure);
         db.addWalk(newWalk, socket);
-        db.lastInsertId();
+        var lastid = db.lastInsertId();
         var d;
         for(d in walk.dogs){
-            db.addDogToWalk(newWalk.idWalk, walk.dogs[d].idDog);
+            db.addDogToWalk(lastid, walk.dogs[d].idDog);
         }
         var l;
         for(l in walk.location){
             var newLoc = new Locations(0, walk.location[l].latitude, walk.location[l].longitude, walk.location[l].ordering);
-            db.addLocation(newLoc, socket);
+            db.addLocation(newLoc, socket, lastid);
         }
     });
 
