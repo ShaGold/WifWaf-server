@@ -291,11 +291,9 @@ function DBConnection(){
           }
           else{
               result[i].dogs = resultDog;
-              console.log("iddogs:" + util.inspect(resultDog));
               if (i == result.length - 1){
                   //dernier element
                   socket.emit(event, result);
-                  console.log("FINAL", util.inspect(result));
               }
           }
       });
