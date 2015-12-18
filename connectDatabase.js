@@ -105,12 +105,14 @@ function DBConnection(){
              return;
          }
          else{
+             console.log("Value des walklocations dans addWalk", walklocations);
              self.lastInsertId(walkdogs, walklocations, socket);
          }
     });
   };
 
   this.lastInsertId = function(walkdogs, walklocations, socket){
+      console.log("Value des walklocations dans lastInsertId", walklocations);
     var req = "SELECT LAST_INSERT_ID();";
     db.query(req, function select(err, result) {
        if (err) {
