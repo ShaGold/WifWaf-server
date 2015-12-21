@@ -273,7 +273,7 @@ function DBConnection(){
   };
 
   this.getUserById = function(idUser, socket){
-       db.query("SELECT * FROM User Where email = '" + email + "';", function select(err, result) {
+       db.query("SELECT * FROM User Where idUser = '" + idUser + "';", function select(err, result) {
                if (err) {
                    console.log(err);
                    socket.emit("RGetUser", err['errno']);
