@@ -248,7 +248,7 @@ function DBConnection(){
   };
 
   this.getAllWalks = function(socket){
-      var req = "SELECT * FROM Walk ;";
+      var req = "SELECT * FROM Walk where departure >= NOW();";
       db.query(req, function select(err, result) {
           if (err) {
               console.log(err);
