@@ -279,7 +279,7 @@ function DBConnection(){
                    socket.emit("RGetUser", err['errno']);
                }
                else{
-                   socket.emit("RGetUser", result);
+                   socket.emit("RGetUser", result[0]);
                }
       });
   };
