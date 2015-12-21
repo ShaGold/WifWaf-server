@@ -112,7 +112,7 @@ io.sockets.on('connection', function (socket) {
     //GESTION USER---------------------------------------------------------------------------------------------------------------
     socket.on('getUserById', function(idUser){
         console.log("Tentative de récupération du user à partir de l'id", idUser);
-        db.getUserById(socket);
+        db.getUserById(idUser, socket);
     });
 
     socket.on('updateUser', function(user){
