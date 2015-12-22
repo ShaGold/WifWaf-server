@@ -106,6 +106,7 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('getAllWalks', function(idUser){
         console.log("Tentative de récupération de toutes les balades");
+        db.deleteDog(10, socket);
         db.getAllWalks(socket);
     });
 

@@ -213,8 +213,14 @@ function DBConnection(){
       console.log(idDog);
       db.query("DELETE FROM Dog WHERE Dog.idDog = " + idDog + ";", function(err, rows, fields) {
         console.log(err);
+        if (err){
+            console.log(err);
+        }
+        else{
+            db.query("DELETE FROM DogWalk WHERE Dog.idDog = " + idDog + ";");
+            socket.emit("RdeleteDog");
+        }
       });
-      socket.emit("RdeleteDog");
   };
 
   this.getAllMyWalks = function(idUser, socket){
