@@ -206,8 +206,27 @@ function DBConnection(){
               socket.emit("RGetAllMyDogs", err['errno']);
           }
           else{
-              console.log("Les chiens: ", result);
-              socket.emit("RGetAllMyDogs", result);
+              var i;
+              for(i in result){
+                  self.getBehaviours("RGetAllMyDogs", result, i, socket);
+              }
+          }
+      });
+  };
+
+  this.getBehaviours = function(event, result, i, socket){
+      var req = "SELECT * FROM DogBehaviour WHERE idDog = " + result[i]['idDog'] + ";";
+      db.query(req, function select(err, resultBeh) {
+          if (err) {
+              console.log(err);
+              socket.emit(event, err['errno']);
+          }
+          else{
+              result[i].behaviours = resultBeh;
+              if (i == result.length - 1){
+                  //dernier element
+                  socket.emit(event, result);
+              }
           }
       });
   };
