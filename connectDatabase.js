@@ -208,7 +208,7 @@ function DBConnection(){
           else{
               var i;
               for(i in result){
-                  self.getBehaviours("RGetAllMyDogs", result, i, socket);
+                  self.getBehaviours("RGetAllMyDogs", result, 0, socket);
               }
           }
       });
@@ -223,7 +223,8 @@ function DBConnection(){
           }
           else{
               result[i].behaviours = resultBeh;
-              if (i == result.length - 1 && i != 0){
+              console.log(result);
+              if (i == result.length - 1){
                   //dernier element
                   socket.emit(event, result);
               }
