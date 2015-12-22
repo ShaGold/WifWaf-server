@@ -223,12 +223,9 @@ function DBConnection(){
           }
           else{
               result[i].behaviours = resultBeh;
-              if (i == result.length - 1){
-                  //dernier element
-                  socket.emit(event, result);
-              }
           }
       });
+      socket.emit(event, result);
   };
 
   this.getDogById = function(idDog, socket){
