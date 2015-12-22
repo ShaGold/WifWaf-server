@@ -227,7 +227,7 @@ function DBConnection(){
               var j;
               if (resultBeh != []){
                   for (j in resultBeh){
-                      var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh.idBehaviour[j] + ";";
+                      var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh[j].idBehaviour + ";";
                       console.log(req);
                       db.query(req, function select(err, resultBehaviour) {
                           if (err) {
