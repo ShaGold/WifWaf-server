@@ -224,7 +224,7 @@ function DBConnection(){
               socket.emit(event, err['errno']);
           }
           else{
-              var req = "SELECT * FROM Behaviour WHERE idBehaviour = " + resultBeh.idBehaviour + ";";
+              var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh.idBehaviour + ";";
               db.query(req, function select(err, resultBehaviour) {
                   if (err) {
                       console.log(err);
@@ -232,7 +232,7 @@ function DBConnection(){
                   }
                   else{
                       result[i].behaviours = resultBehaviour;
-                      console.log(resultBeh);
+                      console.log(resultBehaviour);
                       if (i == result.length - 1){
                           //dernier element
                           socket.emit(event, result);
