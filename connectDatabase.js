@@ -266,7 +266,7 @@ function DBConnection(){
             console.log(err);
         }
         else{
-            db.query("DELETE * FROM DogWalk WHERE Dog.idDog = " + idDog + ";");
+            db.query("DELETE * FROM DogWalk WHERE idDog = " + idDog + ";");
             socket.emit("RdeleteDog");
         }
       });
