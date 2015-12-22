@@ -242,7 +242,8 @@ function DBConnection(){
                   }
           }
       });
-  };
+    }
+  }
 
   this.getDogById = function(idDog, socket){
       var req = "SELECT * FROM Dog WHERE idDog = " + idDog + ";";
