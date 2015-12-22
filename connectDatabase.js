@@ -240,10 +240,10 @@ function DBConnection(){
                           console.log("RESULTAT FINAL", result);
                       }
                   }
+              });
           }
-      });
-    }
-  }
+    });
+};
 
   this.getDogById = function(idDog, socket){
       var req = "SELECT * FROM Dog WHERE idDog = " + idDog + ";";
