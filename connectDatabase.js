@@ -224,7 +224,7 @@ function DBConnection(){
               socket.emit(event, err['errno']);
           }
           else{
-              var req = "SELECT * FROM Behaviour WHERE idBehaviour = " + resultBeh['idBehaviour'] + ";";
+              var req = "SELECT * FROM Behaviour WHERE idBehaviour = " + resultBeh.idBehaviour + ";";
               db.query(req, function select(err, resultBehaviour) {
                   if (err) {
                       console.log(err);
