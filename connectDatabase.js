@@ -79,7 +79,7 @@ function DBConnection(){
          });
     };
 
-  this.addDog = function(dog, socket){
+  this.addDog = function(dog, socket, behaviours){
       var req = "INSERT INTO Dog(dogName, idUser, age, breed, size, getAlongWithMales, getAlongWithFemales, getAlongWithKids, getAlongWithHumans, description, gender) "
                  + "VALUES('" + dog.dogName + "', '" + dog.idUser + "', '" + dog.age + "', '" + dog.breed + "', '"
                  + dog.size + "', '" + dog.getAlongWithMales + "', '" + dog.getAlongWithFemales + "', '"
@@ -90,10 +90,38 @@ function DBConnection(){
              return;
          }
          else{
-             socket.emit("RTryAddDog");
+             self.lastInsertIdForDogs(behaviours, socket);
          }
     });
   };
+
+  this.lastInsertIdForDogs = function(behaviours, socket){
+    var req = "SELECT LAST_INSERT_ID();";
+    db.query(req, function select(err, result) {
+       if (err) {
+           console.log(err);
+           return;
+       }
+       else{
+           var lastid = result[0]['LAST_INSERT_ID()'];
+           var b;
+           for(b in behaviours){
+               self.addDogBehaviour(lastid, behaviours[b].idBehaviour);
+               if (b == behaviours.length - 1){
+                   socket.emit("RTryAddDog");
+               }
+     }
+   });
+
+   this.addDogBehaviour = function(idDog, idBehaviour){
+       var req = "INSERT INTO DogBehaviour(idDog, idBehaviour) VALUES ('" + idDog + "', '" + idBehaviour + "');";
+       db.query(req, function select(err, result){
+           if (err){
+               console.log(err);
+           }
+       })
+   }
+
 
   this.addWalk = function(walk, walkdogs, walklocations, socket){
       var req = "INSERT INTO Walk(city, idUser, walkName, description, departure) "
