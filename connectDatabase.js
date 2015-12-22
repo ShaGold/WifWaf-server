@@ -224,22 +224,25 @@ function DBConnection(){
               socket.emit(event, err['errno']);
           }
           else{
-              var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh.idBehaviour + ";";
-              db.query(req, function select(err, resultBehaviour) {
-                  if (err) {
-                      console.log(err);
-                      socket.emit(event, err['errno']);
-                  }
-                  else{
-                      result[i].behaviours += resultBehaviour;
-                      console.log(resultBehaviour);
-                      if (i == result.length - 1){
-                          //dernier element
-                          socket.emit(event, result);
-                          console.log("RESULTAT FINAL", result);
+              var j
+              for (j in resultBeh){
+                  var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh.idBehaviour[j] + ";";
+                  db.query(req, function select(err, resultBehaviour) {
+                      if (err) {
+                          console.log(err);
+                          socket.emit(event, err['errno']);
                       }
-                  }
-              });
+                      else{
+                          result[i].behaviours += resultBehaviour;
+                          console.log(resultBehaviour);
+                          if (i == result.length - 1){
+                              //dernier element
+                              socket.emit(event, result);
+                              console.log("RESULTAT FINAL", result);
+                          }
+                      }
+                  });
+              }
           }
     });
 };
