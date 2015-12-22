@@ -208,7 +208,7 @@ function DBConnection(){
           else{
               var i;
               for(i in result){
-                  self.getBehaviours("RGetAllMyDogs", result, 0, socket);
+                  self.getBehaviours("RGetAllMyDogs", result, i, socket);
               }
           }
       });
@@ -243,7 +243,7 @@ function DBConnection(){
           }
           else{
               console.log(result);
-              self.getBehaviours("RGetDogById", result, 1, socket);
+              self.getBehaviours("RGetDogById", result, 0, socket);
           }
       });
   };
