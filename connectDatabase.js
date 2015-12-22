@@ -224,12 +224,22 @@ function DBConnection(){
               socket.emit(event, err['errno']);
           }
           else{
-              result[i].behaviours = resultBeh;
-              console.log(resultBeh);
-              if (i == result.length - 1){
-                  //dernier element
-                  socket.emit(event, result);
-              }
+              var req = "SELECT * FROM Behaviour WHERE idBehaviour = " + resultBeh[i]['idBehaviour'] + ";";
+              console.log("valeur de req ", i);
+              db.query(req, function select(err, resultBehaviour) {
+                  if (err) {
+                      console.log(err);
+                      socket.emit(event, err['errno']);
+                  }
+                  else{
+                      result[i].behaviours = resultBehaviour;
+                      console.log(resultBeh);
+                      if (i == result.length - 1){
+                          //dernier element
+                          socket.emit(event, result);
+                          console.log("RESULTAT FINAL", result);
+                      }
+                  }
           }
       });
   };
