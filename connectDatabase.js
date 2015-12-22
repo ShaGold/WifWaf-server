@@ -110,8 +110,10 @@ function DBConnection(){
                if (b == behaviours.length - 1){
                    socket.emit("RTryAddDog");
                }
-     }
-   });
+           }
+       }
+   })
+   };
 
    this.addDogBehaviour = function(idDog, idBehaviour){
        var req = "INSERT INTO DogBehaviour(idDog, idBehaviour) VALUES ('" + idDog + "', '" + idBehaviour + "');";
@@ -120,7 +122,7 @@ function DBConnection(){
                console.log(err);
            }
        })
-   }
+   };
 
 
   this.addWalk = function(walk, walkdogs, walklocations, socket){
