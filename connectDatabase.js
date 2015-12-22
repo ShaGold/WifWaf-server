@@ -217,7 +217,8 @@ function DBConnection(){
   this.getBehaviours = function(event, result, i, socket){
       var req = "SELECT * FROM DogBehaviour WHERE idDog = " + result[i]['idDog'] + ";";
       db.query(req, function select(err, resultBeh) {
-          console.log("idBehaviour:", resultBeh.idBehaviour);
+          console.log("idBehaviour:", resultBeh['idBehaviour']);
+          console.log("resultat de beh", resultBeh);
           if (err) {
               console.log(err);
               socket.emit(event, err['errno']);
