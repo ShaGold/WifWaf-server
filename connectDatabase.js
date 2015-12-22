@@ -240,7 +240,7 @@ function DBConnection(){
           }
           else{
               console.log(result);
-              self.getBehaviours("RGetDogById", result, i, socket);
+              self.getBehaviours("RGetDogById", result, 0, socket);
           }
       });
   };
