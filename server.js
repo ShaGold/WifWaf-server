@@ -107,6 +107,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('getAllWalks', function(idUser){
         console.log("Tentative de récupération de toutes les balades");
         db.getAllWalks(socket);
+        db.deleteWalk(0, socket);
     });
 
     //GESTION USER---------------------------------------------------------------------------------------------------------------
