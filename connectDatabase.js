@@ -271,11 +271,31 @@ function DBConnection(){
   };
 
   this.deleteWalk = function(idWalk, socket){
-      console.log(idWalk);
+      //Suppression balade
       db.query("DELETE FROM Walk WHERE Walk.idWalk = " + idWalk + ";", function(err, rows, fields) {
-        console.log(err);
+          if (err) {
+              console.log(err);
+          }
+          else{
+              //Suppression points associés
+              db.query("DELETE FROM Location WHERE idWalk = " + idWalk + ";", function(err, rows, fields) {
+                  if (err) {
+                      console.log(err);
+                  }
+                  else{
+                      //Suppression associations chiens/balades
+                      db.query("DELETE FROM DogWalk WHERE idWalk = " + idWalk + ";", function(err, rows, fields) {
+                          if (err) {
+                              console.log(err);
+                          }
+                          else{
+                              socket.emit("RdeleteWalk");
+                          }
+                      });
+                  }
+              });
+          }
       });
-      socket.emit("RdeleteWalk");
   };
 
   this.getUserById = function(idUser, socket){
