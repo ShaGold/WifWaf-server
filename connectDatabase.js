@@ -215,10 +215,9 @@ function DBConnection(){
   };
 
   this.getBehaviours = function(event, result, i, socket){
-      console.log("valeur de i", i);
       var req = "SELECT * FROM DogBehaviour WHERE idDog = " + result[i]['idDog'] + ";";
-      console.log("valeur de req ", i);
       db.query(req, function select(err, resultBeh) {
+          console.log("idBehaviour:", resultBeh.idBehaviour);
           if (err) {
               console.log(err);
               socket.emit(event, err['errno']);
@@ -231,7 +230,7 @@ function DBConnection(){
                       socket.emit(event, err['errno']);
                   }
                   else{
-                      result[i].behaviours = resultBehaviour;
+                      result[i].behaviours += resultBehaviour;
                       console.log(resultBehaviour);
                       if (i == result.length - 1){
                           //dernier element
