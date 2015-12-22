@@ -225,7 +225,7 @@ function DBConnection(){
           }
           else{
               result[i].behaviours = resultBeh;
-              console.log(result);
+              console.log(resultBeh);
               if (i == result.length - 1){
                   //dernier element
                   socket.emit(event, result);
