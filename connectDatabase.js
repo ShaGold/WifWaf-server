@@ -230,6 +230,7 @@ function DBConnection(){
                       var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh[j].idBehaviour + ";";
                       console.log(req);
                       db.query(req, function select(err, resultBehaviour) {
+                          console.log(resultBehaviour);
                           if (err) {
                               console.log(err);
                               socket.emit(event, err['errno']);
