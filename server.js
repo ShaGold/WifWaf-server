@@ -104,9 +104,8 @@ io.sockets.on('connection', function (socket) {
         db.getAllMyWalks(idUser, socket);
     });
 
-    socket.on('getAllWalks', function(idUser){
+    socket.on('getAllWalks', function(){
         console.log("Tentative de récupération de toutes les balades");
-        db.getDogsForIdWalk()
         db.getAllWalks(socket);
     });
 
