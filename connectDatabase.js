@@ -283,6 +283,7 @@ function DBConnection(){
         }
         else{
             db.query("DELETE * FROM DogWalk WHERE idDog = " + idDog + ";");
+            db.query("DELETE * FROM DogBehaviour WHERE idDog = " + idDog + ";");
             socket.emit("RdeleteDog");
         }
       });
