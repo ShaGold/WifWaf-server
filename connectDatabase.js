@@ -385,7 +385,6 @@ function DBConnection(){
           }
           else{
               result[i].dogs = resultDog;
-              console.log(resultDog[i].idDog);
               if (i == result.length - 1){
                   //dernier element
                   socket.emit(event, result);
