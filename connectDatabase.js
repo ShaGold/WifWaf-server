@@ -217,8 +217,6 @@ function DBConnection(){
   this.getBehaviours = function(event, result, i, socket){
       var req = "SELECT * FROM DogBehaviour WHERE idDog = " + result[i]['idDog'] + ";";
       db.query(req, function select(err, resultBeh) {
-          console.log("idBehaviour:", resultBeh['idBehaviour']);
-          console.log("resultat de beh", resultBeh);
           if (err) {
               console.log(err);
               socket.emit(event, err['errno']);
@@ -228,16 +226,14 @@ function DBConnection(){
               if (resultBeh != []){
                   for (j in resultBeh){
                       var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh[j].idBehaviour + ";";
-                      console.log(req);
                       db.query(req, function select(err, resultBehaviour) {
-                          console.log(resultBehaviour);
+                          console.log("Result behaviour donne" + resultBehaviour);
                           if (err) {
                               console.log(err);
                               socket.emit(event, err['errno']);
                           }
                           else{
-                              result[i].behaviours.push(resultBehaviour);
-                              console.log(resultBehaviour);
+                              result[i].behaviours = resultBehaviour;
                               if (i == result.length - 1){
                                   //dernier element
                                   socket.emit(event, result);
