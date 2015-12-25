@@ -99,7 +99,7 @@ function DBConnection(){
 
       if (dog.photo != "") {
             var nomImg = "profil_" + dog.dogName + dog.idUser;
-            var img = new Buffer(temp, 'base64');
+            var img = new Buffer(dog.photo, 'base64');
             fs.writeFile('img/profil_' +  dog.dogName + dog.idUser + '.jpg', img, function (err) {
                 if (err){
                     console.log(err);
