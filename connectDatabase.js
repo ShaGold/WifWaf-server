@@ -273,7 +273,7 @@ function DBConnection(){
           else{
               var j;
               if (resultBeh != null){
-                  console.log("resultBeh");
+                  console.log(resultBeh);
                   for (j in resultBeh){
                       console.log(j);
                       var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh[j].idBehaviour + ";";
