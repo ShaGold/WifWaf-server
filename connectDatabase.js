@@ -251,6 +251,9 @@ function DBConnection(){
                     else {
                         var image = new Buffer(data).toString('base64');
                         result[i]['photo'] = image;
+                        console.log(image);
+                        console.log(result);
+                        console.log(i);
                         self.getBehaviours("RGetAllMyDogs", result, i, socket);
                         console.log(1.2);
                     }
