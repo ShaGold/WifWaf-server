@@ -267,7 +267,7 @@ function DBConnection(){
           }
           else{
               var j;
-              if (resultBeh != []){
+              if (resultBeh != null){
                   for (j in resultBeh){
                       var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh[j].idBehaviour + ";";
                       db.query(req, function select(err, resultBehaviour) {
