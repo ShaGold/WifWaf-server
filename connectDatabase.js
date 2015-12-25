@@ -240,14 +240,15 @@ function DBConnection(){
                         fs.readFile('user.jpg', function (err, data) {
                             var image = new Buffer(data).toString('base64');
                             result[i]['photo'] = image;
+                            self.getBehaviours("RGetAllMyDogs", result, i, socket);
                         });
                     }
                     else {
                         var image = new Buffer(data).toString('base64');
                         result[i]['photo'] = image;
+                        self.getBehaviours("RGetAllMyDogs", result, i, socket);
                     }
                 });
-                  self.getBehaviours("RGetAllMyDogs", result, i, socket);
               }
           }
       });
