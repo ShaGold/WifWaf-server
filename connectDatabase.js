@@ -272,7 +272,7 @@ function DBConnection(){
           }
           else{
               var j;
-              if (resultBeh != null){
+              if (resultBeh != []){
                   console.log(resultBeh);
                   for (j in resultBeh){
                       console.log(j);
