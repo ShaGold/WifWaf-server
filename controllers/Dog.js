@@ -1,6 +1,6 @@
 module.exports.dog = Dog;
 
-function Dog(idDog, dogName, idUser, age, breed, size, getAlongWithMales, getAlongWithFemales, getAlongWithKids, getAlongWithHumans, description, gender) {
+function Dog(idDog, dogName, idUser, age, breed, size, getAlongWithMales, getAlongWithFemales, getAlongWithKids, getAlongWithHumans, description, gender, photo) {
     this.idDog = idDog;
     this.dogName = dogName;
     this.idUser = idUser;
@@ -13,4 +13,5 @@ function Dog(idDog, dogName, idUser, age, breed, size, getAlongWithMales, getAlo
     this.getAlongWithHumans = getAlongWithHumans;
     this.description = description;
     this.gender = gender;
+    this.photo = photo;
 }

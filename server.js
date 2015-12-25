@@ -54,7 +54,7 @@ io.sockets.on('connection', function (socket) {
     //GESTION CHIENS------------------------------------------------------------------------------------------------------------
     socket.on('TryAddDog', function (dog) {
         console.log(dog);
-        var newDog = new Dog(0, dog.dogName, dog.idUser, dog.age, dog.breed, dog.size, dog.getAlongWithMales, dog.getAlongWithFemales, dog.getAlongWithKids, dog.getAlongWithHumans, dog.description, dog.gender);
+        var newDog = new Dog(0, dog.dogName, dog.idUser, dog.age, dog.breed, dog.size, dog.getAlongWithMales, dog.getAlongWithFemales, dog.getAlongWithKids, dog.getAlongWithHumans, dog.description, dog.gender, dog.photo);
         console.log('Je passe dans TryAddDog');
         console.log(newDog);
         db.addDog(newDog, socket, dog.behaviours);
@@ -124,7 +124,7 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('updateDog', function(dog){
         console.log("Update dog");
-        var newDog = new Dog(dog.idDog, dog.dogName, dog.idUser, dog.age, dog.breed, dog.size, dog.getAlongWithMales, dog.getAlongWithFemales, dog.getAlongWithKids, dog.getAlongWithHumans, dog.description, dog.gender);
+        var newDog = new Dog(dog.idDog, dog.dogName, dog.idUser, dog.age, dog.breed, dog.size, dog.getAlongWithMales, dog.getAlongWithFemales, dog.getAlongWithKids, dog.getAlongWithHumans, dog.description, dog.gender, null);
         db.updateDog(newDog, socket);
     });
 });
