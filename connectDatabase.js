@@ -137,6 +137,7 @@ function DBConnection(){
                    socket.emit("RTryAddDog");
                }
            }
+           socket.emit("RTryAddDog");
        }
    })
    };
