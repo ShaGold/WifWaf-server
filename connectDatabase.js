@@ -97,7 +97,7 @@ function DBConnection(){
                  + dog.size + "', '" + dog.getAlongWithMales + "', '" + dog.getAlongWithFemales + "', '"
                  + dog.getAlongWithKids + "', '" + dog.getAlongWithHumans +  "', '" + dog.description +  "', '" + dog.gender + "');";
 
-      if (dog.photo != "") {
+      if (dog.photo != null) {
             var nomImg = "profil_" + dog.dogName + dog.idUser;
             console.log("Val", dog.photo);
             var img = new Buffer(dog.photo, 'base64');
