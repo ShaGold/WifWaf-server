@@ -96,6 +96,17 @@ function DBConnection(){
                  + "VALUES('" + dog.dogName + "', '" + dog.idUser + "', '" + dog.age + "', '" + dog.breed + "', '"
                  + dog.size + "', '" + dog.getAlongWithMales + "', '" + dog.getAlongWithFemales + "', '"
                  + dog.getAlongWithKids + "', '" + dog.getAlongWithHumans +  "', '" + dog.description +  "', '" + dog.gender + "');";
+
+      if (dog.photo != "") {
+            var nomImg = "profil_" + dog.dogName + dog.idUser;
+            var img = new Buffer(temp, 'base64');
+            fs.writeFile('img/profil_' +  dog.dogName + dog.idUser + '.jpg', img, function (err) {
+                if (err){
+                    console.log(err);
+                }
+                console.log('L\'image a été sauvegardée');
+            });
+      }
       db.query(req, function select(err, result) {
          if (err) {
              console.log(err);
