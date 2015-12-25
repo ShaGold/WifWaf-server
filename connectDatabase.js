@@ -235,6 +235,7 @@ function DBConnection(){
               var i;
               for(i in result){
                   //récup photo
+                  console.log("récup photos");
                   fs.readFile('img/profil_' + result[i]['dogName'] + result[i]['idUser'] +  '.jpg', function (err, data) {
                     if (err) {
                         fs.readFile('user.jpg', function (err, data) {
