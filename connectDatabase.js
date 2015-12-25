@@ -245,12 +245,14 @@ function DBConnection(){
                             var image = new Buffer(data).toString('base64');
                             result[i]['photo'] = image;
                             self.getBehaviours("RGetAllMyDogs", result, i, socket);
+                            console.log(1.1);
                         });
                     }
                     else {
                         var image = new Buffer(data).toString('base64');
                         result[i]['photo'] = image;
                         self.getBehaviours("RGetAllMyDogs", result, i, socket);
+                        console.log(1.2);
                     }
                 });
               }
@@ -275,6 +277,7 @@ function DBConnection(){
                           if (err) {
                               console.log(err);
                               socket.emit(event, err['errno']);
+                              console.log(2.1);
                           }
                           else{
                               result[i].behaviours = resultBehaviour;
@@ -282,6 +285,7 @@ function DBConnection(){
                                   //dernier element
                                   socket.emit(event, result);
                                   console.log("RESULTAT FINAL", util.inspect(result));
+                                  console.log(2.2);
                               }
                           }
                       });
@@ -289,6 +293,7 @@ function DBConnection(){
               }
               else{
                   socket.emit(event, result);
+                  console.log(2.3);
               }
           }
     });
