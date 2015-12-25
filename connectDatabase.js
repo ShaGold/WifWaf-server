@@ -6,6 +6,8 @@ var util = require('util');
 
 var Locations = require('./controllers/Location.js').locations;
 
+var fs = require('fs');
+
 module.exports.connection = new DBConnection();
 
 function DBConnection(){
@@ -33,6 +35,16 @@ function DBConnection(){
     var req = "INSERT INTO User(email, nickname, password, birthday, phoneNumber, description, photo) "
                  + "VALUES('" + user.email + "', '" + user.nickname + "', '" + user.password + "', '"
                  + user.birthday + "', '" + user.phoneNumber + "', '" + user.description + "', '" + user.photo + "');";
+    if (user.photo != "") {
+           var nomImg = "profil_" + user.nickname;
+           var img = new Buffer(temp, 'base64');
+           fs.writeFile('img/profil_' + user.nickname + '.jpg', img, function (err) {
+               if (err){
+                   console.log(err);
+               }
+               console.log('L\'image a été sauvegardée');
+           });
+    }
      db.query(req, function select(err, result) {
          if (err) {
              console.log(err);
@@ -413,7 +425,6 @@ function DBConnection(){
       + "', getAlongWithMales =\"" + dog.getAlongWithMales + "\", getAlongWithFemales =\"" + dog.getAlongWithFemales
       + "\", getAlongWithKids=\"" + dog.getAlongWithKids + "\", getAlongWithHumans=\"" + dog.getAlongWithHumans +
       + "\", description=\"" + dog.description + "\", gender='" + dog.gender  + "' WHERE idDog = " + dog.idDog + "; ";
-      console.log("Requête:", req);
       db.query(req, function select(error, results, fields) {
             if (error) {
                 console.log(error);
