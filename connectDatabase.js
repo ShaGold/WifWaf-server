@@ -105,7 +105,9 @@ function DBConnection(){
                 if (err){
                     console.log(err);
                 }
-                console.log('L\'image a été sauvegardée');
+                else{
+                    console.log('L\'image a été sauvegardée');
+                }
             });
       }
       db.query(req, function select(err, result) {
@@ -232,6 +234,19 @@ function DBConnection(){
           else{
               var i;
               for(i in result){
+                  //récup photo
+                  fs.readFile('img/profil_' + result[i]['dogName'] + result[i]['idUser'] +  '.jpg', function (err, data) {
+                    if (err) {
+                        fs.readFile('user.jpg', function (err, data) {
+                            var image = new Buffer(data).toString('base64');
+                            result[i]['photo'] = image;
+                        });
+                    }
+                    else {
+                        var image = new Buffer(data).toString('base64');
+                        result[i]['photo'] = image;
+                    }
+                });
                   self.getBehaviours("RGetAllMyDogs", result, i, socket);
               }
           }
