@@ -137,7 +137,9 @@ function DBConnection(){
                    socket.emit("RTryAddDog");
                }
            }
-           socket.emit("RTryAddDog");
+           if (b == null){
+               socket.emit("RTryAddDog");
+           }
        }
    })
    };
@@ -284,6 +286,9 @@ function DBConnection(){
                           }
                       });
                   }
+              }
+              else{
+                  socket.emit(event, result);
               }
           }
     });
