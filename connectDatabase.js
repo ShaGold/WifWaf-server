@@ -251,7 +251,6 @@ function DBConnection(){
                     else {
                         var image = new Buffer(data).toString('base64');
                         result[i]['photo'] = image;
-                        console.log(image);
                         console.log(result);
                         console.log(i);
                         self.getBehaviours("RGetAllMyDogs", result, i, socket);
@@ -264,6 +263,7 @@ function DBConnection(){
   };
 
   this.getBehaviours = function(event, result, i, socket){
+      console.log("ici");
       var req = "SELECT * FROM DogBehaviour WHERE idDog = " + result[i]['idDog'] + ";";
       db.query(req, function select(err, resultBeh) {
           if (err) {
@@ -273,6 +273,7 @@ function DBConnection(){
           else{
               var j;
               if (resultBeh != null){
+                  console.log("a");
                   for (j in resultBeh){
                       var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh[j].idBehaviour + ";";
                       db.query(req, function select(err, resultBehaviour) {
