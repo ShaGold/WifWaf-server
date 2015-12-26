@@ -558,21 +558,19 @@ function DBConnection(){
                 });
                 console.log("normalement les liens existants ont été supprimés");
                 for(d in walk.dogs){
-                        else{
-                            console.log("for each dog");
-                            //On crée les liens
-                            var req = "INSERT INTO DogWalk(idWalk, idDog) "
-                                       + "VALUES('" + walk.idWalk + "', '" + d.idDog + "');";
-                            db.query(req, function select(err, result) {
-                               if (err) {
-                                   console.log(err);
-                                   return;
-                               }
-                               else{
-                                   console.log("on emit");
-                                   socket.emit("RUpdateWalk");
-                               }
-                        }
+                        console.log("for each dog");
+                        //On crée les liens
+                        var req = "INSERT INTO DogWalk(idWalk, idDog) "
+                                   + "VALUES('" + walk.idWalk + "', '" + d.idDog + "');";
+                        db.query(req, function select(err, result) {
+                           if (err) {
+                               console.log(err);
+                               return;
+                           }
+                           else{
+                               console.log("on emit");
+                               socket.emit("RUpdateWalk");
+                           }
                     });
                 }
             }
