@@ -517,7 +517,7 @@ function DBConnection(){
                 return;
             }
             else{
-                var temp = dog.photo;
+                var temp = User.photo;
                 if (temp != "") {
                     var img = new Buffer(temp, 'base64');
                     fs.writeFile('img/profil_' + User.idUser + '.jpg', img, function (err) {
