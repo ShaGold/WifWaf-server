@@ -123,7 +123,7 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('updateDog', function(dog){
-        console.log("Update dog");
+        console.log("Update dog", dog);
         var newDog = new Dog(dog.idDog, dog.dogName, dog.idUser, dog.age, dog.breed, dog.size, dog.getAlongWithMales, dog.getAlongWithFemales, dog.getAlongWithKids, dog.getAlongWithHumans, dog.description, dog.gender, dog.photo);
         db.updateDog(newDog, socket, dog.behaviours);
     });
