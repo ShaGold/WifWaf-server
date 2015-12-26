@@ -473,7 +473,20 @@ function DBConnection(){
                    socket.emit("RGetUser", err['errno']);
                }
                else{
-                   socket.emit("RGetUser", result[0]);
+                   fs.readFile('img/profil_' + idUser +  '.jpg', function (err, data) {
+                     if (err) {
+                         fs.readFile('user.jpg', function (err, data) {
+                             var image = new Buffer(data).toString('base64');
+                             result[0]['photo'] = image;
+                             socket.emit("RGetUser", result[0]);
+                         });
+                     }
+                     else {
+                         var image = new Buffer(data).toString('base64');
+                         result[0]['photo'] = image;
+                         socket.emit("RGetUser", result[0]);
+                     }
+                 });
                }
       });
   };
