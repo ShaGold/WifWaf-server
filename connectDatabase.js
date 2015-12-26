@@ -286,7 +286,6 @@ function DBConnection(){
                         var image = new Buffer(data).toString('base64');
                         result[i]['photo'] = image;
                         self.getBehaviours("RGetAllMyDogs", result, i, socket);
-                        console.log("vallll", result[i]['photo']);
                     }
                 });
                 console.log("i à la fin", i);
@@ -317,6 +316,7 @@ function DBConnection(){
                               if (i == result.length - 1){
                                   //dernier element
                                   socket.emit(event, result);
+                                  console.log('dernier', result);
                               }
                           }
                       });
@@ -324,6 +324,7 @@ function DBConnection(){
               }
               else{
                   socket.emit(event, result);
+                  console.log('dernierDansElse', result);
               }
           }
     });
