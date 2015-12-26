@@ -564,12 +564,10 @@ this.recupPhoto = function(event, result, i, socket){
                         console.log(err);
                     }
                 });
-                console.log("normalement les liens existants ont été supprimés");
                 for(d in walkDogs){
-                        console.log("for each dog", walkDogs[d].idDog, d['idDog']);
                         //On crée les liens
                         var req = "INSERT INTO DogWalk(idWalk, idDog) "
-                                   + "VALUES('" + walk.idWalk + "', '" + d.idDog + "');";
+                                   + "VALUES('" + walk.idWalk + "', '" + walkDogs[d].idDog + "');";
                         db.query(req, function select(err, result) {
                            if (err) {
                                console.log(err);
