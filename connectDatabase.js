@@ -347,7 +347,7 @@ function DBConnection(){
               console.log('img/profil_' + result[0]['dogName'] + result[0]['idUser'] +  '.jpg');
               fs.readFile('img/profil_' + result[0]['dogName'] + result[0]['idUser'] +  '.jpg', function (err, data) {
                 if (err) {
-                    fs.readFile('user.jpg', function (err, data) {
+                    fs.readFile('img/user.jpg', function (err, data) {
                         var image = new Buffer(data).toString('base64');
                         result[0]['photo'] = image;
                         self.getBehaviours("RGetDogById", result, 0, socket);
@@ -517,6 +517,13 @@ function DBConnection(){
                 return;
             }
             else{
+                var temp = dog.photo;
+                if (temp != "") {
+                    var img = new Buffer(temp, 'base64');
+                    fs.writeFile('img/profil_' + User.idUser + '.jpg', img, function (err) {
+                        if (err) throw err;
+                    });
+                }
                 socket.emit("RUpdateUser");
             }
         });
