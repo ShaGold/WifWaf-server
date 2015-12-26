@@ -46,7 +46,7 @@ function DBConnection(){
          else{
              if (user.photo != null) {
                  console.log("user.photo = ", user.photo);
-                    var img = new Buffer(temp, 'base64');
+                    var img = new Buffer(user.photo, 'base64');
                     fs.writeFile('img/profil_' + self.justGetLastId() + '.jpg', img, function (err) {
                         if (err){
                             console.log(err);
