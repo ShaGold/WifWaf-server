@@ -272,20 +272,19 @@ function DBConnection(){
               var i;
               for(i in result){
                   //récup photo
+                  console.log(i);
                   fs.readFile('img/profil_' + result[i]['dogName'] + result[i]['idUser'] +  '.jpg', function (err, data) {
                     if (err) {
                         fs.readFile('user.jpg', function (err, data) {
                             var image = new Buffer(data).toString('base64');
                             result[i]['photo'] = image;
                             self.getBehaviours("RGetAllMyDogs", result, i, socket);
-                            console.log("Que vaut result", result);
                         });
                     }
                     else {
                         var image = new Buffer(data).toString('base64');
                         result[i]['photo'] = image;
                         self.getBehaviours("RGetAllMyDogs", result, i, socket);
-                        console.log("Que vaut resultDansElse", result);
                     }
                 });
               }
