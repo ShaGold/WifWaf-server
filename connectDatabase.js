@@ -333,7 +333,7 @@ function DBConnection(){
               socket.emit("RGetDogById", err['errno']);
           }
           else{
-              console.log("ici", result[0]);
+              console.log("ici", result);
               fs.readFile('img/profil_' + result[0]['dogName'] + result[0]['idUser'] +  '.jpg', function (err, data) {
                 if (err) {
                     fs.readFile('img/user.jpg', function (err, data) {
