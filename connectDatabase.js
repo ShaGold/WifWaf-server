@@ -278,12 +278,14 @@ function DBConnection(){
                             var image = new Buffer(data).toString('base64');
                             result[i]['photo'] = image;
                             self.getBehaviours("RGetAllMyDogs", result, i, socket);
+                            console.log("Que vaut result", result);
                         });
                     }
                     else {
                         var image = new Buffer(data).toString('base64');
                         result[i]['photo'] = image;
                         self.getBehaviours("RGetAllMyDogs", result, i, socket);
+                        console.log("Que vaut resultDansElse", result);
                     }
                 });
               }
