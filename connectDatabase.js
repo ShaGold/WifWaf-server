@@ -317,7 +317,6 @@ function DBConnection(){
                               if (i == result.length - 1){
                                   //dernier element
                                   socket.emit(event, result);
-                                  console.log('dernier', result);
                               }
                           }
                       });
@@ -325,7 +324,6 @@ function DBConnection(){
               }
               else{
                   socket.emit(event, result);
-                  console.log('dernierDansElse', result);
               }
           }
     });
