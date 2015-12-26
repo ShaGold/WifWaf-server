@@ -543,6 +543,7 @@ function DBConnection(){
       var req = "UPDATE Walk SET city=\"" + walk.city + "\", walkName= '" + walk.walkName + "', description=\"" + walk.description
       + "\", departure ='" + walk.departure
       + "' WHERE idWalk = " + walk.idWalk + "; ";
+      console.log(req);
 
       db.query(req, function select(error, results, fields) {
             if (error) {
