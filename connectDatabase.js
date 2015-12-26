@@ -282,7 +282,6 @@ function DBConnection(){
                           if (err) {
                               console.log(err);
                               socket.emit(event, err['errno']);
-                              console.log(2.1);
                           }
                           else{
                               result[i].behaviours = resultBehaviour;
@@ -290,7 +289,6 @@ function DBConnection(){
                                   //dernier element
                                   socket.emit(event, result);
                                   console.log("RESULTAT FINAL", util.inspect(result));
-                                  console.log(2.2);
                               }
                           }
                       });
@@ -298,7 +296,6 @@ function DBConnection(){
               }
               else{
                   socket.emit(event, result);
-                  console.log(2.3);
               }
           }
     });
@@ -339,8 +336,8 @@ function DBConnection(){
             console.log(err);
         }
         else{
-            db.query("DELETE * FROM DogWalk WHERE idDog = " + idDog + ";");
-            db.query("DELETE * FROM DogBehaviour WHERE idDog = " + idDog + ";");
+            db.query("DELETE FROM DogWalk WHERE idDog = " + idDog + ";");
+            db.query("DELETE FROM DogBehaviour WHERE idDog = " + idDog + ";");
             socket.emit("RdeleteDog");
         }
       });
