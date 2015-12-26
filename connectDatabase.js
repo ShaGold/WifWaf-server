@@ -538,7 +538,7 @@ function DBConnection(){
     });
   };
 
-  this.updateWalk = function(walk, socket){
+  this.updateWalk = function(walk, socket, walkDogs){
       console.log("ici");
       var req = "UPDATE Walk SET city=\"" + walk.city + "\", walkName= '" + walk.walkName + "', description=\"" + walk.description
       + "\", departure ='" + walk.departure
@@ -558,7 +558,7 @@ function DBConnection(){
                     }
                 });
                 console.log("normalement les liens existants ont été supprimés");
-                for(d in walk.dogs){
+                for(d in walkDogs){
                         console.log("for each dog");
                         //On crée les liens
                         var req = "INSERT INTO DogWalk(idWalk, idDog) "

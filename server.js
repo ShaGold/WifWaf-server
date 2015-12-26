@@ -131,6 +131,6 @@ io.sockets.on('connection', function (socket) {
     socket.on('updateWalk', function(walk){
         console.log("Update walk");
         var newWalk = new Walk(walk.idWalk, walk.idUser, walk.walkName, walk.description, walk.city, walk.departure);
-        db.updateWalk(newWalk, socket);
+        db.updateWalk(newWalk, socket, walk.dogs);
     });
 });
