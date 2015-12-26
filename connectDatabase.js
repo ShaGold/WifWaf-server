@@ -285,7 +285,7 @@ function DBConnection(){
                     else {
                         var image = new Buffer(data).toString('base64');
                         result[i]['photo'] = image;
-                        console.log(result[i]['photo']);
+                        console.log("image pour ", i, "val" , result[i]['photo']);
                         self.getBehaviours("RGetAllMyDogs", result, i, socket);
                     }
                 });
