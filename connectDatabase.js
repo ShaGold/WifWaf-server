@@ -566,7 +566,7 @@ this.recupPhoto = function(event, result, i, socket){
                 });
                 console.log("normalement les liens existants ont été supprimés");
                 for(d in walkDogs){
-                        console.log("for each dog", d.idDog, d['idDog']);
+                        console.log("for each dog", walkDogs[d].idDog, d['idDog']);
                         //On crée les liens
                         var req = "INSERT INTO DogWalk(idWalk, idDog) "
                                    + "VALUES('" + walk.idWalk + "', '" + d.idDog + "');";
