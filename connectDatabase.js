@@ -134,7 +134,6 @@ function DBConnection(){
 
       if (dog.photo != null) {
             var nomImg = "profil_" + dog.dogName + dog.idUser;
-            console.log("Val", dog.photo);
             var img = new Buffer(dog.photo, 'base64');
             fs.writeFile('img/profil_' + dog.dogName + dog.idUser + '.jpg', img, function (err) {
                 if (err){
@@ -273,23 +272,18 @@ function DBConnection(){
               var i;
               for(i in result){
                   //récup photo
-                  console.log("récup photos");
                   fs.readFile('img/profil_' + result[i]['dogName'] + result[i]['idUser'] +  '.jpg', function (err, data) {
                     if (err) {
                         fs.readFile('user.jpg', function (err, data) {
                             var image = new Buffer(data).toString('base64');
                             result[i]['photo'] = image;
                             self.getBehaviours("RGetAllMyDogs", result, i, socket);
-                            console.log(1.1);
                         });
                     }
                     else {
                         var image = new Buffer(data).toString('base64');
                         result[i]['photo'] = image;
-                        console.log(result);
-                        console.log(i);
                         self.getBehaviours("RGetAllMyDogs", result, i, socket);
-                        console.log(1.2);
                     }
                 });
               }
@@ -298,7 +292,6 @@ function DBConnection(){
   };
 
   this.getBehaviours = function(event, result, i, socket){
-      console.log("ici");
       var req = "SELECT * FROM DogBehaviour WHERE idDog = " + result[i]['idDog'] + ";";
       db.query(req, function select(err, resultBeh) {
           if (err) {
@@ -308,12 +301,9 @@ function DBConnection(){
           else{
               var j;
               if (resultBeh.length > 0){
-                  console.log('valeur de resultBeh' + resultBeh);
                   for (j in resultBeh){
-                      console.log(j);
                       var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh[j].idBehaviour + ";";
                       db.query(req, function select(err, resultBehaviour) {
-                          console.log("Result behaviour donne" + util.inspect(resultBehaviour));
                           if (err) {
                               console.log(err);
                               socket.emit(event, err['errno']);
@@ -323,7 +313,6 @@ function DBConnection(){
                               if (i == result.length - 1){
                                   //dernier element
                                   socket.emit(event, result);
-                                  console.log("RESULTAT FINAL", util.inspect(result));
                               }
                           }
                       });
@@ -344,7 +333,6 @@ function DBConnection(){
               socket.emit("RGetDogById", err['errno']);
           }
           else{
-              console.log('img/profil_' + result[0]['dogName'] + result[0]['idUser'] +  '.jpg');
               fs.readFile('img/profil_' + result[0]['dogName'] + result[0]['idUser'] +  '.jpg', function (err, data) {
                 if (err) {
                     fs.readFile('img/user.jpg', function (err, data) {
@@ -377,7 +365,6 @@ function DBConnection(){
   };
 
   this.deleteDog = function(idDog, socket){
-      console.log(idDog);
       db.query("DELETE FROM Dog WHERE Dog.idDog = " + idDog + ";", function(err, rows, fields) {
         console.log(err);
         if (err){
@@ -510,7 +497,6 @@ function DBConnection(){
 
   this.updateUser = function(User, socket){
       var req = "UPDATE User SET email=\"" + User.email + "\", nickname= \"" + User.nickname + "\", password=\"" + User.password + "\", birthday =\"" + User.birthday + "\", phoneNumber =\"" + User.phoneNumber + "\", description =\"" + User.description + "\" WHERE idUser = " + User.idUser + "; ";
-      console.log("req", req);
       db.query(req, function select(error, results, fields) {
             if (error) {
                 console.log(error);
@@ -530,7 +516,6 @@ function DBConnection(){
   };
 
   this.updateDog = function(dog, socket){
-      console.log(dog);
       var req = "UPDATE Dog SET dogName=\"" + dog.dogName + "\", age= '" + dog.age + "', breed=\"" + dog.breed + "\", size ='" + dog.size
       + "', getAlongWithMales =\"" + dog.getAlongWithMales + "\", getAlongWithFemales =\"" + dog.getAlongWithFemales
       + "\", getAlongWithKids=\"" + dog.getAlongWithKids + "\", getAlongWithHumans=\"" + dog.getAlongWithHumans +
@@ -549,6 +534,47 @@ function DBConnection(){
                     });
                 }
                 socket.emit("RUpdateDog");
+            }
+    });
+  };
+
+  this.updateWalk = function(walk, socket){
+      console.log("ici");
+      var req = "UPDATE Walk SET city=\"" + walk.city + "\", walkName= '" + walk.walkName + "', description=\"" + walk.description
+      + "\", departure ='" + walk.departure
+      + "' WHERE idWalk = " + walk.idWalk + "; ";
+
+      db.query(req, function select(error, results, fields) {
+            if (error) {
+                console.log(error);
+                return;
+            }
+            else{
+                //On supprime les liens qui existaient
+                db.query("DELETE FROM DogWalk WHERE idWalk = " + walk.idWalk + ";", function(err, rows, fields) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                console.log("normalement les liens existants ont été supprimés");
+                for(d in walk.dogs){
+                        else{
+                            console.log("for each dog");
+                            //On crée les liens
+                            var req = "INSERT INTO DogWalk(idWalk, idDog) "
+                                       + "VALUES('" + walk.idWalk + "', '" + d.idDog + "');";
+                            db.query(req, function select(err, result) {
+                               if (err) {
+                                   console.log(err);
+                                   return;
+                               }
+                               else{
+                                   console.log("on emit");
+                                   socket.emit("RUpdateWalk");
+                               }
+                        }
+                    });
+                }
             }
     });
   };

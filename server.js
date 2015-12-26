@@ -127,4 +127,10 @@ io.sockets.on('connection', function (socket) {
         var newDog = new Dog(dog.idDog, dog.dogName, dog.idUser, dog.age, dog.breed, dog.size, dog.getAlongWithMales, dog.getAlongWithFemales, dog.getAlongWithKids, dog.getAlongWithHumans, dog.description, dog.gender, dog.photo);
         db.updateDog(newDog, socket);
     });
+
+    socket.on('updateWalk', function(walk){
+        console.log("Update walk");
+        var newWalk = new Walk(walk.idWalk, walk.idUser, walk.walkName, walk.description, walk.city, walk.departure);
+        db.updateWalk(newWalk, socket);
+    });
 });
