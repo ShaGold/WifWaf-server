@@ -272,8 +272,6 @@ function DBConnection(){
               var i;
               for(i in result){
                   //récup photo
-                  console.log(i);
-                  console.log('img/profil_' + result[i]['dogName'] + result[i]['idUser'] +  '.jpg');
                   self.recupPhoto("RGetAllMyDogs", result, i, socket);
               }
           }
@@ -568,7 +566,7 @@ this.recupPhoto = function(event, result, i, socket){
                 });
                 console.log("normalement les liens existants ont été supprimés");
                 for(d in walkDogs){
-                        console.log("for each dog");
+                        console.log("for each dog", d.idDog, d['idDog']);
                         //On crée les liens
                         var req = "INSERT INTO DogWalk(idWalk, idDog) "
                                    + "VALUES('" + walk.idWalk + "', '" + d.idDog + "');";
