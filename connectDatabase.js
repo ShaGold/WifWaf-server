@@ -105,6 +105,7 @@ function DBConnection(){
                                  photo : image,
                                  flag : rows[0].flag
                              };
+                             socket.emit(event, jsonUser);
                        });
                    }
                    else {
@@ -120,9 +121,9 @@ function DBConnection(){
                              photo : image,
                              flag : rows[0].flag
                          };
+                         socket.emit(event, jsonUser);
                    }
              }
-             socket.emit(event, jsonUser);
          });
     }
     };
