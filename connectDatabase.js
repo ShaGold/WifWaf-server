@@ -274,26 +274,30 @@ function DBConnection(){
                   //récup photo
                   console.log(i);
                   console.log('img/profil_' + result[i]['dogName'] + result[i]['idUser'] +  '.jpg');
-                  fs.readFile('img/profil_' + result[i]['dogName'] + result[i]['idUser'] +  '.jpg', function (err, data) {
-                    if (err) {
-                        fs.readFile('user.jpg', function (err, data) {
-                            var image = new Buffer(data).toString('base64');
-                            result[i]['photo'] = image;
-                            self.getBehaviours("RGetAllMyDogs", result, i, socket);
-                        });
-                    }
-                    else {
-                        var image = new Buffer(data).toString('base64');
-                        result[i]['photo'] = image;
-                        console.log("image pour ", i, "val" , result[i]['photo']);
-                        self.getBehaviours("RGetAllMyDogs", result, i, socket);
-                    }
-                });
-                console.log("i à la fin", i);
+                  self.recupPhoto("RGetAllMyDogs", result, i, socket);
               }
           }
       });
   };
+
+this.recupPhoto = function(event, result, i, socket){
+    fs.readFile('img/profil_' + result[i]['dogName'] + result[i]['idUser'] +  '.jpg', function (err, data) {
+      if (err) {
+          fs.readFile('user.jpg', function (err, data) {
+              var image = new Buffer(data).toString('base64');
+              result[i]['photo'] = image;
+              self.getBehaviours("RGetAllMyDogs", result, i, socket);
+          });
+      }
+      else {
+          var image = new Buffer(data).toString('base64');
+          result[i]['photo'] = image;
+          console.log("image pour ", i, "val" , result[i]['photo']);
+          self.getBehaviours("RGetAllMyDogs", result, i, socket);
+      }
+  });
+}
+
 
   this.getBehaviours = function(event, result, i, socket){
       var req = "SELECT * FROM DogBehaviour WHERE idDog = " + result[i]['idDog'] + ";";
