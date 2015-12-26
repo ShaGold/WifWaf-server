@@ -87,6 +87,7 @@ function DBConnection(){
                      photo : "",
                      flag : ""
                  };
+                 socket.emit(event, jsonUser);
              }
              else{
                  //récupération de la photo
@@ -123,9 +124,8 @@ function DBConnection(){
                          };
                          socket.emit(event, jsonUser);
                    }
-             }
-         });
-    }
+                });
+            }
     };
 
   this.addDog = function(dog, socket, behaviours){
