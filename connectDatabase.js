@@ -68,6 +68,7 @@ function DBConnection(){
          }
          else{
              var lastid = result[0]['LAST_INSERT_ID()'];
+             console.log("lastidval", lastid);
              return lastid;
          }
      });
