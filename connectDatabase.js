@@ -94,23 +94,33 @@ function DBConnection(){
                    if (err) {
                        fs.readFile('user.jpg', function (err, data) {
                            var image = new Buffer(data).toString('base64');
+                           var jsonUser = {
+                                 idUser : rows[0].idUser,
+                                 email : rows[0].email,
+                                 nickname : rows[0].nickname,
+                                 password : rows[0].password,
+                                 birthday : rows[0].birthday,
+                                 phoneNumber : rows[0].phoneNumber,
+                                 description : rows[0].description,
+                                 photo : image,
+                                 flag : rows[0].flag
+                             };
                        });
                    }
                    else {
                        var image = new Buffer(data).toString('base64');
+                       var jsonUser = {
+                             idUser : rows[0].idUser,
+                             email : rows[0].email,
+                             nickname : rows[0].nickname,
+                             password : rows[0].password,
+                             birthday : rows[0].birthday,
+                             phoneNumber : rows[0].phoneNumber,
+                             description : rows[0].description,
+                             photo : image,
+                             flag : rows[0].flag
+                         };
                    }
-               });
-               var jsonUser = {
-                     idUser : rows[0].idUser,
-                     email : rows[0].email,
-                     nickname : rows[0].nickname,
-                     password : rows[0].password,
-                     birthday : rows[0].birthday,
-                     phoneNumber : rows[0].phoneNumber,
-                     description : rows[0].description,
-                     photo : image,
-                     flag : rows[0].flag
-                 };
              }
              socket.emit(event, jsonUser);
          });
