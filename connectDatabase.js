@@ -273,6 +273,7 @@ function DBConnection(){
               for(i in result){
                   //récup photo
                   console.log(i);
+                  console.log('img/profil_' + result[i]['dogName'] + result[i]['idUser'] +  '.jpg');
                   fs.readFile('img/profil_' + result[i]['dogName'] + result[i]['idUser'] +  '.jpg', function (err, data) {
                     if (err) {
                         fs.readFile('user.jpg', function (err, data) {
