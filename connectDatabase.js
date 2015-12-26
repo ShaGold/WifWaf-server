@@ -32,19 +32,9 @@ function DBConnection(){
 });*/
 
   this.addUser = function(user, socket){
-    var req = "INSERT INTO User(email, nickname, password, birthday, phoneNumber, description, photo) "
+    var req = "INSERT INTO User(email, nickname, password, birthday, phoneNumber, description) "
                  + "VALUES('" + user.email + "', '" + user.nickname + "', '" + user.password + "', '"
-                 + user.birthday + "', '" + user.phoneNumber + "', '" + user.description + "', '" + user.photo + "');";
-    if (user.photo != "") {
-           var nomImg = "profil_" + user.nickname;
-           var img = new Buffer(temp, 'base64');
-           fs.writeFile('img/profil_' + user.nickname + '.jpg', img, function (err) {
-               if (err){
-                   console.log(err);
-               }
-               console.log('L\'image a été sauvegardée');
-           });
-    }
+                 + user.birthday + "', '" + user.phoneNumber + "', '" + user.description + "');";
      db.query(req, function select(err, result) {
          if (err) {
              console.log(err);
@@ -54,7 +44,31 @@ function DBConnection(){
              socket.emit("RTrySignUp", jsonUser);
          }
          else{
+             if (user.photo != null) {
+                 console.log("user.photo = ", user.photo);
+                    var img = new Buffer(temp, 'base64');
+                    fs.writeFile('img/profil_' + self.justGetLastId() + '.jpg', img, function (err) {
+                        if (err){
+                            console.log(err);
+                        }
+                        console.log('Photo saved');
+                    });
+             }
              self.getUserByEmail("RTrySignUp", user.email, socket);
+         }
+     });
+  };
+
+  this.justGetLastId = function(){
+      var req = "SELECT LAST_INSERT_ID();";
+      db.query(req, function select(err, result) {
+         if (err) {
+             console.log(err);
+             return;
+         }
+         else{
+             var lastid = result[0]['LAST_INSERT_ID()'];
+             return lastid;
          }
      });
   };
@@ -75,7 +89,18 @@ function DBConnection(){
                  };
              }
              else{
-                 var jsonUser = {
+                 //récupération de la photo
+                 fs.readFile('img/profil_' + rows[0].idUser +  '.jpg', function (err, data) {
+                   if (err) {
+                       fs.readFile('user.jpg', function (err, data) {
+                           var image = new Buffer(data).toString('base64');
+                       });
+                   }
+                   else {
+                       var image = new Buffer(data).toString('base64');
+                   }
+               });
+               var jsonUser = {
                      idUser : rows[0].idUser,
                      email : rows[0].email,
                      nickname : rows[0].nickname,
@@ -83,7 +108,7 @@ function DBConnection(){
                      birthday : rows[0].birthday,
                      phoneNumber : rows[0].phoneNumber,
                      description : rows[0].description,
-                     photo : rows[0].photo,
+                     photo : image,
                      flag : rows[0].flag
                  };
              }
