@@ -309,18 +309,18 @@ function DBConnection(){
               socket.emit("RGetDogById", err['errno']);
           }
           else{
-              console.log('img/profil_' + result.dogName + result.idUser +  '.jpg');
-              fs.readFile('img/profil_' + result['dogName'] + result['idUser'] +  '.jpg', function (err, data) {
+              console.log('img/profil_' + result[0]['dogName'] + result[0]['idUser'] +  '.jpg');
+              fs.readFile('img/profil_' + result[0]['dogName'] + result[0]['idUser'] +  '.jpg', function (err, data) {
                 if (err) {
                     fs.readFile('user.jpg', function (err, data) {
                         var image = new Buffer(data).toString('base64');
-                        result['photo'] = image;
+                        result[0]['photo'] = image;
                         self.getBehaviours("RGetDogById", result, 0, socket);
                     });
                 }
                 else {
                     var image = new Buffer(data).toString('base64');
-                    result['photo'] = image;
+                    result[0]['photo'] = image;
                     self.getBehaviours("RGetDogById", result, 0, socket);
                 }
             });
