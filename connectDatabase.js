@@ -522,7 +522,7 @@ this.recupPhoto = function(event, result, i, socket){
         });
   };
 
-  this.updateDog = function(dog, socket){
+  this.updateDog = function(dog, socket, dogBehaviours){
       var req = "UPDATE Dog SET dogName=\"" + dog.dogName + "\", age= '" + dog.age + "', breed=\"" + dog.breed + "\", size ='" + dog.size
       + "', getAlongWithMales =\"" + dog.getAlongWithMales + "\", getAlongWithFemales =\"" + dog.getAlongWithFemales
       + "\", getAlongWithKids=\"" + dog.getAlongWithKids + "\", getAlongWithHumans=\"" + dog.getAlongWithHumans +
@@ -538,6 +538,26 @@ this.recupPhoto = function(event, result, i, socket){
                     var img = new Buffer(temp, 'base64');
                     fs.writeFile('img/profil_' + dog.dogName + dog.idUser + '.jpg', img, function (err) {
                         if (err) throw err;
+                    });
+                }
+                //On supprime les liens qui existaient
+                db.query("DELETE FROM DogBehaviour WHERE idDog = " + dog.idDog + ";", function(err, rows, fields) {
+                    if (err) {
+                        console.log(err);
+                    }
+                });
+                for(d in dogBehaviours){
+                        //On crée les liens
+                        var req = "INSERT INTO DogBehaviour(idDog, idBehaviour) VALUES ('" + dog.idDog + "', '" + dogBehaviours[d].idBehaviour + "');";
+                        db.query(req, function select(err, result) {
+                           if (err) {
+                               console.log(err);
+                               return;
+                           }
+                           else{
+                               console.log("on emit");
+                               socket.emit("RUpdateWalk");
+                           }
                     });
                 }
                 socket.emit("RUpdateDog");
