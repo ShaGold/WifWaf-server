@@ -288,6 +288,7 @@ function DBConnection(){
                         self.getBehaviours("RGetAllMyDogs", result, i, socket);
                     }
                 });
+                console.log("i à la fin", i);
               }
           }
       });
