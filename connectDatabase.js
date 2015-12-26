@@ -124,6 +124,7 @@ function DBConnection(){
              }
              socket.emit(event, jsonUser);
          });
+    }
     };
 
   this.addDog = function(dog, socket, behaviours){
