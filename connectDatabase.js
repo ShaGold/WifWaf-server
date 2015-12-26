@@ -126,7 +126,7 @@ function DBConnection(){
                    }
                 });
             }
-    }
+    });
     };
 
   this.addDog = function(dog, socket, behaviours){
