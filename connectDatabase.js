@@ -310,17 +310,17 @@ function DBConnection(){
           }
           else{
               console.log(result);
-              fs.readFile('img/profil_' + result[i]['dogName'] + result[i]['idUser'] +  '.jpg', function (err, data) {
+              fs.readFile('img/profil_' + result['dogName'] + result['idUser'] +  '.jpg', function (err, data) {
                 if (err) {
                     fs.readFile('user.jpg', function (err, data) {
                         var image = new Buffer(data).toString('base64');
-                        result[i]['photo'] = image;
+                        result['photo'] = image;
                         self.getBehaviours("RGetDogById", result, 0, socket);
                     });
                 }
                 else {
                     var image = new Buffer(data).toString('base64');
-                    result[i]['photo'] = image;
+                    result['photo'] = image;
                     self.getBehaviours("RGetDogById", result, 0, socket);
                 }
             });
