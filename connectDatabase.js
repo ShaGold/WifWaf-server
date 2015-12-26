@@ -486,6 +486,13 @@ function DBConnection(){
                 return;
             }
             else{
+                var temp = dog.photo;
+                if (temp != "") {
+                    var img = new Buffer(temp, 'base64');
+                    fs.writeFile('img/profil_' + dog.dogName + dog.idUser + '.jpg', img, function (err) {
+                        if (err) throw err;
+                    });
+                }
                 socket.emit("RUpdateDog");
             }
     });
