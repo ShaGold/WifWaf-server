@@ -45,31 +45,27 @@ function DBConnection(){
          }
          else{
              if (user.photo != null) {
-                 console.log("justGetLastId = ", self.justGetLastId());
                     var img = new Buffer(user.photo, 'base64');
-                    fs.writeFile('img/profil_' + self.justGetLastId() + '.jpg', img, function (err) {
-                        if (err){
-                            console.log(err);
-                        }
-                        console.log('Photo saved');
-                    });
+
+                    /*Récupération id*/
+                    var req = "SELECT LAST_INSERT_ID();";
+                    db.query(req, function select(err, result) {
+                       if (err) {
+                           console.log(err);
+                           return;
+                       }
+                       else{
+                           var lastid = result[0]['LAST_INSERT_ID()'];
+                           fs.writeFile('img/profil_' + lastid + '.jpg', img, function (err) {
+                               if (err){
+                                   console.log(err);
+                               }
+                               console.log('Photo saved');
+                           });
+                       }
+                   });
              }
              self.getUserByEmail("RTrySignUp", user.email, socket);
-         }
-     });
-  };
-
-  this.justGetLastId = function(){
-      var req = "SELECT LAST_INSERT_ID();";
-      db.query(req, function select(err, result) {
-         if (err) {
-             console.log(err);
-             return;
-         }
-         else{
-             var lastid = result[0]['LAST_INSERT_ID()'];
-             console.log("lastidval", lastid);
-             return lastid;
          }
      });
   };
