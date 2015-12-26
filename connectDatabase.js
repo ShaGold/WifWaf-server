@@ -93,7 +93,7 @@ function DBConnection(){
                  //récupération de la photo
                  fs.readFile('img/profil_' + rows[0].idUser +  '.jpg', function (err, data) {
                    if (err) {
-                       fs.readFile('user.jpg', function (err, data) {
+                       fs.readFile('img/user.jpg', function (err, data) {
                            var image = new Buffer(data).toString('base64');
                            var jsonUser = {
                                  idUser : rows[0].idUser,
