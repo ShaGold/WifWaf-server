@@ -280,13 +280,13 @@ function DBConnection(){
                             var image = new Buffer(data).toString('base64');
                             result[i]['photo'] = image;
                             self.getBehaviours("RGetAllMyDogs", result, i, socket);
-                            console.log("vallll", result[i]['photo']);
                         });
                     }
                     else {
                         var image = new Buffer(data).toString('base64');
                         result[i]['photo'] = image;
                         self.getBehaviours("RGetAllMyDogs", result, i, socket);
+                        console.log("vallll", result[i]['photo']);
                     }
                 });
                 console.log("i à la fin", i);
