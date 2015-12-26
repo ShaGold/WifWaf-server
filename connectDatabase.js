@@ -198,7 +198,6 @@ function DBConnection(){
              return;
          }
          else{
-             console.log("Value des walklocations dans addWalk", walklocations);
              self.lastInsertId(walkdogs, walklocations, socket);
          }
     });
@@ -290,7 +289,6 @@ this.recupPhoto = function(event, result, i, socket){
       else {
           var image = new Buffer(data).toString('base64');
           result[i]['photo'] = image;
-          console.log("image pour ", i, "val" , result[i]['photo']);
           self.getBehaviours("RGetAllMyDogs", result, i, socket);
       }
   });
@@ -339,7 +337,6 @@ this.recupPhoto = function(event, result, i, socket){
               socket.emit("RGetDogById", err['errno']);
           }
           else{
-              console.log("ici", result);
               fs.readFile('img/profil_' + result[0]['dogName'] + result[0]['idUser'] +  '.jpg', function (err, data) {
                 if (err) {
                     fs.readFile('img/user.jpg', function (err, data) {
