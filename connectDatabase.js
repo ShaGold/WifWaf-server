@@ -309,7 +309,7 @@ function DBConnection(){
               socket.emit("RGetDogById", err['errno']);
           }
           else{
-              console.log(result);
+              console.log('img/profil_' + result['dogName'] + result['idUser'] +  '.jpg');
               fs.readFile('img/profil_' + result['dogName'] + result['idUser'] +  '.jpg', function (err, data) {
                 if (err) {
                     fs.readFile('user.jpg', function (err, data) {
