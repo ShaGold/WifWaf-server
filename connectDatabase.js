@@ -22,15 +22,6 @@ function DBConnection(){
 
   db.connect();
 
-  db.query('SELECT * FROM Behaviour', function(err, rows, fields) {
-    //if (err) throw err;
-    console.log('Résultat: ', rows[0].description);
-  });
-
-  /*db.query('INSERT INTO Behaviour(description) VALUES (\'calm\')', function(err, rows, fields) {
-    if (err) throw err;
-});*/
-
   this.addUser = function(user, socket){
     var req = "INSERT INTO User(email, nickname, password, birthday, phoneNumber, description) "
                  + "VALUES('" + user.email + "', '" + user.nickname + "', '" + user.password + "', '"
@@ -139,9 +130,6 @@ function DBConnection(){
                 if (err){
                     console.log(err);
                 }
-                else{
-                    console.log('L\'image a été sauvegardée');
-                }
             });
       }
       db.query(req, function select(err, result) {
@@ -204,7 +192,6 @@ function DBConnection(){
   };
 
   this.lastInsertId = function(walkdogs, walklocations, socket){
-      console.log("Value des walklocations dans lastInsertId", walklocations);
     var req = "SELECT LAST_INSERT_ID();";
     db.query(req, function select(err, result) {
        if (err) {
@@ -233,7 +220,6 @@ function DBConnection(){
 
 
   this.addDogToWalk = function(idWalk, idDog, walklocations){
-      console.log("Value de l'id walk dans addDogToWalk ", idWalk);
       var req = "INSERT INTO DogWalk(idWalk, idDog) "
                  + "VALUES('" + idWalk + "', '" + idDog + "');";
       db.query(req, function select(err, result) {
@@ -248,7 +234,6 @@ function DBConnection(){
   };
 
   this.addLocation = function(location, idWalk){
-      console.log("Value de l'id walk dans addLocation", idWalk);
       var req = "INSERT INTO Location(idWalk, lattitude, longitude, ordering) "
                  + "VALUES('" + idWalk + "', '" + location.lattitude + "', '" + location.longitude + "', '" + location.ordering + "');";
                  console.log(req);
@@ -563,12 +548,9 @@ this.recupPhoto = function(event, result, i, socket){
   };
 
   this.updateWalk = function(walk, socket, walkDogs){
-      console.log("ici");
       var req = "UPDATE Walk SET city=\"" + walk.city + "\", walkName= '" + walk.walkName + "', description=\"" + walk.description
       + "\", departure ='" + walk.departure
       + "' WHERE idWalk = " + walk.idWalk + "; ";
-      console.log(req);
-
       db.query(req, function select(error, results, fields) {
             if (error) {
                 console.log(error);
