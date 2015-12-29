@@ -299,8 +299,8 @@ this.recupPhoto = function(event, result, i, socket){
                               socket.emit(event, err['errno']);
                           }
                           else{
-                              result[j].behaviours = resultBehaviour;
-                              if (j == resultBeh[j].behaviours.length - 1){
+                              result[i].behaviours = resultBehaviour;
+                              if (i == result[i].behaviours.length - 1){
                                   //dernier element
                                   socket.emit(event, result);
                                   console.log("ce qui est envoyé du serv", result);
