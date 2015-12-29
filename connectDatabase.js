@@ -307,16 +307,13 @@ this.recupPhoto = function(event, result, i, socket){
                               result[i]['behaviours'].push(resultBehaviour[0]);
                               console.log(resultBehaviour[0]);
                               console.log(result[i]['behaviours']);
-                              if (i == resultBeh[j].length - 1){
+                              if (i == resultBeh.length - 1){
                                   //dernier element
                                   socket.emit(event, result);
                                   console.log("final", result[0].behaviours);
                               }
-                              else {
-                                  if (j == resultBeh.length){
-                                  socket.emit("RGetDogById", result);
-                                  console.log("final", result[0].behaviours);
-                                }
+                              console.log(resultBeh.length);
+                              console.log(resultBeh);
                             }
                           }
                       });
