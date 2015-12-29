@@ -307,7 +307,7 @@ this.recupPhoto = function(event, result, i, socket){
                               result[i]['behaviours'].push(resultBehaviour[0]);
                               console.log(resultBehaviour[0]);
                               console.log(result[i]['behaviours']);
-                              if (i == result[i]['behaviours'].length - 1){
+                              if (i == result[i].length - 1){
                                   //dernier element
                                   socket.emit(event, result);
                                   console.log("final", result[0].behaviours);
