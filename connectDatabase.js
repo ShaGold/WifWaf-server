@@ -305,13 +305,10 @@ this.recupPhoto = function(event, result, i, socket){
                           }
                           else{
                               result[i]['behaviours'].push(resultBehaviour[0]);
-
-                              console.log("RESULT", result[i]['behaviours']);
-
                               if (i == result[i]['behaviours'].length - 1){
                                   //dernier element
                                   socket.emit(event, result);
-                                  console.log("nb passage");
+                                  console.log("result");
                               }
                           }
                       });
