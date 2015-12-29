@@ -155,6 +155,7 @@ function DBConnection(){
            var b;
            for(b in behaviours){
                self.addDogBehaviour(lastid, behaviours[b].idBehaviour);
+               console.log("behavior added");
                if (b == behaviours.length - 1){
                    socket.emit("RTryAddDog");
                }
