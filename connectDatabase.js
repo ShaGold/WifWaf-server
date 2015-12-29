@@ -299,7 +299,7 @@ this.recupPhoto = function(event, result, i, socket){
                               socket.emit(event, err['errno']);
                           }
                           else{
-                              result[i].behaviours = resultBehaviour;
+                              result[i][behaviours] = resultBehaviour;
                               if (i == result[i].behaviours.length - 1){
                                   //dernier element
                                   socket.emit(event, result);
