@@ -265,7 +265,7 @@ function DBConnection(){
 this.recupPhoto = function(event, result, i, socket){
     fs.readFile('img/profil_' + result[i]['dogName'] + result[i]['idUser'] +  '.jpg', function (err, data) {
       if (err) {
-          fs.readFile('user.jpg', function (err, data) {
+          fs.readFile('img/dog.jpg', function (err, data) {
               var image = new Buffer(data).toString('base64');
               result[i]['photo'] = image;
               self.getBehaviours("RGetAllMyDogs", result, i, socket);
