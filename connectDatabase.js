@@ -540,6 +540,7 @@ this.recupPhoto = function(event, result, i, socket){
                 for(d in dogBehaviours){
                         //On crée les liens
                         var req = "INSERT INTO DogBehaviour(idDog, idBehaviour) VALUES ('" + dog.idDog + "', '" + dogBehaviours[d].idBehaviour + "');";
+                        console.log(req);
                         db.query(req, function select(err, result) {
                            if (err) {
                                console.log(err);
