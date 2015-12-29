@@ -303,7 +303,7 @@ this.recupPhoto = function(event, result, i, socket){
                               socket.emit(event, err['errno']);
                           }
                           else{
-                              result[i]['behaviours'] += resultBehaviour;
+                              result[i]['behaviours'].push(resultBehaviour);
                               console.log("resultat", result[i]['behaviours']);
                               console.log("ce que j'ajoute", resultBehaviour);
 
