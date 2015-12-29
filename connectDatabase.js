@@ -299,8 +299,8 @@ this.recupPhoto = function(event, result, i, socket){
                               socket.emit(event, err['errno']);
                           }
                           else{
-                              result[i][behaviours] = resultBehaviour;
-                              if (i == result[i].behaviours.length - 1){
+                              result[i]['behaviours'] = resultBehaviour;
+                              if (i == result[i]['behaviours'].length - 1){
                                   //dernier element
                                   console.log("là où je passe", result[i].behaviours);
                                   socket.emit(event, result);
