@@ -303,7 +303,7 @@ this.recupPhoto = function(event, result, i, socket){
                               socket.emit(event, err['errno']);
                           }
                           else{
-                              result[i]['behaviours'] = resultBehaviour;
+                              result[i]['behaviours'] += resultBehaviour;
                               console.log("ce que contient result[i]['behaviours']", result[i]['behaviours']);
                               if (i == result[i]['behaviours'] - 1){
                                   //dernier element
