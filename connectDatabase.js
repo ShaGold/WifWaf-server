@@ -312,6 +312,12 @@ this.recupPhoto = function(event, result, i, socket){
                                   socket.emit(event, result);
                                   console.log("final", result[0].behaviours);
                               }
+                              else {
+                                  if (i == 0){
+                                  socket.emit("RGetDogById", result);
+                                  console.log("final", result[0].behaviours);
+                                }
+                            }
                           }
                       });
                   }
