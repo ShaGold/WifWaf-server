@@ -291,24 +291,22 @@ this.recupPhoto = function(event, result, i, socket){
           else{
               var j;
               if (resultBeh.length > 0){
-                  for (j in resultBeh){
-                      var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh[j].idBehaviour + ";";
-                      db.query(req, function select(err, resultBehaviour) {
-                          if (err) {
-                              console.log(err);
-                              socket.emit(event, err['errno']);
+                  var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh[j].idBehaviour + ";";
+                  db.query(req, function select(err, resultBehaviour) {
+                      if (err) {
+                          console.log(err);
+                          socket.emit(event, err['errno']);
+                      }
+                      else{
+                          result[i]['behaviours'] = resultBehaviour;
+                          if (i == result[i]['behaviours'].length - 1){
+                              //dernier element
+                              console.log("là où je passe", result[i].behaviours);
+                              socket.emit(event, result);
+                              console.log("ce qui est envoyé du serv", result);
                           }
-                          else{
-                              result[i]['behaviours'] = resultBehaviour;
-                              if (i == result[i]['behaviours'].length - 1){
-                                  //dernier element
-                                  console.log("là où je passe", result[i].behaviours);
-                                  socket.emit(event, result);
-                                  console.log("ce qui est envoyé du serv", result);
-                              }
-                          }
-                      });
-                  }
+                      }
+                  });
               }
               else{
                   socket.emit(event, result);
