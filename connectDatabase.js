@@ -294,7 +294,6 @@ this.recupPhoto = function(event, result, i, socket){
               var j;
               if (resultBeh.length > 0){
                   console.log("jusque ici");
-                  result[i]['behaviours'] = "";
                   for (j in resultBeh){
                       console.log("lid behaviour", resultBeh[j].idBehaviour);
                       var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh[j].idBehaviour + ";";
@@ -306,6 +305,7 @@ this.recupPhoto = function(event, result, i, socket){
                           else{
                               result[i]['behaviours'] += resultBehaviour;
                               console.log("ce que j'ajoute", resultBehaviour);
+                              console.log("resultat", result[i]['behaviours']);
                               if (i == result[i]['behaviours'] - 1){
                                   //dernier element
                                   console.log("là où je passe", result[i].behaviours);
