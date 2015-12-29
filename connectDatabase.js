@@ -313,7 +313,7 @@ this.recupPhoto = function(event, result, i, socket){
                                   console.log("final", result[0].behaviours);
                               }
                               else {
-                                  if (i == 0){
+                                  if (j == resultBeh.length){
                                   socket.emit("RGetDogById", result);
                                   console.log("final", result[0].behaviours);
                                 }
