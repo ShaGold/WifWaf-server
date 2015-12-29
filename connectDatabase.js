@@ -309,6 +309,7 @@ this.recupPhoto = function(event, result, i, socket){
                                   //dernier element
                                   socket.emit(event, result);
                                   console.log(result[0].behaviours);
+                                  console.log(result[1].behaviours);
                               }
                           }
                       });
