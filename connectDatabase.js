@@ -308,11 +308,10 @@ this.recupPhoto = function(event, result, i, socket){
 
                               console.log("RESULT", result[i]['behaviours']);
 
-                              if (i == result[i]['behaviours'] - 1){
+                              if (i == result[i]['behaviours'].length - 1){
                                   //dernier element
-                                  console.log("là où je passe", result[i].behaviours);
                                   socket.emit(event, result);
-                                  console.log("ce qui est envoyé du serv", result);
+                                  console.log("nb passage");
                               }
                           }
                       });
