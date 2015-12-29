@@ -315,7 +315,6 @@ this.recupPhoto = function(event, result, i, socket){
                               console.log(resultBeh.length);
                               console.log(resultBeh);
                             }
-                          }
                       });
                   }
               }
