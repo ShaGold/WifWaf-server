@@ -303,6 +303,7 @@ this.recupPhoto = function(event, result, i, socket){
                               if (i == result.length - 1){
                                   //dernier element
                                   socket.emit(event, result);
+                                  console.log("ce qui est envoyé du serv", result);
                               }
                           }
                       });
