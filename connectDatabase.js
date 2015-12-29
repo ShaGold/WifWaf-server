@@ -334,14 +334,12 @@ this.recupPhoto = function(event, result, i, socket){
                     fs.readFile('img/user.jpg', function (err, data) {
                         var image = new Buffer(data).toString('base64');
                         result[0]['photo'] = image;
-                        console.log("&");
                         self.getBehaviours("RGetDogById", result, 0, socket);
                     });
                 }
                 else {
                     var image = new Buffer(data).toString('base64');
                     result[0]['photo'] = image;
-                    console.log("&");
                     self.getBehaviours("RGetDogById", result, 0, socket);
                 }
             });
