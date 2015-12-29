@@ -284,13 +284,13 @@ this.recupPhoto = function(event, result, i, socket){
   this.getBehaviours = function(event, result, i, socket){
       console.log("Appelé");
       var req = "SELECT * FROM DogBehaviour WHERE idDog = " + result[i]['idDog'] + ";";
-      console.log("id du chien", result[i]['idDog']);
       db.query(req, function select(err, resultBeh) {
           if (err) {
               console.log(err);
               socket.emit(event, err['errno']);
           }
           else{
+              console.log("resultBeh", resultBeh);
               var j;
               if (resultBeh.length > 0){
                   for (j in resultBeh){
