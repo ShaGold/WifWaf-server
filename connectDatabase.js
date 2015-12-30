@@ -289,6 +289,7 @@ function DBConnection(){
             //Envoi token
             self.sendGcmToUserId(idUser, participation.idWalk);
         }
+    });
   };
 
   this.addDogToWalk = function(idWalk, idDog, walklocations){
