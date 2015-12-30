@@ -241,7 +241,7 @@ function DBConnection(){
 
   this.sendGcm = function(tbtokens){
       var message = new gcm.Message();
-  	message.addData('Test', 'jefaisuntest');
+  	message.addData('TypeNotif', 'addWalk');
 
   	var sender = new gcm.Sender("AIzaSyANgYc99-Oa-IBRRIwCo7nzdBwBannrc4o");
 
