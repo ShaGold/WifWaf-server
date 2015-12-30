@@ -232,6 +232,7 @@ function DBConnection(){
              }
              console.log(result[i]);
          }
+  })
   };
 
 
