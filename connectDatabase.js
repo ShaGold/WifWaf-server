@@ -228,7 +228,7 @@ function DBConnection(){
          else{
              var tb = [];
              for(i in result){
-                 tb.push(result[i]);
+                 tb.push(result[i]['token']);
              }
              console.log(tb);
          }
