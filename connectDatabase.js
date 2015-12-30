@@ -241,6 +241,7 @@ function DBConnection(){
 
 	var sender = new gcm.Sender("AIzaSyANgYc99-Oa-IBRRIwCo7nzdBwBannrc4o");
 
+    console.log(tb);
 	console.log("Envoi du message au GCM");
 	sender.send(message, { registrationTokens: tb }, function (err, response) {
 		if(err) console.error(err);
