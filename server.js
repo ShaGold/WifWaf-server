@@ -140,6 +140,10 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('addParticipation', function(participation, socket){
-        db.addParticipation(participation);
+        console.log("Toutes les participations reçues", participation);
+        for(p in participation){
+            console.log("J'appele addParticipation sur ", participation[p]);
+            db.addParticipation(participation[p]);
+        }
     });
 });
