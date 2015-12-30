@@ -234,21 +234,23 @@ function DBConnection(){
              for(i in result){
                  tb.push(result[i]['token']);
              }
+             self.sendGcm(tb);
          }
     });
-    var message = new gcm.Message();
-	message.addData('Test', 'jefaisuntest');
-
-	var sender = new gcm.Sender("AIzaSyANgYc99-Oa-IBRRIwCo7nzdBwBannrc4o");
-
-    console.log(tb);
-	console.log("Envoi du message au GCM");
-	sender.send(message, { registrationTokens: tb }, function (err, response) {
-		if(err) console.error(err);
-		else    console.log(response);
-	});
   };
 
+  this.sendGcm = function(tbtokens){
+      var message = new gcm.Message();
+  	message.addData('Test', 'jefaisuntest');
+
+  	var sender = new gcm.Sender("AIzaSyANgYc99-Oa-IBRRIwCo7nzdBwBannrc4o");
+
+  	console.log("Envoi du message au GCM");
+  	sender.send(message, { registrationTokens: tbtokens }, function (err, response) {
+  		if(err) console.error(err);
+  		else    console.log(response);
+  	});
+    };
 
   this.addDogToWalk = function(idWalk, idDog, walklocations){
       var req = "INSERT INTO DogWalk(idWalk, idDog) "
