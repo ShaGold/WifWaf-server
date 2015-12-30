@@ -133,4 +133,9 @@ io.sockets.on('connection', function (socket) {
         var newWalk = new Walk(walk.idWalk, walk.idUser, walk.walkName, walk.description, walk.city, walk.departure);
         db.updateWalk(newWalk, socket, walk.dogs);
     });
+
+    socket.on('token', function(token){
+        db.addToken(token);
+        db.getAllTokens();
+    })
 });

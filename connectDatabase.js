@@ -219,6 +219,21 @@ function DBConnection(){
   });
   };
 
+  this.getAllTokens = function(){
+      var req = "SELECT * FROM Token;";
+      db.query(req, function select(err, result) {
+         if (err) {
+             console.log(err);
+         }
+         else{
+             var tb = [];
+             for(i in result){
+                 tb.push(result[i]);
+             }
+             console.log(result[i]);
+         }
+  };
+
 
   this.addDogToWalk = function(idWalk, idDog, walklocations){
       var req = "INSERT INTO DogWalk(idWalk, idDog) "
@@ -590,5 +605,15 @@ this.recupPhoto = function(event, result, i, socket){
                 }
             }
     });
+  };
+
+  this.addToken = function(token){
+      var req = "INSERT INTO Token(token) "
+                   + "VALUES('" + token + "');";
+       db.query(req, function select(err, result) {
+           if (err) {
+               console.log(err);
+           }
+       });
   };
 }
