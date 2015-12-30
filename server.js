@@ -139,7 +139,7 @@ io.sockets.on('connection', function (socket) {
         db.addToken(token);
     });
 
-    socket.on('addParticipation', function(participation, socket)){
+    socket.on('addParticipation', function(participation, socket){
         db.addParticipation(participation);
-    }
+    });
 });
