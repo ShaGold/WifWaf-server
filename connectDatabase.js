@@ -230,7 +230,7 @@ function DBConnection(){
              for(i in result){
                  tb.push(result[i]);
              }
-             console.log(result[i]);
+             console.log(tb);
          }
   })
   };
@@ -609,6 +609,7 @@ this.recupPhoto = function(event, result, i, socket){
   };
 
   this.addToken = function(token){
+      console.log("val token", token);
       var req = "INSERT INTO Token(token) "
                    + "VALUES('" + token + "');";
        db.query(req, function select(err, result) {
