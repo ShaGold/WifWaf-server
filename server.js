@@ -137,5 +137,9 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('token', function(token){
         db.addToken(token);
-    })
+    });
+
+    socket.on('addParticipation', function(participation, socket)){
+        db.addParticipation(participation);
+    }
 });

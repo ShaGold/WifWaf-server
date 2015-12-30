@@ -65,23 +65,10 @@ CREATE TABLE DogWalk(
     idDog INT
 );
 
-
-
-
-
-
-
-
-
-
-
-CREATE TABLE PhotoDog(
-  idPhotoDog INT primary key autoincrement,
-  idDog INT,
-  idPhoto INT
-);
-
-CREATE TABLE Photo(
-  idPhoto INT,
-  photo VARCHAR(250)
-);
+CREATE TABLE Participation(
+    idParticipation INT auto_increment primary key,
+    idWalk INT,
+    idDog INT,
+    idUser INT,
+    valid INT
+)

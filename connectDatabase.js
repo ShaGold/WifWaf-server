@@ -252,6 +252,45 @@ function DBConnection(){
   	});
     };
 
+    //A tester: à appeler lorsqu'on addParticipation ou acceptParticipation
+    this.sendGcmToUserId = function(idUser, idWalk){
+        //Récupération token
+        db.query("SELECT * FROM Token Where idUser = '" + idUser + "';", function select(err, result) {
+                if (err) {
+                    console.log(err);
+                }
+           else{
+               // Envoi à ce token
+               var message = new gcm.Message();
+               	message.addData('TypeNotif', 'addParticipation');
+                message.addData('walk', idWalk);
+
+               	var sender = new gcm.Sender("AIzaSyANgYc99-Oa-IBRRIwCo7nzdBwBannrc4o");
+
+               	console.log("Envoi du message au GCM");
+               	sender.send(message, { registrationTokens: result[0]['token'] }, function (err, response) {
+               		if(err) console.error(err);
+               		else    console.log(response);
+               	});
+               }
+      });
+     };
+
+  this.addParticipation = function(participation, socket){
+      var req = "INSERT INTO Participation(idWalk, idDog, idUser, valid) "
+                 + "VALUES('" + participation.idWalk + "', '" + participation.idDog + "', '" + participation.idUser +"', '" + 0 +  "');";
+     db.query(req, function select(err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        else{
+            socket.emit("RTryAddParticipation");
+            //Envoi token
+            self.sendGcmToUserId(idUser, participation.idWalk);
+        }
+  };
+
   this.addDogToWalk = function(idWalk, idDog, walklocations){
       var req = "INSERT INTO DogWalk(idWalk, idDog) "
                  + "VALUES('" + idWalk + "', '" + idDog + "');";
