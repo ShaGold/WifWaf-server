@@ -627,7 +627,7 @@ this.recupPhoto = function(event, result, i, socket){
   this.addToken = function(token){
       console.log("val token", token);
       var req = "INSERT INTO Token(token, idUser) "
-                   + "VALUES('" + token.idUser + "','" + token.token "');";
+                   + "VALUES('" + token.idUser  + "', '" + token.token + "');";
        db.query(req, function select(err, result) {
            if (err) {
                console.log(err);
