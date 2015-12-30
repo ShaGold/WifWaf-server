@@ -8,6 +8,8 @@ var Locations = require('./controllers/Location.js').locations;
 
 var fs = require('fs');
 
+var gcm = require('node-gcm');
+
 module.exports.connection = new DBConnection();
 
 function DBConnection(){
@@ -211,6 +213,8 @@ function DBConnection(){
                        self.addLocation(newLoc, lastid);
                        if (l == walklocations.length - 1){
                            socket.emit("RTryAddWalk");
+                           //gestion envoi à tous
+                           self.sendGcm();
                        }
                    }
                }
@@ -230,9 +234,18 @@ function DBConnection(){
              for(i in result){
                  tb.push(result[i]['token']);
              }
-             console.log(tb);
          }
-  })
+    });
+    var message = new gcm.Message();
+	message.addData('Test', 'jefaisuntest');
+
+	var sender = new gcm.Sender("AIzaSyANgYc99-Oa-IBRRIwCo7nzdBwBannrc4o");
+
+	console.log("Envoi du message au GCM");
+	sender.send(message, { registrationTokens: tb }, function (err, response) {
+		if(err) console.error(err);
+		else    console.log(response);
+	});
   };
 
 
