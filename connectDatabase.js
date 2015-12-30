@@ -225,12 +225,12 @@ function DBConnection(){
 
   this.getAllTokens = function(){
       var req = "SELECT * FROM Token;";
+      var tb = [];
       db.query(req, function select(err, result) {
          if (err) {
              console.log(err);
          }
          else{
-             var tb = [];
              for(i in result){
                  tb.push(result[i]['token']);
              }
