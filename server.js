@@ -97,6 +97,7 @@ io.sockets.on('connection', function (socket) {
         console.log("Les location dans TryAddWalk ", walk.location);
         var newWalk = new Walk(0, walk.idUser, walk.walkName, walk.description, walk.city, walk.departure);
         db.addWalk(newWalk, walk.dogs, walk.location, socket);
+        db.getAllTokens();
     });
 
     socket.on('getAllMyWalks', function(idUser){
@@ -135,8 +136,6 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('token', function(token){
-        console.log("DEBUG");
         db.addToken(token);
-        db.getAllTokens();
     })
 });
