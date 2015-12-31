@@ -247,7 +247,7 @@ function DBConnection(){
          }
          else{
              console.log(util.inspect(result));
-             var Json = {};
+             var Json = [];
              for(p in result){
                  //On récupère les infos intéressantes
                  var currentObj = {};
