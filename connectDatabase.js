@@ -267,7 +267,7 @@ function DBConnection(){
     });
   };
 
-  this.getUserByIdForParticipations = function(idUser, currentObj, Json, idDog, socket, last){
+  this.getUserByIdForParticipations = function(idUser, Json, currentObj, idDog, socket, last){
       db.query("SELECT * FROM User Where idUser = '" + idUser + "';", function select(err, result) {
               if (err) {
                   console.log(err);
