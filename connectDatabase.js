@@ -282,7 +282,7 @@ function DBConnection(){
                         fs.readFile('user.jpg', function (err, data) {
                             var image = new Buffer(data).toString('base64');
                             result[0]['photo'] = image;
-                            currentObj.user = result;
+                            currentObj.user = result[0];
                             //Il reste à récupérer le chien
                             self.getDogByIdForParticipations(currentObj, Json, idDog, socket, last);
                         });
@@ -290,7 +290,7 @@ function DBConnection(){
                     else {
                         var image = new Buffer(data).toString('base64');
                         result[0]['photo'] = image;
-                        currentObj.user = result;
+                        currentObj.user = result[0];
                         //Il reste à récupérer le chien
                         self.getDogByIdForParticipations(currentObj, Json, idDog, socket, last);
                     }
@@ -311,20 +311,16 @@ function DBConnection(){
                     fs.readFile('img/dog.jpg', function (err, data) {
                         var image = new Buffer(data).toString('base64');
                         result[0]['photo'] = image;
-                        currentObj.dog = result;
+                        currentObj.dog = result[0];
                         Json.push(currentObj);
-                        console.log("Résultat envoyé:", Json);
-                        console.log(last);
                         if(last == true){ socket.emit("RgetAllParticipationsForIdWalk", Json); }
                     });
                 }
                 else {
                     var image = new Buffer(data).toString('base64');
                     result[0]['photo'] = image;
-                    currentObj.dog = result;
+                    currentObj.dog = result[0];
                     Json.push(currentObj);
-                    console.log("Résultat envoyé:", Json);
-                    console.log(last);
                     if(last == true){ socket.emit("RgetAllParticipationsForIdWalk", Json); }
                 }
             });
