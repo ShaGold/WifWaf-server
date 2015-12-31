@@ -259,7 +259,8 @@ function DBConnection(){
              console.log(err);
          }
          else{
-             socket.emit("RgetAllParticipationsForIdUser", result);
+             //socket.emit("RgetAllParticipationsForIdUser", result);
+             console.log(idUser);
          }
     });
   };
