@@ -49,7 +49,8 @@ io.sockets.on('connection', function (socket) {
     socket.on('TrySignIn', function(user) {
         var email = user.email;
         db.getUserByEmail("RTrySignIn", email, socket);
-        db.getAllParticipationsForIdUser(124, socket);
+        console.log("J'appele getAllParticipations pour la balade ");
+        db.getAllParticipationsForIdWalk(53, socket);
     });
 
     //GESTION CHIENS------------------------------------------------------------------------------------------------------------

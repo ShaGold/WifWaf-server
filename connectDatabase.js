@@ -246,9 +246,9 @@ function DBConnection(){
              console.log(err);
          }
          else{
-             console.log(result);
+             console.log(util.inspect(result));
              for(p in result[p]){
-
+                 console.log("participation :" + result[p]);
              }
              socket.emit("RgetAllParticipationsForIdWalk", result);
          }
