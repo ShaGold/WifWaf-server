@@ -253,6 +253,7 @@ function DBConnection(){
                  var currentObj = {};
                  currentObj.idWalk = result[p]['idWalk'];
                  currentObj.idParticipation = result[p]['idParticipation'];
+                 currentObj.valid = result[p]['valid'];
                  console.log("participation :" + result[p]['idUser']);
                  //pour savoir si dernière participation
                  console.log("p value", p);
