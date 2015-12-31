@@ -296,6 +296,7 @@ function DBConnection(){
   };
 
   this.getDogByIdForParticipations = function(currentObj, Json, idDog, socket, last){
+      console.log("Json vaut", Json);
       var req = "SELECT * FROM Dog WHERE idDog = " + idDog + ";";
       db.query(req, function select(err, result) {
           if (err) {
