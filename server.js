@@ -153,7 +153,7 @@ io.sockets.on('connection', function (socket) {
             db.getAllParticipationsForIdWalk(idWalk, socket);
     });
 
-    socket.on('getAllParticipationsForIdWalk', function(idUser, socket){
+    socket.on('getAllParticipationsForIdUser', function(idUser, socket){
             console.log("J'appele getAllParticipations pour l'utilisateur ", idUser);
             db.getAllParticipationsForIdUser(idUser, socket);
     });
