@@ -247,9 +247,7 @@ function DBConnection(){
          }
          else{
              console.log(util.inspect(result));
-             var Json = {
-                 participations: []
-             };
+             var Json = [];
              for(p in result){
                  //On récupère les infos intéressantes
                  var currentObj = {};
@@ -310,7 +308,7 @@ function DBConnection(){
                         var image = new Buffer(data).toString('base64');
                         result[0]['photo'] = image;
                         currentObj.dog = result;
-                        Json.participations.push(currentObj);
+                        Json.push(currentObj);
                         if(last){ socket.emit("RgetAllParticipationsForIdWalk", Json); }
                     });
                 }
@@ -319,7 +317,7 @@ function DBConnection(){
                     result[0]['photo'] = image;
                     currentObj.dog = result;
                     console.log("currentObj", currentObj);
-                    Json.participations.push(currentObj);
+                    Json.push(currentObj);
                     if(last){ socket.emit("RgetAllParticipationsForIdWalk", Json); }
                 }
             });
