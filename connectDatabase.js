@@ -247,10 +247,10 @@ function DBConnection(){
          }
          else{
              console.log(util.inspect(result));
-             var Json;
+             var Json = {};
              for(p in result){
                  //On récupère les infos intéressantes
-                 var currentObj;
+                 var currentObj = {};
                  currentObj.idWalk = result[p]['idWalk'];
                  currentObj.idParticipation = result[p]['idParticipation'];
                  console.log("participation :" + result[p]['idUser']);
