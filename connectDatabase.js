@@ -253,7 +253,7 @@ function DBConnection(){
   };
 
   this.getAllParticipationsForIdUser = function(idUser, socket){
-      var req = "SELECT * FROM Participation Where idUser = '" + idUser + "';", function select(err, result) {
+      var req = "SELECT * FROM Participation Where idUser = '" + idUser + "';";
       db.query(req, function select(err, result) {
          if (err) {
              console.log(err);
