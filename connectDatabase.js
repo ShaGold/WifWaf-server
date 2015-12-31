@@ -247,12 +247,81 @@ function DBConnection(){
          }
          else{
              console.log(util.inspect(result));
+             var Json;
              for(p in result){
+                 //On récupère les infos intéressantes
+                 var currentObj;
+                 currentObj.idWalk = idWalk;
+                 currentObj.idParticipation = result[p]['idParticipation'];
                  console.log("participation :" + result[p]['idUser']);
+                 //pour savoir si dernière participation
+                 if(p == result.length - 1){
+                     last = true;
+                 }else{ last = false; }
+
+                 //On récupère le user
+                 self.getUserByIdForParticipations(result[p]['idUser'], Json, currentObj, result[p]['idDog'], socket, last);
              }
-             socket.emit("RgetAllParticipationsForIdWalk", result);
+
          }
     });
+  };
+
+  this.getUserByIdForParticipations = function(idUser, currentObj, Json, idDog, socket, last){
+      db.query("SELECT * FROM User Where idUser = '" + idUser + "';", function select(err, result) {
+              if (err) {
+                  console.log(err);
+              }
+              else{
+                  fs.readFile('img/profil_' + idUser +  '.jpg', function (err, data) {
+                    if (err) {
+                        fs.readFile('user.jpg', function (err, data) {
+                            var image = new Buffer(data).toString('base64');
+                            result[0]['photo'] = image;
+                            currentObj.user = result;
+                            //Il reste à récupérer le chien
+                            self.getDogByIdForParticipations(currentObj, Json, idDog, socket, last);
+                        });
+                    }
+                    else {
+                        var image = new Buffer(data).toString('base64');
+                        result[0]['photo'] = image;
+                        currentObj.user = result;
+                        //Il reste à récupérer le chien
+                        self.getDogByIdForParticipations(currentObj, Json, idDog, socket, last);
+                    }
+                });
+              }
+     });
+  };
+
+  this.getDogByIdForParticipations = function(currentObj, Json, idDog, socket, last){
+      var req = "SELECT * FROM Dog WHERE idDog = " + idDog + ";";
+      db.query(req, function select(err, result) {
+          if (err) {
+              console.log(err);
+          }
+          else{
+              fs.readFile('img/profil_' + result[0]['dogName'] + result[0]['idUser'] +  '.jpg', function (err, data) {
+                if (err) {
+                    fs.readFile('img/dog.jpg', function (err, data) {
+                        var image = new Buffer(data).toString('base64');
+                        result[0]['photo'] = image;
+                        currentObj.dog = result;
+                        Json.push(currentObj);
+                        if(last){ socket.emit("RgetAllParticipationsForIdWalk", Json); }
+                    });
+                }
+                else {
+                    var image = new Buffer(data).toString('base64');
+                    result[0]['photo'] = image;
+                    currentObj.dog = result;
+                    Json.push(currentObj);
+                    if(last){ socket.emit("RgetAllParticipationsForIdWalk", Json); }
+                }
+            });
+          }
+      });
   };
 
   this.getAllParticipationsForIdUser = function(idUser, socket){
@@ -437,7 +506,7 @@ this.recupPhoto = function(event, result, i, socket){
           else{
               fs.readFile('img/profil_' + result[0]['dogName'] + result[0]['idUser'] +  '.jpg', function (err, data) {
                 if (err) {
-                    fs.readFile('img/user.jpg', function (err, data) {
+                    fs.readFile('img/dog.jpg', function (err, data) {
                         var image = new Buffer(data).toString('base64');
                         result[0]['photo'] = image;
                         self.getBehaviours("RGetDogById", result, 0, socket);
