@@ -251,7 +251,7 @@ function DBConnection(){
              for(p in result){
                  //On récupère les infos intéressantes
                  var currentObj;
-                 currentObj.idWalk = idWalk;
+                 currentObj.idWalk = result[p]['idWalk'];
                  currentObj.idParticipation = result[p]['idParticipation'];
                  console.log("participation :" + result[p]['idUser']);
                  //pour savoir si dernière participation
