@@ -247,6 +247,9 @@ function DBConnection(){
          }
          else{
              console.log(result);
+             for(p in result[p]){
+
+             }
              socket.emit("RgetAllParticipationsForIdWalk", result);
          }
     });
@@ -262,6 +265,7 @@ function DBConnection(){
              //socket.emit("RgetAllParticipationsForIdUser", result);
              console.log(idUser);
              console.log("Résultat: " + result);
+             //faire util.inspect
          }
     });
   };
@@ -315,7 +319,7 @@ function DBConnection(){
             socket.emit("RTryAddParticipation");
             //Envoi token
             //TODO passer en param l'id du chien? son nom? et le nom de la personne? comme ça on peut rediriger vers le profil du chien? ou de la personne?
-            self.sendGcmToUserId(idUser, participation.idWalk);
+            self.sendGcmToUserId(participation.idUser, participation.idWalk);
         }
     });
   };
