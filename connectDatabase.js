@@ -255,6 +255,7 @@ function DBConnection(){
                  currentObj.idParticipation = result[p]['idParticipation'];
                  console.log("participation :" + result[p]['idUser']);
                  //pour savoir si dernière participation
+                 console.log("p value", p);
                  if(p == result.length - 1){
                      last = true;
                  }else{ last = false; }
