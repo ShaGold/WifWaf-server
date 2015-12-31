@@ -139,11 +139,21 @@ io.sockets.on('connection', function (socket) {
         db.addToken(token);
     });
 
-    socket.on('addParticipation', function(participation, socket){
+    socket.on('addParticipation', function(participation){
         console.log("Toutes les participations reçues", participation);
         for(p in participation){
             console.log("J'appele addParticipation sur ", participation[p]);
-            db.addParticipation(participation[p]);
+            db.addParticipation(participation[p], socket);
         }
+    });
+
+    socket.on('getAllParticipationsForIdWalk', function(idWalk, socket){
+            console.log("J'appele getAllParticipations pour la balade ", idWalk);
+            db.getAllParticipationsForIdWalk(idWalk, socket);
+    });
+
+    socket.on('getAllParticipationsForIdWalk', function(idUser, socket){
+            console.log("J'appele getAllParticipations pour l'utilisateur ", idUser);
+            db.getAllParticipationsForIdUser(idUser, socket);
     });
 });

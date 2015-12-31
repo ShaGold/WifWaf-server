@@ -239,6 +239,31 @@ function DBConnection(){
     });
   };
 
+  this.getAllParticipationsForIdWalk = function(idWalk, socket){
+      var req = "SELECT * FROM Participation Where idWalk = '" + idWalk + "';", function select(err, result) {
+      db.query(req, function select(err, result) {
+         if (err) {
+             console.log(err);
+         }
+         else{
+             console.log(result);
+             socket.emit("RgetAllParticipationsForIdWalk", result);
+         }
+    });
+  };
+
+  this.getAllParticipationsForIdUser = function(idUser, socket){
+      var req = "SELECT * FROM Participation Where idUser = '" + idUser + "';", function select(err, result) {
+      db.query(req, function select(err, result) {
+         if (err) {
+             console.log(err);
+         }
+         else{
+             socket.emit("RgetAllParticipationsForIdUser", result);
+         }
+    });
+  };
+
   this.sendGcm = function(tbtokens){
       var message = new gcm.Message();
   	message.addData('TypeNotif', 'addWalk');
@@ -287,7 +312,7 @@ function DBConnection(){
         else{
             socket.emit("RTryAddParticipation");
             //Envoi token
-            //TODO passer en param l'id du chien? son nom? et le nom de la personne? comme ça on peut rediriger vers le profil du chien? ou de la personne? 
+            //TODO passer en param l'id du chien? son nom? et le nom de la personne? comme ça on peut rediriger vers le profil du chien? ou de la personne?
             self.sendGcmToUserId(idUser, participation.idWalk);
         }
     });

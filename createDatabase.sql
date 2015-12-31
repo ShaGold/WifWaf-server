@@ -71,4 +71,4 @@ CREATE TABLE Participation(
     idDog INT,
     idUser INT,
     valid INT
-)
+);
