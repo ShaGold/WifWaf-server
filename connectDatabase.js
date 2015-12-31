@@ -296,7 +296,6 @@ function DBConnection(){
   };
 
   this.getDogByIdForParticipations = function(currentObj, Json, idDog, socket, last){
-      console.log("Json vaut", Json);
       var req = "SELECT * FROM Dog WHERE idDog = " + idDog + ";";
       db.query(req, function select(err, result) {
           if (err) {
@@ -310,6 +309,7 @@ function DBConnection(){
                         result[0]['photo'] = image;
                         currentObj.dog = result;
                         Json.push(currentObj);
+                        console.log("Résultat envoyé:", Json);
                         if(last){ socket.emit("RgetAllParticipationsForIdWalk", Json); }
                     });
                 }
@@ -317,8 +317,8 @@ function DBConnection(){
                     var image = new Buffer(data).toString('base64');
                     result[0]['photo'] = image;
                     currentObj.dog = result;
-                    console.log("currentObj", currentObj);
                     Json.push(currentObj);
+                    console.log("Résultat envoyé:", Json);
                     if(last){ socket.emit("RgetAllParticipationsForIdWalk", Json); }
                 }
             });
