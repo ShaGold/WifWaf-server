@@ -314,7 +314,8 @@ function DBConnection(){
                         currentObj.dog = result;
                         Json.push(currentObj);
                         console.log("Résultat envoyé:", Json);
-                        if(last){ socket.emit("RgetAllParticipationsForIdWalk", Json); }
+                        console.log(last);
+                        if(last == true){ socket.emit("RgetAllParticipationsForIdWalk", Json); }
                     });
                 }
                 else {
@@ -323,7 +324,8 @@ function DBConnection(){
                     currentObj.dog = result;
                     Json.push(currentObj);
                     console.log("Résultat envoyé:", Json);
-                    if(last){ socket.emit("RgetAllParticipationsForIdWalk", Json); }
+                    console.log(last);
+                    if(last == true){ socket.emit("RgetAllParticipationsForIdWalk", Json); }
                 }
             });
           }
