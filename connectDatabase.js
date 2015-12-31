@@ -261,6 +261,7 @@ function DBConnection(){
          else{
              //socket.emit("RgetAllParticipationsForIdUser", result);
              console.log(idUser);
+             console.log("Résultat: " + result);
          }
     });
   };
