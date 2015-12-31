@@ -149,12 +149,12 @@ io.sockets.on('connection', function (socket) {
         }
     });
 
-    socket.on('getAllParticipationsForIdWalk', function(idWalk, socket){
+    socket.on('getAllParticipationsForIdWalk', function(idWalk){
             console.log("J'appele getAllParticipations pour la balade ", idWalk);
             db.getAllParticipationsForIdWalk(idWalk, socket);
     });
 
-    socket.on('getAllParticipationsForIdUser', function(idUser, socket){
+    socket.on('getAllParticipationsForIdUser', function(idUser){
             console.log("J'appele getAllParticipations pour l'utilisateur ", idUser);
             db.getAllParticipationsForIdUser(idUser, socket);
     });
