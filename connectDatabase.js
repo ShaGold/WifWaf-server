@@ -261,6 +261,7 @@ function DBConnection(){
                  if(p == result.length - 1){
                      last = true;
                  }else{ last = false; }
+                 console.log("value last", last);
 
                  //On récupère le user
                  self.getUserByIdForParticipations(result[p]['idUser'], Json, currentObj, result[p]['idDog'], socket, last);
