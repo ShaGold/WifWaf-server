@@ -740,10 +740,6 @@ this.recupPhoto = function(event, result, i, socket){
                                console.log(err);
                                return;
                            }
-                           else{
-                               console.log("on emit");
-                               socket.emit("RUpdateWalk");
-                           }
                     });
                 }
                 socket.emit("RUpdateDog");
@@ -777,7 +773,6 @@ this.recupPhoto = function(event, result, i, socket){
                                return;
                            }
                            else{
-                               console.log("on emit");
                                socket.emit("RUpdateWalk");
                            }
                     });

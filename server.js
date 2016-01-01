@@ -49,16 +49,11 @@ io.sockets.on('connection', function (socket) {
     socket.on('TrySignIn', function(user) {
         var email = user.email;
         db.getUserByEmail("RTrySignIn", email, socket);
-        console.log("J'appele getAllParticipations pour la balade ");
-        db.getAllParticipationsForIdWalk(53, socket);
     });
 
     //GESTION CHIENS------------------------------------------------------------------------------------------------------------
     socket.on('TryAddDog', function (dog) {
-        console.log(dog);
         var newDog = new Dog(0, dog.dogName, dog.idUser, dog.age, dog.breed, dog.size, dog.getAlongWithMales, dog.getAlongWithFemales, dog.getAlongWithKids, dog.getAlongWithHumans, dog.description, dog.gender, dog.photo);
-        console.log('Je passe dans TryAddDog');
-        console.log(newDog);
         db.addDog(newDog, socket, dog.behaviours);
     });
 
@@ -96,19 +91,16 @@ io.sockets.on('connection', function (socket) {
 
     socket.on('TryAddWalk', function(walk){
         console.log('Tentative insertion de balade', walk);
-        console.log("Les location dans TryAddWalk ", walk.location);
         var newWalk = new Walk(0, walk.idUser, walk.walkName, walk.description, walk.city, walk.departure);
         db.addWalk(newWalk, walk.dogs, walk.location, socket);
         db.getAllTokens();
     });
 
     socket.on('getAllMyWalks', function(idUser){
-        console.log("Tentative de récupération de toutes les balades de", idUser);
         db.getAllMyWalks(idUser, socket);
     });
 
     socket.on('getAllWalks', function(){
-        console.log("Tentative de récupération de toutes les balades");
         db.getAllWalks(socket);
     });
 
