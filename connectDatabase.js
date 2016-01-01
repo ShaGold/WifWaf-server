@@ -157,7 +157,6 @@ function DBConnection(){
            var b;
            for(b in behaviours){
                self.addDogBehaviour(lastid, behaviours[b].idBehaviour);
-               console.log("behavior added");
                if (b == behaviours.length - 1){
                    socket.emit("RTryAddDog");
                }
@@ -246,7 +245,6 @@ function DBConnection(){
              console.log(err);
          }
          else{
-             console.log(util.inspect(result));
              var Json = [];
              for(p in result){
                  //On récupère les infos intéressantes
@@ -254,11 +252,9 @@ function DBConnection(){
                  currentObj.idWalk = result[p]['idWalk'];
                  currentObj.idParticipation = result[p]['idParticipation'];
                  currentObj.valid = result[p]['valid'];
-                 console.log("participation :" + result[p]['idUser']);
                  if(p == result.length - 1){
                      last = true;
                  }else{ last = false; }
-                 console.log("value last", last);
 
                  //On récupère le user
                  self.getUserByIdForParticipations(result[p]['idUser'], Json, currentObj, result[p]['idDog'], socket, last);
@@ -395,7 +391,6 @@ function DBConnection(){
   };
 
   this.setParticipationToValidated = function(participation, socket){
-      //TODO send idParticipation
       var req = "UPDATE Participation SET valid=\"" + 1 + "\"" + " WHERE idParticipation = " + participation.idParticipation + "; ";
      db.query(req, function select(err, result) {
         if (err) {
@@ -412,7 +407,6 @@ function DBConnection(){
   };
 
   this.setParticipationToRefused = function(participation, socket){
-      //TODO send idParticipation
       var req = "UPDATE Participation SET valid=\"" + 2 + "\"" + " WHERE idParticipation = " + participation.idParticipation + "; ";
      db.query(req, function select(err, result) {
         if (err) {
@@ -490,7 +484,6 @@ this.recupPhoto = function(event, result, i, socket){
 
 
   this.getBehaviours = function(event, result, i, socket){
-      console.log("Appelé");
       var req = "SELECT * FROM DogBehaviour WHERE idDog = " + result[i]['idDog'] + ";";
       db.query(req, function select(err, resultBeh) {
           if (err) {
@@ -498,13 +491,10 @@ this.recupPhoto = function(event, result, i, socket){
               socket.emit(event, err['errno']);
           }
           else{
-              console.log("resultBeh", resultBeh);
               var j;
               if (resultBeh.length > 0){
-                  console.log("jusque ici");
                   result[i]['behaviours'] = [];
                   for (j in resultBeh){
-                      console.log("lid behaviour", resultBeh[j].idBehaviour);
                       var req = "SELECT * FROM Behaviour WHERE Behaviour.idBehaviour = " + resultBeh[j].idBehaviour + ";";
                       db.query(req, function select(err, resultBehaviour) {
                           if (err) {
@@ -513,12 +503,9 @@ this.recupPhoto = function(event, result, i, socket){
                           }
                           else{
                               result[i]['behaviours'].push(resultBehaviour[0]);
-                              console.log(resultBehaviour[0]);
-                              console.log(result[i]['behaviours']);
                               if (result[i]['behaviours'].length == resultBeh.length){
                                   //dernier element
                                   socket.emit(event, result);
-                                  console.log("final", result[0].behaviours);
                               }
                             }
                       });
@@ -748,7 +735,6 @@ this.recupPhoto = function(event, result, i, socket){
                 for(d in dogBehaviours){
                         //On crée les liens
                         var req = "INSERT INTO DogBehaviour(idDog, idBehaviour) VALUES ('" + dog.idDog + "', '" + dogBehaviours[d].idBehaviour + "');";
-                        console.log(req);
                         db.query(req, function select(err, result) {
                            if (err) {
                                console.log(err);
@@ -801,7 +787,6 @@ this.recupPhoto = function(event, result, i, socket){
   };
 
   this.addToken = function(token){
-      console.log("val token", token);
       var req = "INSERT INTO Token(token, idUser) "
                    + "VALUES('" + token.token  + "', '" + token.idUser + "');";
        db.query(req, function select(err, result) {
