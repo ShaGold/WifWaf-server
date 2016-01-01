@@ -163,7 +163,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('validateParticipations', function(participations){
             console.log("Participants à accepter : ", participations)
             for(p in participations){
-                console.log("Je valide la participation ", participation[p]);
+                console.log("Je valide la participation ", participations[p]);
                 db.setParticipationToValidated(participations[p], socket);
             }
     });
@@ -171,7 +171,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('refuseParticipations', function(participations){
             console.log("Participants à refuser :", participations)
             for(p in participations){
-                console.log("Je refuse la participation ", participation[p]);
+                console.log("Je refuse la participation ", participations[p]);
                 db.setParticipationToRefused(participations[p], socket);
             }
     });
