@@ -255,10 +255,6 @@ function DBConnection(){
                  currentObj.idParticipation = result[p]['idParticipation'];
                  currentObj.valid = result[p]['valid'];
                  console.log("participation :" + result[p]['idUser']);
-                 //pour savoir si dernière participation
-                 console.log("p value", p);
-                 console.log("result length", result.length);
-                 console.log("result length - 1", result.length - 1);
                  if(p == result.length - 1){
                      last = true;
                  }else{ last = false; }
@@ -394,6 +390,40 @@ function DBConnection(){
             //Envoi token
             //TODO passer en param l'id du chien? son nom? et le nom de la personne? comme ça on peut rediriger vers le profil du chien? ou de la personne?
             self.sendGcmToUserId(participation.idUser, participation.idWalk);
+        }
+    });
+  };
+
+  this.setParticipationToValidated = function(participation, socket){
+      //TODO send idParticipation
+      var req = "UPDATE Participation SET valid=\"" + 1 + "\"" + "\" WHERE idParticipation = " + participation.idParticipation + "; ";
+     db.query(req, function select(err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        else{
+            //Envoi token
+            //TODO passer en param l'id du chien? son nom? et le nom de la personne? comme ça on peut rediriger vers le profil du chien? ou de la personne?
+            //self.sendGcmToUserId(participation.idUser, participation.idWalk);
+            console.log("Une participation est passée à validée");
+        }
+    });
+  };
+
+  this.setParticipationToRefused = function(participation, socket){
+      //TODO send idParticipation
+      var req = "UPDATE Participation SET valid=\"" + 2 + "\"" + "\" WHERE idParticipation = " + participation.idParticipation + "; ";
+     db.query(req, function select(err, result) {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        else{
+            //Envoi token
+            //TODO passer en param l'id du chien? son nom? et le nom de la personne? comme ça on peut rediriger vers le profil du chien? ou de la personne?
+            //self.sendGcmToUserId(participation.idUser, participation.idWalk);
+            console.log("Une participation est passée à refusée");
         }
     });
   };

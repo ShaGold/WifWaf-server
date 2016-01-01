@@ -158,4 +158,21 @@ io.sockets.on('connection', function (socket) {
             console.log("J'appele getAllParticipations pour l'utilisateur ", idUser);
             db.getAllParticipationsForIdUser(idUser, socket);
     });
+
+
+    socket.on('validateParticipations', function(participations){
+            console.log("Participants à accepter : ", participations)
+            for(p in participations){
+                console.log("Je valide la participation ", participation[p]);
+                db.setParticipationToValidated(participations[p], socket);
+            }
+    });
+
+    socket.on('refuseParticipations', function(participations){
+            console.log("Participants à refuser :", participations)
+            for(p in participations){
+                console.log("Je refuse la participation ", participation[p]);
+                db.setParticipationToRefused(participations[p], socket);
+            }
+    });
 });
