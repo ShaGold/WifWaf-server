@@ -396,7 +396,7 @@ function DBConnection(){
 
   this.setParticipationToValidated = function(participation, socket){
       //TODO send idParticipation
-      var req = "UPDATE Participation SET valid=\"" + 1 + "\"" + "\" WHERE idParticipation = " + participation.idParticipation + "; ";
+      var req = "UPDATE Participation SET valid=\"" + 1 + "\"" + " WHERE idParticipation = " + participation.idParticipation + "; ";
      db.query(req, function select(err, result) {
         if (err) {
             console.log(err);
@@ -413,7 +413,7 @@ function DBConnection(){
 
   this.setParticipationToRefused = function(participation, socket){
       //TODO send idParticipation
-      var req = "UPDATE Participation SET valid=\"" + 2 + "\"" + "\" WHERE idParticipation = " + participation.idParticipation + "; ";
+      var req = "UPDATE Participation SET valid=\"" + 2 + "\"" + " WHERE idParticipation = " + participation.idParticipation + "; ";
      db.query(req, function select(err, result) {
         if (err) {
             console.log(err);
