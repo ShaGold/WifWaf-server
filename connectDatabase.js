@@ -566,6 +566,7 @@ this.recupPhoto = function(event, result, i, socket){
         else{
             db.query("DELETE FROM DogWalk WHERE idDog = " + idDog + ";");
             db.query("DELETE FROM DogBehaviour WHERE idDog = " + idDog + ";");
+            db.query("DELETE FROM Participation WHERE idDog = " + idDog + ";");
             socket.emit("RdeleteDog");
         }
       });
@@ -637,7 +638,15 @@ this.recupPhoto = function(event, result, i, socket){
                               console.log(err);
                           }
                           else{
-                              socket.emit("RdeleteWalk");
+                              //Suppression participations
+                              db.query("DELETE FROM Participation WHERE idWalk = " + idWalk + ";", function(err, rows, fields) {
+                                  if (err) {
+                                      console.log(err);
+                                  }
+                                  else{
+                                      socket.emit("RdeleteWalk");
+                                  }
+                              });
                           }
                       });
                   }

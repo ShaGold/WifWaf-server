@@ -113,7 +113,7 @@ io.sockets.on('connection', function (socket) {
     socket.on('updateUser', function(user){
         console.log("Update user");
         var newUser = new User(user.idUser, user.email, user.nickname, user.password, user.birthday, user.phoneNumber, user.description, user.photo);
-        console.log(newUser);
+
         db.updateUser(newUser, socket);
     });
 
