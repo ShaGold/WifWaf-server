@@ -364,8 +364,11 @@ function DBConnection(){
 
                	var sender = new gcm.Sender("AIzaSyANgYc99-Oa-IBRRIwCo7nzdBwBannrc4o");
 
+                var tabtoken = [];
+                tabtoken.push( result[0]['token'] );
+
                	console.log("Envoi du message au GCM");
-               	sender.send(message, { registrationTokens: result[0]['token'] }, function (err, response) {
+               	sender.send(message, { registrationTokens: tabtoken }, function (err, response) {
                		if(err) console.error(err);
                		else    console.log(response);
                	});
