@@ -397,9 +397,27 @@ function DBConnection(){
         }
         else{
             socket.emit("RAddParticipation");
-            //Envoi token
-            //TODO passer en param l'id du chien? son nom? et le nom de la personne? comme ça on peut rediriger vers le profil du chien? ou de la personne?
-            self.sendGcmToUserId(participation.idUser, participation.idWalk);
+            //On va chercher le créateur de la balade
+            db.query("SELECT idUser FROM Walk Where idWalk = '" + participation.idWalk + "';", function select(err, result) {
+                    if (err) {
+                        console.log(err);
+                    }
+               else{
+                   console.log(result[0]);
+                   db.query("SELECT token FROM Token Where idUser = '" + result[0] + "';", function select(err, result) {
+                           if (err) {
+                               console.log(err);
+                           }
+                      else{
+                          console.log(result[0]);
+                              // Envoi à ce token
+                           //Envoi token
+                           //TODO passer en param l'id du chien? son nom? et le nom de la personne? comme ça on peut rediriger vers le profil du chien? ou de la personne?
+                           self.sendGcmToUserId(participation.idUser, participation.idWalk);
+                       }
+                   });
+                   }
+              });
         }
     });
   };
