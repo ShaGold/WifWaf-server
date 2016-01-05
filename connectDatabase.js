@@ -376,6 +376,7 @@ function DBConnection(){
                	var sender = new gcm.Sender("AIzaSyANgYc99-Oa-IBRRIwCo7nzdBwBannrc4o");
 
                 var tabtoken = [];
+                console.log(result[0]);
                 tabtoken.push( result[0]['token'] );
 
                	console.log("Envoi du message au GCM");
