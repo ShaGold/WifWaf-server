@@ -720,7 +720,7 @@ this.recupPhoto = function(event, result, i, socket){
             }
             else{
                 var temp = User.photo;
-                if (temp != "") {
+                if (temp != "not changed") {
                     var img = new Buffer(temp, 'base64');
                     fs.writeFile('img/profil_' + User.idUser + '.jpg', img, function (err) {
                         if (err) throw err;
