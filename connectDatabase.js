@@ -727,6 +727,7 @@ this.recupPhoto = function(event, result, i, socket){
                     });
                 }
                 socket.emit("RUpdateUser");
+                console.log("émitté");
             }
         });
   };
