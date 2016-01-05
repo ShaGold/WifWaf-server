@@ -111,9 +111,9 @@ io.sockets.on('connection', function (socket) {
     });
 
     socket.on('updateUser', function(user){
-        console.log("Update user");
+        console.log("Update user", user);
+        console.log("Update photo", user.photo);
         var newUser = new User(user.idUser, user.email, user.nickname, user.password, user.birthday, user.phoneNumber, user.description, user.photo);
-
         db.updateUser(newUser, socket);
     });
 
