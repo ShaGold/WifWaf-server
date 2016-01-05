@@ -26,8 +26,8 @@ function DBConnection(){
 
   this.addUser = function(user, socket){
     var req = "INSERT INTO User(email, nickname, password, birthday, phoneNumber, description) "
-                 + "VALUES('" + user.email + "', '" + user.nickname + "', '" + user.password + "', '"
-                 + user.birthday + "', '" + user.phoneNumber + "', '" + user.description + "');";
+                 + "VALUES(" + db.escape(user.email) + ", " + db.escape(user.nickname) + ", " + db.escape(user.password) + ", "
+                 + db.escape(user.birthday) + ", " + db.escape(user.phoneNumber) + ", " + db.escape(user.description) + ");";
      db.query(req, function select(err, result) {
          if (err) {
              console.log(err);
