@@ -121,9 +121,17 @@ function DBConnection(){
 
   this.addDog = function(dog, socket, behaviours){
       var req = "INSERT INTO Dog(dogName, idUser, age, breed, size, getAlongWithMales, getAlongWithFemales, getAlongWithKids, getAlongWithHumans, description, gender) "
-                 + "VALUES('" + dog.dogName + "', '" + dog.idUser + "', '" + dog.age + "', '" + dog.breed + "', '"
-                 + dog.size + "', '" + dog.getAlongWithMales + "', '" + dog.getAlongWithFemales + "', '"
-                 + dog.getAlongWithKids + "', '" + dog.getAlongWithHumans +  "', '" + dog.description +  "', '" + dog.gender + "');";
+                 + "VALUES(" + db.escape(dog.dogName) + ", "
+                 + db.escape(dog.idUser) + ", "
+                 + db.escape(dog.age) + ", "
+                 + db.escape(dog.breed) + ", "
+                 + db.escape(dog.size) + ", "
+                 + db.escape(dog.getAlongWithMales) + ", "
+                 + db.escape(dog.getAlongWithFemales) + ", "
+                 + db.escape(dog.getAlongWithKids) + ", "
+                 + db.escape(dog.getAlongWithHumans) +  ", "
+                 + db.escape(dog.description) +  ", "
+                 + db.escape(dog.gender) + ");";
 
       if (dog.photo != null) {
             var nomImg = "profil_" + dog.dogName + dog.idUser;
@@ -180,8 +188,11 @@ function DBConnection(){
 
   this.addWalk = function(walk, walkdogs, walklocations, socket){
       var req = "INSERT INTO Walk(city, idUser, walkName, description, departure) "
-                 + "VALUES('" + walk.city + "', '" + walk.idUser + "', '" + walk.walkName + "', '"
-                 + walk.description + "', '" + walk.departure + "');";
+                 + "VALUES(" + db.escape(walk.city) + ", "
+                 + db.escape(walk.idUser) + ", "
+                 + db.escape(walk.walkName) + ", "
+                 + db.escape(walk.description) + ", "
+                 + db.escape(walk.departure) + ");";
       db.query(req, function select(err, result) {
          if (err) {
              console.log(err);
