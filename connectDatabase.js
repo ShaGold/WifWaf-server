@@ -361,7 +361,7 @@ function DBConnection(){
     };
 
     //A tester: à appeler lorsqu'on addParticipation ou acceptParticipation
-    this.sendGcmToUserId = function(idUser, idWalk){
+    this.sendGcmToUserId = function(idUser, idWalk, text){
         //Récupération token
         db.query("SELECT * FROM Token Where idUser = '" + idUser + "';", function select(err, result) {
                 if (err) {
@@ -370,7 +370,7 @@ function DBConnection(){
            else{
                // Envoi à ce token
                var message = new gcm.Message();
-               	message.addData('TypeNotif', 'addParticipation');
+               	message.addData('TypeNotif', text);
                 message.addData('walk', idWalk);
 
                	var sender = new gcm.Sender("AIzaSyANgYc99-Oa-IBRRIwCo7nzdBwBannrc4o");
@@ -405,8 +405,8 @@ function DBConnection(){
                     }
                else{
                    //on lui envoie la notif
-                   console.log('ICICICICICI', result[0]);
-                    self.sendGcmToUserId(result[0]['idUser'], participation.idWalk);
+                   console.log('ICICICICICI', result[0]['idUser']);
+                    self.sendGcmToUserId(result[0]['idUser'], participation.idWalk, "addParticipation");
                    }
               });
         }
@@ -423,7 +423,7 @@ function DBConnection(){
         else{
             //Envoi token
             //TODO passer en param l'id du chien? son nom? et le nom de la personne? comme ça on peut rediriger vers le profil du chien? ou de la personne?
-            //self.sendGcmToUserId(participation.idUser, participation.idWalk);
+            self.sendGcmToUserId(participation.idUser, participation.idWalk, "validateParticipation");
             console.log("Une participation est passée à validée");
         }
     });
@@ -439,7 +439,7 @@ function DBConnection(){
         else{
             //Envoi token
             //TODO passer en param l'id du chien? son nom? et le nom de la personne? comme ça on peut rediriger vers le profil du chien? ou de la personne?
-            //self.sendGcmToUserId(participation.idUser, participation.idWalk);
+            self.sendGcmToUserId(participation.idUser, participation.idWalk, "refuseParticipation");
             console.log("Une participation est passée à refusée");
         }
     });
