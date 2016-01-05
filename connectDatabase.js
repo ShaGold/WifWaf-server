@@ -405,6 +405,7 @@ function DBConnection(){
                     }
                else{
                    //on lui envoie la notif
+                   console.log(result[0]);
                     self.sendGcmToUserId(result[0]['idUser'], participation.idWalk);
                    }
               });
