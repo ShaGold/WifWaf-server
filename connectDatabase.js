@@ -242,7 +242,7 @@ function DBConnection(){
          }
          else{
              for(i in result){
-                 tb.push(result[i]);
+                 tb.push(result[i]['token']);
              }
              self.sendGcm(tb);
          }
