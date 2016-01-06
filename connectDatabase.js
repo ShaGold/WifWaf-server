@@ -234,7 +234,7 @@ function DBConnection(){
   };
 
   this.getAllTokens = function(){
-      var req = "SELECT * FROM Token;";
+      var req = "SELECT DISTINCT token FROM Token;";
       var tb = [];
       db.query(req, function select(err, result) {
          if (err) {
@@ -242,7 +242,7 @@ function DBConnection(){
          }
          else{
              for(i in result){
-                 tb.push(result[i]['token']);
+                 tb.push(result[i]);
              }
              self.sendGcm(tb);
          }
