@@ -687,7 +687,7 @@ this.recupPhoto = function(event, result, i, socket){
                else{
                    fs.readFile('img/profil_' + idUser +  '.jpg', function (err, data) {
                      if (err) {
-                         fs.readFile('user.jpg', function (err, data) {
+                         fs.readFile('img/user.jpg', function (err, data) {
                              var image = new Buffer(data).toString('base64');
                              result[0]['photo'] = image;
                              socket.emit("RGetUser", result[0]);
