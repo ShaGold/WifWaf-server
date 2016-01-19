@@ -831,7 +831,7 @@ this.recupPhoto = function(event, result, i, socket){
             console.log(err);
         }
         else{
-            console.log(result[0]);
+            console.log("Récupération de la balade aléatoire:", result[0]);
             socket.emit("RrandomWalk", result[0]);
         }
     });
