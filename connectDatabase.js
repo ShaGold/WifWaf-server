@@ -825,7 +825,7 @@ this.recupPhoto = function(event, result, i, socket){
   };
 
   this.getRandomWalk = function(socket){
-    var req = "SELECT * FROM Walk ORDER BY RAND() LIMIT 1;";
+    var req = "SELECT * FROM Walk w WHERE ABS(NOW() - w.departure) = (SELECT MIN(ABS(NOW() - m.departure)) FROM Walk m)";
     db.query(req, function select(err, result){
         if (err){
             console.log(err);
