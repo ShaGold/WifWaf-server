@@ -823,4 +823,17 @@ this.recupPhoto = function(event, result, i, socket){
            }
        });
   };
+
+  this.getRandomWalk = function(socket){
+    var req = "SELECT column FROM table ORDER BY RAND() LIMIT 1;";
+    db.query(req, function select(err, result){
+        if (err){
+            console.log(err);
+        }
+        else{
+            console.log(result[0]);
+            socket.emit("RrandomWalk", result[0]);
+        }
+    });
+  };
 }

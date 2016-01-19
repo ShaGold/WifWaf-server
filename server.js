@@ -167,4 +167,10 @@ io.sockets.on('connection', function (socket) {
                 db.setParticipationToRefused(participations[p], socket);
             }
     });
+
+    //Gestion shake
+    socket.on('randomWalk', function(){
+        //devra emit RrandomWalk
+        db.getRandomWalk(socket);
+    });
 });
