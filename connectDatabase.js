@@ -825,7 +825,7 @@ this.recupPhoto = function(event, result, i, socket){
   };
 
   this.getRandomWalk = function(socket){
-    var req = "SELECT column FROM table ORDER BY RAND() LIMIT 1;";
+    var req = "SELECT * FROM Walk ORDER BY RAND() LIMIT 1;";
     db.query(req, function select(err, result){
         if (err){
             console.log(err);
