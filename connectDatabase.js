@@ -541,12 +541,12 @@ this.recupPhoto = function(event, result, i, socket){
     });
 };
 
-  this.getDogById = function(idDog, socket){
+  this.getDogById = function(event, idDog, socket){
       var req = "SELECT * FROM Dog WHERE idDog = " + idDog + ";";
       db.query(req, function select(err, result) {
           if (err) {
               console.log(err);
-              socket.emit("RGetDogById", err['errno']);
+              socket.emit(event, err['errno']);
           }
           else{
               fs.readFile('img/profil_' + result[0]['dogName'] + result[0]['idUser'] +  '.jpg', function (err, data) {
@@ -554,13 +554,13 @@ this.recupPhoto = function(event, result, i, socket){
                     fs.readFile('img/dog.jpg', function (err, data) {
                         var image = new Buffer(data).toString('base64');
                         result[0]['photo'] = image;
-                        self.getBehaviours("RGetDogById", result, 0, socket);
+                        self.getBehaviours(event, result, 0, socket);
                     });
                 }
                 else {
                     var image = new Buffer(data).toString('base64');
                     result[0]['photo'] = image;
-                    self.getBehaviours("RGetDogById", result, 0, socket);
+                    self.getBehaviours(event, result, 0, socket);
                 }
             });
           }
@@ -844,8 +844,8 @@ this.recupPhoto = function(event, result, i, socket){
             console.log(err);
         }
         else{
-            console.log("Récupération du chien aléatoire:", result[0]);
-            socket.emit("RrandomDog", result[0]);
+            console.log("Récupération du chien aléatoire:", result[0].idDog);
+            self.getDogById("RrandomDog", result[0].idDog);
         }
     });
   };
