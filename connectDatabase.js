@@ -845,7 +845,7 @@ this.recupPhoto = function(event, result, i, socket){
         }
         else{
             console.log("Récupération du chien aléatoire:", result[0].idDog);
-            self.getDogById("RrandomDog", result[0].idDog);
+            self.getDogById("RrandomDog", result[0].idDog, socket);
         }
     });
   };
