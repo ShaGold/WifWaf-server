@@ -173,4 +173,9 @@ io.sockets.on('connection', function (socket) {
         //devra emit RrandomWalk
         db.getRandomWalk(socket);
     });
+
+    socket.on('randomDog', function(){
+        //devra emit RrandomWalk
+        db.getRandomDog(socket);
+    });
 });

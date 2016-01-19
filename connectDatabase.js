@@ -836,4 +836,17 @@ this.recupPhoto = function(event, result, i, socket){
         }
     });
   };
+
+  this.getRandomDog = function(socket){
+    var req = "SELECT * FROM Dog ORDER BY RAND() LIMIT 1";
+    db.query(req, function select(err, result){
+        if (err){
+            console.log(err);
+        }
+        else{
+            console.log("Récupération du chien aléatoire:", result[0]);
+            socket.emit("RrandomDog", result[0]);
+        }
+    });
+  };
 }
